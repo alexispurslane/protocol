@@ -31,12 +31,12 @@ const (
 
 type WorkDoneProgressCreateParams struct {
 	// Token the token to be used to report progress.
-	Token ProgressToken `json:"token"`
+	Token ProgressToken[int32, string] `json:"token"`
 }
 
 type WorkDoneProgressCancelParams struct {
 	// Token the token to be used to report progress.
-	Token ProgressToken `json:"token"`
+	Token ProgressToken[int32, string] `json:"token"`
 }
 
 // ShowDocumentParams params to show a resource in the UI.

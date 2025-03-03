@@ -1553,11 +1553,11 @@ func (s *server) Shutdown(ctx context.Context) (err error) {
 // To ensure that a server is useful in many clients the commands specified in a code actions should be handled by the
 // server and not by the client (see `workspace/executeCommand` and `ServerCapabilities.executeCommandProvider`).
 // If the client supports providing edits with a code action then the mode should be used.
-func (s *server) CodeAction(ctx context.Context, params *CodeActionParams) (_ *CodeActionRequestResult, err error) {
+func (s *server) CodeAction(ctx context.Context, params *CodeActionParams) (_ *CodeActionRequestResult[Command, CodeAction], err error) {
 	s.logger.Debug("call " + MethodTextDocumentCodeAction)
 	defer s.logger.Debug("end "+MethodTextDocumentCodeAction, zap.Error(err))
 
-	var result *CodeActionRequestResult
+	var result *CodeActionRequestResult[Command, CodeAction]
 	if err := Call(ctx, s.Conn, MethodTextDocumentCodeAction, params, &result); err != nil {
 		return nil, err
 	}
@@ -1609,11 +1609,11 @@ func (s *server) ColorPresentation(ctx context.Context, params *ColorPresentatio
 // The returned completion item should have the documentation property filled in. The request can delay the computation of
 // the `detail` and `documentation` properties. However, properties that are needed for the initial sorting and filtering,
 // like `sortText`, `filterText`, `insertText`, and `textEdit` must be provided in the `textDocument/completion` response and must not be changed during resolve.
-func (s *server) Completion(ctx context.Context, params *CompletionParams) (_ *CompletionResult, err error) {
+func (s *server) Completion(ctx context.Context, params *CompletionParams) (_ *CompletionResult[[]CompletionItem, CompletionList], err error) {
 	s.logger.Debug("call " + MethodTextDocumentCompletion)
 	defer s.logger.Debug("end "+MethodTextDocumentCompletion, zap.Error(err))
 
-	var result *CompletionResult
+	var result *CompletionResult[[]CompletionItem, CompletionList]
 	if err := Call(ctx, s.Conn, MethodTextDocumentCompletion, params, &result); err != nil {
 		return nil, err
 	}
@@ -1626,11 +1626,11 @@ func (s *server) Completion(ctx context.Context, params *CompletionParams) (_ *C
 // The result type LocationLink[] got introduce with version 3.14.0 and depends in the corresponding client capability `clientCapabilities.textDocument.declaration.linkSupport`.
 //
 // @since 3.14.0.
-func (s *server) Declaration(ctx context.Context, params *DeclarationParams) (_ *DeclarationResult, err error) {
+func (s *server) Declaration(ctx context.Context, params *DeclarationParams) (_ *DeclarationResult[Declaration[Location, []Location], []DeclarationLink], err error) {
 	s.logger.Debug("call " + MethodTextDocumentDeclaration)
 	defer s.logger.Debug("end "+MethodTextDocumentDeclaration, zap.Error(err))
 
-	var result *DeclarationResult
+	var result *DeclarationResult[Declaration[Location, []Location], []DeclarationLink]
 	if err := Call(ctx, s.Conn, MethodTextDocumentDeclaration, params, &result); err != nil {
 		return nil, err
 	}
@@ -1643,11 +1643,11 @@ func (s *server) Declaration(ctx context.Context, params *DeclarationParams) (_ 
 // The result type `[]LocationLink` got introduce with version 3.14.0 and depends in the corresponding client capability `clientCapabilities.textDocument.definition.linkSupport`.
 //
 // @since 3.14.0.
-func (s *server) Definition(ctx context.Context, params *DefinitionParams) (_ *DefinitionResult, err error) {
+func (s *server) Definition(ctx context.Context, params *DefinitionParams) (_ *DefinitionResult[Declaration[Location, []Location], []DefinitionLink], err error) {
 	s.logger.Debug("call " + MethodTextDocumentDefinition)
 	defer s.logger.Debug("end "+MethodTextDocumentDefinition, zap.Error(err))
 
-	var result *DefinitionResult
+	var result *DefinitionResult[Declaration[Location, []Location], []DefinitionLink]
 	if err := Call(ctx, s.Conn, MethodTextDocumentDefinition, params, &result); err != nil {
 		return nil, err
 	}
@@ -1655,11 +1655,11 @@ func (s *server) Definition(ctx context.Context, params *DefinitionParams) (_ *D
 	return result, nil
 }
 
-func (s *server) DocumentDiagnostic(ctx context.Context, params *DocumentDiagnosticParams) (_ *DocumentDiagnosticReport, err error) {
+func (s *server) DocumentDiagnostic(ctx context.Context, params *DocumentDiagnosticParams) (_ *DocumentDiagnosticReport[RelatedFullDocumentDiagnosticReport, RelatedUnchangedDocumentDiagnosticReport], err error) {
 	s.logger.Debug("call " + MethodTextDocumentDiagnostic)
 	defer s.logger.Debug("end "+MethodTextDocumentDiagnostic, zap.Error(err))
 
-	var result *DocumentDiagnosticReport
+	var result *DocumentDiagnosticReport[RelatedFullDocumentDiagnosticReport, RelatedUnchangedDocumentDiagnosticReport]
 	if err := Call(ctx, s.Conn, MethodTextDocumentDiagnostic, params, &result); err != nil {
 		return nil, err
 	}
@@ -1722,11 +1722,11 @@ func (s *server) DocumentLink(ctx context.Context, params *DocumentLinkParams) (
 // DocumentSymbol sends the request from the client to the server to return a flat list of all symbols found in a given text document.
 //
 // Neither the symbol’s location range nor the symbol’s container name should be used to infer a hierarchy.
-func (s *server) DocumentSymbol(ctx context.Context, params *DocumentSymbolParams) (_ *DocumentSymbolResult, err error) {
+func (s *server) DocumentSymbol(ctx context.Context, params *DocumentSymbolParams) (_ *DocumentSymbolResult[[]SymbolInformation, []DocumentSymbol], err error) {
 	s.logger.Debug("call " + MethodTextDocumentDocumentSymbol)
 	defer s.logger.Debug("end "+MethodTextDocumentDocumentSymbol, zap.Error(err))
 
-	var result *DocumentSymbolResult
+	var result *DocumentSymbolResult[[]SymbolInformation, []DocumentSymbol]
 	if err := Call(ctx, s.Conn, MethodTextDocumentDocumentSymbol, params, &result); err != nil {
 		return nil, err
 	}
@@ -1778,11 +1778,11 @@ func (s *server) Hover(ctx context.Context, params *HoverParams) (_ *Hover, err 
 // Implementation sends the request from the client to the server to resolve the implementation location of a symbol at a given text document position.
 //
 // The result type `[]LocationLink` got introduce with version 3.14.0 and depends in the corresponding client capability `clientCapabilities.implementation.typeDefinition.linkSupport`.
-func (s *server) Implementation(ctx context.Context, params *ImplementationParams) (_ *ImplementationResult, err error) {
+func (s *server) Implementation(ctx context.Context, params *ImplementationParams) (_ *ImplementationResult[Definition[Location, []Location], []DefinitionLink], err error) {
 	s.logger.Debug("call " + MethodTextDocumentImplementation)
 	defer s.logger.Debug("end "+MethodTextDocumentImplementation, zap.Error(err))
 
-	var result *ImplementationResult
+	var result *ImplementationResult[Definition[Location, []Location], []DefinitionLink]
 	if err := Call(ctx, s.Conn, MethodTextDocumentImplementation, params, &result); err != nil {
 		return nil, err
 	}
@@ -1802,11 +1802,11 @@ func (s *server) InlayHint(ctx context.Context, params *InlayHintParams) (_ []*I
 	return result, nil
 }
 
-func (s *server) InlineCompletion(ctx context.Context, params *InlineCompletionParams) (_ *InlineCompletionResult, err error) {
+func (s *server) InlineCompletion(ctx context.Context, params *InlineCompletionParams) (_ *InlineCompletionResult[InlineCompletionList, []InlineCompletionItem], err error) {
 	s.logger.Debug("call " + MethodTextDocumentInlineCompletion)
 	defer s.logger.Debug("end "+MethodTextDocumentInlineCompletion, zap.Error(err))
 
-	var result *InlineCompletionResult
+	var result *InlineCompletionResult[InlineCompletionList, []InlineCompletionItem]
 	if err := Call(ctx, s.Conn, MethodTextDocumentInlineCompletion, params, &result); err != nil {
 		return nil, err
 	}
@@ -1814,11 +1814,11 @@ func (s *server) InlineCompletion(ctx context.Context, params *InlineCompletionP
 	return result, nil
 }
 
-func (s *server) InlineValue(ctx context.Context, params *InlineValueParams) (_ []*InlineValue, err error) {
+func (s *server) InlineValue(ctx context.Context, params *InlineValueParams) (_ []*InlineValue[InlineValueText, InlineValueVariableLookup, InlineValueEvaluatableExpression], err error) {
 	s.logger.Debug("call " + MethodTextDocumentInlineValue)
 	defer s.logger.Debug("end "+MethodTextDocumentInlineValue, zap.Error(err))
 
-	var result []*InlineValue
+	var result []*InlineValue[InlineValueText, InlineValueVariableLookup, InlineValueEvaluatableExpression]
 	if err := Call(ctx, s.Conn, MethodTextDocumentInlineValue, params, &result); err != nil {
 		return nil, err
 	}
@@ -1899,11 +1899,11 @@ func (s *server) CallHierarchyPrepare(ctx context.Context, params *CallHierarchy
 // PrepareRename sends the request from the client to the server to setup and test the validity of a rename operation at a given location.
 //
 // @since version 3.12.0.
-func (s *server) PrepareRename(ctx context.Context, params *PrepareRenameParams) (_ *PrepareRenameResult, err error) {
+func (s *server) PrepareRename(ctx context.Context, params *PrepareRenameParams) (_ *PrepareRenameResult[Range, PrepareRenamePlaceholder, PrepareRenameDefaultBehavior], err error) {
 	s.logger.Debug("call " + MethodTextDocumentPrepareRename)
 	defer s.logger.Debug("end "+MethodTextDocumentPrepareRename, zap.Error(err))
 
-	var result *PrepareRenameResult
+	var result *PrepareRenameResult[Range, PrepareRenamePlaceholder, PrepareRenameDefaultBehavior]
 	if err := Call(ctx, s.Conn, MethodTextDocumentPrepareRename, params, &result); err != nil {
 		return nil, err
 	}
@@ -2012,11 +2012,11 @@ func (s *server) SemanticTokens(ctx context.Context, params *SemanticTokensParam
 // A semantic token request usually produces a large result. The protocol therefore supports encoding tokens with numbers.
 //
 // @since 3.16.0.
-func (s *server) SemanticTokensDelta(ctx context.Context, params *SemanticTokensDeltaParams) (_ *SemanticTokensDeltaResult, err error) {
+func (s *server) SemanticTokensDelta(ctx context.Context, params *SemanticTokensDeltaParams) (_ *SemanticTokensDeltaResult[SemanticTokens, SemanticTokensDelta], err error) {
 	s.logger.Debug("call " + MethodTextDocumentSemanticTokensFullDelta)
 	defer s.logger.Debug("end "+MethodTextDocumentSemanticTokensFullDelta, zap.Error(err))
 
-	var result *SemanticTokensDeltaResult
+	var result *SemanticTokensDeltaResult[SemanticTokens, SemanticTokensDelta]
 	if err := Call(ctx, s.Conn, MethodTextDocumentSemanticTokensFullDelta, params, &result); err != nil {
 		return nil, err
 	}
@@ -2062,11 +2062,11 @@ func (s *server) SignatureHelp(ctx context.Context, params *SignatureHelpParams)
 // The result type `[]LocationLink` got introduce with version 3.14.0 and depends in the corresponding client capability `clientCapabilities.textDocument.typeDefinition.linkSupport`.
 //
 // @since version 3.6.0.
-func (s *server) TypeDefinition(ctx context.Context, params *TypeDefinitionParams) (_ *TypeDefinitionResult, err error) {
+func (s *server) TypeDefinition(ctx context.Context, params *TypeDefinitionParams) (_ *TypeDefinitionResult[Definition[Location, []Location], []DefinitionLink], err error) {
 	s.logger.Debug("call " + MethodTextDocumentTypeDefinition)
 	defer s.logger.Debug("end "+MethodTextDocumentTypeDefinition, zap.Error(err))
 
-	var result *TypeDefinitionResult
+	var result *TypeDefinitionResult[Definition[Location, []Location], []DefinitionLink]
 	if err := Call(ctx, s.Conn, MethodTextDocumentTypeDefinition, params, &result); err != nil {
 		return nil, err
 	}
@@ -2143,11 +2143,11 @@ func (s *server) ExecuteCommand(ctx context.Context, params *ExecuteCommandParam
 }
 
 // Symbols sends the request from the client to the server to list project-wide symbols matching the query string.
-func (s *server) WorkspaceSymbol(ctx context.Context, params *WorkspaceSymbolParams) (_ *WorkspaceSymbolResult, err error) {
+func (s *server) WorkspaceSymbol(ctx context.Context, params *WorkspaceSymbolParams) (_ *WorkspaceSymbolResult[[]SymbolInformation, []WorkspaceSymbol], err error) {
 	s.logger.Debug("call " + MethodWorkspaceSymbol)
 	defer s.logger.Debug("end "+MethodWorkspaceSymbol, zap.Error(err))
 
-	var result *WorkspaceSymbolResult
+	var result *WorkspaceSymbolResult[[]SymbolInformation, []WorkspaceSymbol]
 	if err := Call(ctx, s.Conn, MethodWorkspaceSymbol, params, &result); err != nil {
 		return nil, err
 	}

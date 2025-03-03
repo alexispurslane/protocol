@@ -50,7 +50,7 @@ type CancelParams struct {
 
 type ProgressParams struct {
 	// Token the progress token provided by the client or server.
-	Token ProgressToken `json:"token"`
+	Token ProgressToken[int32, string] `json:"token"`
 
 	// Value the progress data.
 	Value any `json:"value"`

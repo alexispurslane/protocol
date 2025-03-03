@@ -625,12 +625,12 @@ type WorkDoneProgressEnd struct {
 
 type WorkDoneProgressParams struct {
 	// WorkDoneToken an optional token that a server can use to report work done progress.
-	WorkDoneToken *ProgressToken `json:"workDoneToken,omitempty"`
+	WorkDoneToken *ProgressToken[int32, string] `json:"workDoneToken,omitempty"`
 }
 
 type PartialResultParams struct {
 	// PartialResultToken an optional token that a server can use to report partial results (e.g. streaming) to the client.
-	PartialResultToken *ProgressToken `json:"partialResultToken,omitempty"`
+	PartialResultToken *ProgressToken[int32, string] `json:"partialResultToken,omitempty"`
 }
 
 // LocationLink represents the connection of two locations. Provides additional metadata over normal Location locations, including an origin range.

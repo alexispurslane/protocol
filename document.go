@@ -128,7 +128,7 @@ type NotebookDocumentFilterWithCells struct {
 	// Notebook the notebook to be synced If a string value is provided it matches against the notebook type. '*' matches every notebook.
 	//
 	// @since 3.18.0
-	Notebook *OneOf[string, NotebookDocumentFilter] `json:"notebook,omitempty"`
+	Notebook *OneOf[string, NotebookDocumentFilter[NotebookDocumentFilterNotebookType, NotebookDocumentFilterScheme, NotebookDocumentFilterPattern]] `json:"notebook,omitempty"`
 
 	// Cells the cells of the matching notebook to be synced.
 	//
@@ -143,7 +143,7 @@ type NotebookDocumentFilterWithNotebook struct {
 	// Notebook the notebook to be synced If a string value is provided it matches against the notebook type. '*' matches every notebook.
 	//
 	// @since 3.18.0
-	Notebook OneOf[string, NotebookDocumentFilter] `json:"notebook"`
+	Notebook OneOf[string, NotebookDocumentFilter[NotebookDocumentFilterNotebookType, NotebookDocumentFilterScheme, NotebookDocumentFilterPattern]] `json:"notebook"`
 
 	// Cells the cells of the matching notebook to be synced.
 	//
@@ -240,7 +240,7 @@ type NotebookDocumentCellContentChanges struct {
 	Document VersionedTextDocumentIdentifier `json:"document"`
 
 	// @since 3.18.0
-	Changes []TextDocumentContentChangeEvent `json:"changes"`
+	Changes []TextDocumentContentChangeEvent[TextDocumentContentChangePartial, TextDocumentContentChangeWholeDocument] `json:"changes"`
 }
 
 // NotebookDocumentCellChanges cell changes to a notebook document.
@@ -366,7 +366,7 @@ type DidChangeTextDocumentParams struct {
 	// ContentChanges the actual content changes. The content changes describe single state changes to the document. So if
 	// there are two content changes c1 (at array index 0) and c2 (at array index 1) for a document in state S then c1 moves the document from S to S' and c2 from S' to S''. So c1 is computed on the state S and c2 is computed on the state S'. To mirror the content of a document using change events use the following approach: - start with the same initial content - apply the 'textDocument/didChange'
 	// notifications in the order you receive them. - apply the `TextDocumentContentChangeEvent`s in a single notification in the order you receive them.
-	ContentChanges []TextDocumentContentChangeEvent `json:"contentChanges"`
+	ContentChanges []TextDocumentContentChangeEvent[TextDocumentContentChangePartial, TextDocumentContentChangeWholeDocument] `json:"contentChanges"`
 }
 
 // TextDocumentChangeRegistrationOptions describe options to be used when registered for text document change events.
@@ -426,7 +426,7 @@ type NotebookDocumentFilterNotebookType struct {
 	// Pattern a glob pattern.
 	//
 	// @since 3.18.0
-	Pattern *GlobPattern `json:"pattern,omitempty"`
+	Pattern *GlobPattern[Pattern, RelativePattern] `json:"pattern,omitempty"`
 }
 
 // NotebookDocumentFilterScheme a notebook document filter where `scheme` is required field.
@@ -446,7 +446,7 @@ type NotebookDocumentFilterScheme struct {
 	// Pattern a glob pattern.
 	//
 	// @since 3.18.0
-	Pattern *GlobPattern `json:"pattern,omitempty"`
+	Pattern *GlobPattern[Pattern, RelativePattern] `json:"pattern,omitempty"`
 }
 
 // NotebookDocumentFilterPattern a notebook document filter where `pattern` is required field.
@@ -466,5 +466,5 @@ type NotebookDocumentFilterPattern struct {
 	// Pattern a glob pattern.
 	//
 	// @since 3.18.0
-	Pattern GlobPattern `json:"pattern"`
+	Pattern GlobPattern[Pattern, RelativePattern] `json:"pattern"`
 }

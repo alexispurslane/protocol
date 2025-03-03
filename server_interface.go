@@ -197,7 +197,7 @@ type Server interface {
 	Shutdown(ctx context.Context) error
 
 	// CodeAction a request to provide commands for the given text document and range.
-	CodeAction(ctx context.Context, params *CodeActionParams) (*CodeActionRequestResult, error)
+	CodeAction(ctx context.Context, params *CodeActionParams) (*CodeActionRequestResult[Command, CodeAction], error)
 
 	// CodeLens a request to provide code lens for the given text document.
 	CodeLens(ctx context.Context, params *CodeLensParams) ([]*CodeLens, error)
@@ -207,20 +207,20 @@ type Server interface {
 
 	// Completion request to request completion at a given text document position. The request's parameter is of type TextDocumentPosition the response is of type CompletionItem CompletionItem[] or CompletionList or a Thenable that resolves to such. The request can delay the computation of the CompletionItem.detail `detail` and CompletionItem.documentation `documentation` properties to the `completionItem/resolve` request. However, properties that are needed for the initial sorting and filtering, like `sortText`,
 	// `filterText`, `insertText`, and `textEdit`, must not be changed during resolve.
-	Completion(ctx context.Context, params *CompletionParams) (*CompletionResult, error)
+	Completion(ctx context.Context, params *CompletionParams) (*CompletionResult[[]CompletionItem, CompletionList], error)
 
 	// Declaration a request to resolve the type definition locations of a symbol at a given text document position. The request's parameter is of type TextDocumentPositionParams the response is of type Declaration or a
 	// typed array of DeclarationLink or a Thenable that resolves to such.
-	Declaration(ctx context.Context, params *DeclarationParams) (*DeclarationResult, error)
+	Declaration(ctx context.Context, params *DeclarationParams) (*DeclarationResult[Declaration[Location, []Location], []DeclarationLink], error)
 
 	// Definition a request to resolve the definition location of a symbol at a given text document position. The request's parameter is of type TextDocumentPosition the response is of either type Definition or a typed
 	// array of DefinitionLink or a Thenable that resolves to such.
-	Definition(ctx context.Context, params *DefinitionParams) (*DefinitionResult, error)
+	Definition(ctx context.Context, params *DefinitionParams) (*DefinitionResult[Declaration[Location, []Location], []DefinitionLink], error)
 
 	// DocumentDiagnostic the document diagnostic request definition.
 	//
 	// @since 3.17.0
-	DocumentDiagnostic(ctx context.Context, params *DocumentDiagnosticParams) (*DocumentDiagnosticReport, error)
+	DocumentDiagnostic(ctx context.Context, params *DocumentDiagnosticParams) (*DocumentDiagnosticReport[RelatedFullDocumentDiagnosticReport, RelatedUnchangedDocumentDiagnosticReport], error)
 
 	// DocumentColor a request to list all color symbols found in a given text document. The request's parameter is of type DocumentColorParams the response is of type ColorInformation ColorInformation[] or a Thenable that resolves to such.
 	DocumentColor(ctx context.Context, params *DocumentColorParams) ([]*ColorInformation, error)
@@ -233,7 +233,7 @@ type Server interface {
 
 	// DocumentSymbol a request to list all symbols found in a given text document. The request's parameter is of type TextDocumentIdentifier the response is of type SymbolInformation SymbolInformation[] or a Thenable that
 	// resolves to such.
-	DocumentSymbol(ctx context.Context, params *DocumentSymbolParams) (*DocumentSymbolResult, error)
+	DocumentSymbol(ctx context.Context, params *DocumentSymbolParams) (*DocumentSymbolResult[[]SymbolInformation, []DocumentSymbol], error)
 
 	// FoldingRange a request to provide folding ranges in a document. The request's parameter is of type FoldingRangeParams, the response is of type FoldingRangeList or a Thenable that resolves to such.
 	FoldingRange(ctx context.Context, params *FoldingRangeParams) ([]*FoldingRange, error)
@@ -246,7 +246,7 @@ type Server interface {
 
 	// Implementation a request to resolve the implementation locations of a symbol at a given text document position. The
 	// request's parameter is of type TextDocumentPositionParams the response is of type Definition or a Thenable that resolves to such.
-	Implementation(ctx context.Context, params *ImplementationParams) (*ImplementationResult, error)
+	Implementation(ctx context.Context, params *ImplementationParams) (*ImplementationResult[Definition[Location, []Location], []DefinitionLink], error)
 
 	// InlayHint a request to provide inlay hints in a document. The request's parameter is of type InlayHintsParams,
 	// the response is of type InlayHint InlayHint[] or a Thenable that resolves to such.
@@ -257,12 +257,12 @@ type Server interface {
 	// InlineCompletion a request to provide inline completions in a document. The request's parameter is of type InlineCompletionParams, the response is of type InlineCompletion InlineCompletion[] or a Thenable that resolves to such. 3.18.0 @proposed.
 	//
 	// @since 3.18.0 proposed
-	InlineCompletion(ctx context.Context, params *InlineCompletionParams) (*InlineCompletionResult, error)
+	InlineCompletion(ctx context.Context, params *InlineCompletionParams) (*InlineCompletionResult[InlineCompletionList, []InlineCompletionItem], error)
 
 	// InlineValue a request to provide inline values in a document. The request's parameter is of type InlineValueParams, the response is of type InlineValue InlineValue[] or a Thenable that resolves to such.
 	//
 	// @since 3.17.0
-	InlineValue(ctx context.Context, params *InlineValueParams) ([]*InlineValue, error)
+	InlineValue(ctx context.Context, params *InlineValueParams) ([]*InlineValue[InlineValueText, InlineValueVariableLookup, InlineValueEvaluatableExpression], error)
 
 	// LinkedEditingRange a request to provide ranges that can be edited together.
 	//
@@ -285,7 +285,7 @@ type Server interface {
 	// PrepareRename a request to test and perform the setup necessary for a rename. 3.16 - support for default behavior.
 	//
 	// @since 3.16 - support for default behavior
-	PrepareRename(ctx context.Context, params *PrepareRenameParams) (*PrepareRenameResult, error)
+	PrepareRename(ctx context.Context, params *PrepareRenameParams) (*PrepareRenameResult[Range, PrepareRenamePlaceholder, PrepareRenameDefaultBehavior], error)
 
 	// TypeHierarchyPrepare a request to result a `TypeHierarchyItem` in a document at a given position. Can be used as an input
 	// to a subtypes or supertypes type hierarchy.
@@ -318,7 +318,7 @@ type Server interface {
 	// SemanticTokensDelta.
 	//
 	// @since 3.16.0
-	SemanticTokensDelta(ctx context.Context, params *SemanticTokensDeltaParams) (*SemanticTokensDeltaResult, error)
+	SemanticTokensDelta(ctx context.Context, params *SemanticTokensDeltaParams) (*SemanticTokensDeltaResult[SemanticTokens, SemanticTokensDelta], error)
 
 	// SemanticTokensRange.
 	//
@@ -328,7 +328,7 @@ type Server interface {
 	SignatureHelp(ctx context.Context, params *SignatureHelpParams) (*SignatureHelp, error)
 
 	// TypeDefinition a request to resolve the type definition locations of a symbol at a given text document position. The request's parameter is of type TextDocumentPositionParams the response is of type Definition or a Thenable that resolves to such.
-	TypeDefinition(ctx context.Context, params *TypeDefinitionParams) (*TypeDefinitionResult, error)
+	TypeDefinition(ctx context.Context, params *TypeDefinitionParams) (*TypeDefinitionResult[Definition[Location, []Location], []DefinitionLink], error)
 
 	// WillSaveTextDocumentWaitUntil a document will save request is sent from the client to the server before the document is actually saved. The request can return an array of TextEdits which will be applied to the text document before
 	// it is saved. Please note that clients might drop results if computing the text edits took too long or if a server constantly fails on this request. This is done to keep the save fast and reliable.
@@ -356,7 +356,7 @@ type Server interface {
 	// The response is of type SymbolInformation SymbolInformation[] or a Thenable that resolves to such. 3.17.0 - support for WorkspaceSymbol in the returned data. Clients need to advertise support for WorkspaceSymbols via the client capability `workspace.symbol.resolveSupport`.
 	//
 	// @since 3.17.0 - support for WorkspaceSymbol in the returned data. Clients need to advertise support for WorkspaceSymbols via the client capability `workspace.symbol.resolveSupport`.
-	WorkspaceSymbol(ctx context.Context, params *WorkspaceSymbolParams) (*WorkspaceSymbolResult, error)
+	WorkspaceSymbol(ctx context.Context, params *WorkspaceSymbolParams) (*WorkspaceSymbolResult[[]SymbolInformation, []WorkspaceSymbol], error)
 
 	// TextDocumentContent the `workspace/textDocumentContent` request is sent from the client to the server to request the content of a text document. 3.18.0 @proposed.
 	//
@@ -473,6 +473,7 @@ func (UnimplementedServer) DidDeleteFiles(ctx context.Context, params *DeleteFil
 func (UnimplementedServer) DidRenameFiles(ctx context.Context, params *RenameFilesParams) error {
 	return jsonrpc2.ErrInternal
 }
+
 func (UnimplementedServer) CallHierarchyIncomingCalls(ctx context.Context, params *CallHierarchyIncomingCallsParams) ([]*CallHierarchyIncomingCall, error) {
 	return nil, jsonrpc2.ErrInternal
 }
@@ -509,7 +510,7 @@ func (UnimplementedServer) Shutdown(ctx context.Context) error {
 	return jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) CodeAction(ctx context.Context, params *CodeActionParams) (*CodeActionRequestResult, error) {
+func (UnimplementedServer) CodeAction(ctx context.Context, params *CodeActionParams) (*CodeActionRequestResult[Command, CodeAction], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
@@ -521,19 +522,19 @@ func (UnimplementedServer) ColorPresentation(ctx context.Context, params *ColorP
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) Completion(ctx context.Context, params *CompletionParams) (*CompletionResult, error) {
+func (UnimplementedServer) Completion(ctx context.Context, params *CompletionParams) (*CompletionResult[[]CompletionItem, CompletionList], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) Declaration(ctx context.Context, params *DeclarationParams) (*DeclarationResult, error) {
+func (UnimplementedServer) Declaration(ctx context.Context, params *DeclarationParams) (*DeclarationResult[Declaration[Location, []Location], []DeclarationLink], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) Definition(ctx context.Context, params *DefinitionParams) (*DefinitionResult, error) {
+func (UnimplementedServer) Definition(ctx context.Context, params *DefinitionParams) (*DefinitionResult[Declaration[Location, []Location], []DefinitionLink], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) DocumentDiagnostic(ctx context.Context, params *DocumentDiagnosticParams) (*DocumentDiagnosticReport, error) {
+func (UnimplementedServer) DocumentDiagnostic(ctx context.Context, params *DocumentDiagnosticParams) (*DocumentDiagnosticReport[RelatedFullDocumentDiagnosticReport, RelatedUnchangedDocumentDiagnosticReport], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
@@ -549,7 +550,7 @@ func (UnimplementedServer) DocumentLink(ctx context.Context, params *DocumentLin
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) DocumentSymbol(ctx context.Context, params *DocumentSymbolParams) (*DocumentSymbolResult, error) {
+func (UnimplementedServer) DocumentSymbol(ctx context.Context, params *DocumentSymbolParams) (*DocumentSymbolResult[[]SymbolInformation, []DocumentSymbol], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
@@ -565,7 +566,7 @@ func (UnimplementedServer) Hover(ctx context.Context, params *HoverParams) (*Hov
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) Implementation(ctx context.Context, params *ImplementationParams) (*ImplementationResult, error) {
+func (UnimplementedServer) Implementation(ctx context.Context, params *ImplementationParams) (*ImplementationResult[Definition[Location, []Location], []DefinitionLink], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
@@ -573,11 +574,11 @@ func (UnimplementedServer) InlayHint(ctx context.Context, params *InlayHintParam
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) InlineCompletion(ctx context.Context, params *InlineCompletionParams) (*InlineCompletionResult, error) {
+func (UnimplementedServer) InlineCompletion(ctx context.Context, params *InlineCompletionParams) (*InlineCompletionResult[InlineCompletionList, []InlineCompletionItem], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) InlineValue(ctx context.Context, params *InlineValueParams) ([]*InlineValue, error) {
+func (UnimplementedServer) InlineValue(ctx context.Context, params *InlineValueParams) ([]*InlineValue[InlineValueText, InlineValueVariableLookup, InlineValueEvaluatableExpression], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
@@ -597,7 +598,7 @@ func (UnimplementedServer) CallHierarchyPrepare(ctx context.Context, params *Cal
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) PrepareRename(ctx context.Context, params *PrepareRenameParams) (*PrepareRenameResult, error) {
+func (UnimplementedServer) PrepareRename(ctx context.Context, params *PrepareRenameParams) (*PrepareRenameResult[Range, PrepareRenamePlaceholder, PrepareRenameDefaultBehavior], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
@@ -629,7 +630,7 @@ func (UnimplementedServer) SemanticTokens(ctx context.Context, params *SemanticT
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) SemanticTokensDelta(ctx context.Context, params *SemanticTokensDeltaParams) (*SemanticTokensDeltaResult, error) {
+func (UnimplementedServer) SemanticTokensDelta(ctx context.Context, params *SemanticTokensDeltaParams) (*SemanticTokensDeltaResult[SemanticTokens, SemanticTokensDelta], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
@@ -641,7 +642,7 @@ func (UnimplementedServer) SignatureHelp(ctx context.Context, params *SignatureH
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) TypeDefinition(ctx context.Context, params *TypeDefinitionParams) (*TypeDefinitionResult, error) {
+func (UnimplementedServer) TypeDefinition(ctx context.Context, params *TypeDefinitionParams) (*TypeDefinitionResult[Definition[Location, []Location], []DefinitionLink], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
@@ -665,7 +666,7 @@ func (UnimplementedServer) ExecuteCommand(ctx context.Context, params *ExecuteCo
 	return nil, jsonrpc2.ErrInternal
 }
 
-func (UnimplementedServer) WorkspaceSymbol(ctx context.Context, params *WorkspaceSymbolParams) (*WorkspaceSymbolResult, error) {
+func (UnimplementedServer) WorkspaceSymbol(ctx context.Context, params *WorkspaceSymbolParams) (*WorkspaceSymbolResult[[]SymbolInformation, []WorkspaceSymbol], error) {
 	return nil, jsonrpc2.ErrInternal
 }
 
