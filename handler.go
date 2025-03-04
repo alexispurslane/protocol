@@ -76,8 +76,8 @@ func Call(ctx context.Context, conn jsonrpc2.Conn, method string, params, result
 func notifyCancel(ctx context.Context, conn jsonrpc2.Conn, id jsonrpc2.ID) {
 	ctx = context.WithoutCancel(ctx)
 	// Note that only *jsonrpc2.ID implements json.Marshaler.
-	cid := NewCancelParamsID(fmt.Sprint(id))
-	conn.Notify(ctx, "$/cancelRequest", &CancelParams{ID: OneOf[int32, string](cid)})
+	cid := fmt.Sprint(id)
+	conn.Notify(ctx, "$/cancelRequest", &CancelParams{ID: OneOf[0, cid]})
 }
 
 func replyParseError(ctx context.Context, reply jsonrpc2.Replier, err error) error {
