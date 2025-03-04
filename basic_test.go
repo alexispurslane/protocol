@@ -574,7 +574,7 @@ func TestCommand(t *testing.T) {
 	wantType := Command{
 		Title:     "exec echo",
 		Command:   "echo",
-		Arguments: []interface{}{"hello"},
+		Arguments: []any{"hello"},
 	}
 	wantTypeNilArguments := Command{
 		Title:   "exec echo",
