@@ -1,10 +1,10 @@
 module go.lsp.dev/protocol
 
-go 1.22.2
+go 1.24
 
 require (
-	github.com/google/go-cmp v0.6.0
-	github.com/segmentio/encoding v0.4.0
+	github.com/google/go-cmp v0.7.0
+	github.com/segmentio/encoding v0.4.1
 	go.lsp.dev/jsonrpc2 v0.10.0
 	go.lsp.dev/pkg v0.0.0-20210717090340-384b27a52fb2
 	go.lsp.dev/uri v0.3.0
