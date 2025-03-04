@@ -11,14 +11,14 @@ import (
 type TextDocumentSaveReason uint32
 
 const (
-	// ManualTextDocumentSaveReason manually triggered, e.g. by the user pressing save, by starting debugging, or by an API call.
-	ManualTextDocumentSaveReason TextDocumentSaveReason = 1
+	// TextDocumentSaveReasonManual manually triggered, e.g. by the user pressing save, by starting debugging, or by an API call.
+	TextDocumentSaveReasonManual TextDocumentSaveReason = 1
 
-	// AfterDelayTextDocumentSaveReason automatic after a delay.
-	AfterDelayTextDocumentSaveReason TextDocumentSaveReason = 2
+	// TextDocumentSaveReasonAfterDelay automatic after a delay.
+	TextDocumentSaveReasonAfterDelay TextDocumentSaveReason = 2
 
-	// FocusOutTextDocumentSaveReason when the editor lost focus.
-	FocusOutTextDocumentSaveReason TextDocumentSaveReason = 3
+	// TextDocumentSaveReasonFocusOut when the editor lost focus.
+	TextDocumentSaveReasonFocusOut TextDocumentSaveReason = 3
 )
 
 // NotebookCellKind a notebook cell kind.
@@ -27,11 +27,11 @@ const (
 type NotebookCellKind uint32
 
 const (
-	// MarkupNotebookCellKind a markup-cell is formatted source that is used for display.
-	MarkupNotebookCellKind NotebookCellKind = 1
+	// NotebookCellKindMarkup a markup-cell is formatted source that is used for display.
+	NotebookCellKindMarkup NotebookCellKind = 1
 
-	// CodeNotebookCellKind a code-cell is source code.
-	CodeNotebookCellKind NotebookCellKind = 2
+	// NotebookCellKindCode a code-cell is source code.
+	NotebookCellKindCode NotebookCellKind = 2
 )
 
 type ExecutionSummary struct {
@@ -128,7 +128,7 @@ type NotebookDocumentFilterWithCells struct {
 	// Notebook the notebook to be synced If a string value is provided it matches against the notebook type. '*' matches every notebook.
 	//
 	// @since 3.18.0
-	Notebook *OneOf[string, NotebookDocumentFilter[NotebookDocumentFilterNotebookType, NotebookDocumentFilterScheme, NotebookDocumentFilterPattern]] `json:"notebook,omitempty"`
+	Notebook *OneOf[string, NotebookDocumentFilter] `json:"notebook,omitempty"`
 
 	// Cells the cells of the matching notebook to be synced.
 	//
@@ -143,7 +143,7 @@ type NotebookDocumentFilterWithNotebook struct {
 	// Notebook the notebook to be synced If a string value is provided it matches against the notebook type. '*' matches every notebook.
 	//
 	// @since 3.18.0
-	Notebook OneOf[string, NotebookDocumentFilter[NotebookDocumentFilterNotebookType, NotebookDocumentFilterScheme, NotebookDocumentFilterPattern]] `json:"notebook"`
+	Notebook OneOf[string, NotebookDocumentFilter] `json:"notebook"`
 
 	// Cells the cells of the matching notebook to be synced.
 	//
@@ -240,7 +240,7 @@ type NotebookDocumentCellContentChanges struct {
 	Document VersionedTextDocumentIdentifier `json:"document"`
 
 	// @since 3.18.0
-	Changes []TextDocumentContentChangeEvent[TextDocumentContentChangePartial, TextDocumentContentChangeWholeDocument] `json:"changes"`
+	Changes []TextDocumentContentChangeEvent `json:"changes"`
 }
 
 // NotebookDocumentCellChanges cell changes to a notebook document.
@@ -328,30 +328,6 @@ type DidCloseNotebookDocumentParams struct {
 	CellTextDocuments []TextDocumentIdentifier `json:"cellTextDocuments"`
 }
 
-// SaveOptions save options.
-type SaveOptions struct {
-	// IncludeText the client is supposed to include the content on save.
-	IncludeText bool `json:"includeText,omitempty"`
-}
-
-type TextDocumentSyncOptions struct {
-	// OpenClose open and close notifications are sent to the server. If omitted open close notification should not be sent.
-	OpenClose bool `json:"openClose,omitempty"`
-
-	// Change change notifications are sent to the server. See TextDocumentSyncKind.None, TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental. If omitted it defaults to TextDocumentSyncKind.None.
-	Change TextDocumentSyncKind `json:"change,omitempty"`
-
-	// WillSave if present will save notifications are sent to the server. If omitted the notification should not be
-	// sent.
-	WillSave bool `json:"willSave,omitempty"`
-
-	// WillSaveWaitUntil if present will save wait until requests are sent to the server. If omitted the request should not be sent.
-	WillSaveWaitUntil bool `json:"willSaveWaitUntil,omitempty"`
-
-	// Save if present save notifications are sent to the server. If omitted the notification should not be sent.
-	Save *OneOf[bool, SaveOptions] `json:"save,omitempty"`
-}
-
 // DidOpenTextDocumentParams the parameters sent in an open text document notification.
 type DidOpenTextDocumentParams struct {
 	// TextDocument the document that was opened.
@@ -366,7 +342,7 @@ type DidChangeTextDocumentParams struct {
 	// ContentChanges the actual content changes. The content changes describe single state changes to the document. So if
 	// there are two content changes c1 (at array index 0) and c2 (at array index 1) for a document in state S then c1 moves the document from S to S' and c2 from S' to S''. So c1 is computed on the state S and c2 is computed on the state S'. To mirror the content of a document using change events use the following approach: - start with the same initial content - apply the 'textDocument/didChange'
 	// notifications in the order you receive them. - apply the `TextDocumentContentChangeEvent`s in a single notification in the order you receive them.
-	ContentChanges []TextDocumentContentChangeEvent[TextDocumentContentChangePartial, TextDocumentContentChangeWholeDocument] `json:"contentChanges"`
+	ContentChanges []TextDocumentContentChangeEvent `json:"contentChanges"`
 }
 
 // TextDocumentChangeRegistrationOptions describe options to be used when registered for text document change events.
@@ -426,7 +402,7 @@ type NotebookDocumentFilterNotebookType struct {
 	// Pattern a glob pattern.
 	//
 	// @since 3.18.0
-	Pattern *GlobPattern[Pattern, RelativePattern] `json:"pattern,omitempty"`
+	Pattern *GlobPattern `json:"pattern,omitempty"`
 }
 
 // NotebookDocumentFilterScheme a notebook document filter where `scheme` is required field.
@@ -446,7 +422,7 @@ type NotebookDocumentFilterScheme struct {
 	// Pattern a glob pattern.
 	//
 	// @since 3.18.0
-	Pattern *GlobPattern[Pattern, RelativePattern] `json:"pattern,omitempty"`
+	Pattern *GlobPattern `json:"pattern,omitempty"`
 }
 
 // NotebookDocumentFilterPattern a notebook document filter where `pattern` is required field.
@@ -466,5 +442,5 @@ type NotebookDocumentFilterPattern struct {
 	// Pattern a glob pattern.
 	//
 	// @since 3.18.0
-	Pattern GlobPattern[Pattern, RelativePattern] `json:"pattern"`
+	Pattern GlobPattern `json:"pattern"`
 }

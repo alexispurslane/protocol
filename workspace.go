@@ -11,27 +11,27 @@ import (
 type FileChangeType uint32
 
 const (
-	// CreatedFileChangeType the file got created.
-	CreatedFileChangeType FileChangeType = 1
+	// FileChangeTypeCreated the file got created.
+	FileChangeTypeCreated FileChangeType = 1
 
-	// ChangedFileChangeType the file got changed.
-	ChangedFileChangeType FileChangeType = 2
+	// FileChangeTypeChanged the file got changed.
+	FileChangeTypeChanged FileChangeType = 2
 
-	// DeletedFileChangeType the file got deleted.
-	DeletedFileChangeType FileChangeType = 3
+	// FileChangeTypeDeleted the file got deleted.
+	FileChangeTypeDeleted FileChangeType = 3
 )
 
 type WatchKind uint32
 
 const (
-	// CreateWatchKind interested in create events.
-	CreateWatchKind WatchKind = 1
+	// WatchKindCreate interested in create events.
+	WatchKindCreate WatchKind = 1
 
-	// ChangeWatchKind interested in change events.
-	ChangeWatchKind WatchKind = 2
+	// WatchKindChange interested in change events.
+	WatchKindChange WatchKind = 2
 
-	// DeleteWatchKind interested in delete events.
-	DeleteWatchKind WatchKind = 4
+	// WatchKindDelete interested in delete events.
+	WatchKindDelete WatchKind = 4
 )
 
 // FileOperationPatternKind a pattern kind describing if a glob pattern matches a file a folder or both.
@@ -40,11 +40,11 @@ const (
 type FileOperationPatternKind string
 
 const (
-	// FileFileOperationPatternKind the pattern matches a file only.
-	FileFileOperationPatternKind FileOperationPatternKind = "file"
+	// FileOperationPatternKindFile the pattern matches a file only.
+	FileOperationPatternKindFile FileOperationPatternKind = "file"
 
-	// FolderFileOperationPatternKind the pattern matches a folder only.
-	FolderFileOperationPatternKind FileOperationPatternKind = "folder"
+	// FileOperationPatternKindFolder the pattern matches a folder only.
+	FileOperationPatternKindFolder FileOperationPatternKind = "folder"
 )
 
 // WorkspaceFolder a workspace folder inside a client.
@@ -224,16 +224,6 @@ type FileOperationFilter struct {
 	Pattern FileOperationPattern `json:"pattern"`
 }
 
-// FileOperationRegistrationOptions the options to register for file operations.
-//
-// @since 3.16.0
-type FileOperationRegistrationOptions struct {
-	// Filters the actual filters.
-	//
-	// @since 3.16.0
-	Filters []FileOperationFilter `json:"filters"`
-}
-
 // FileRename represents information on a file/folder rename.
 //
 // @since 3.16.0
@@ -380,7 +370,7 @@ type DidChangeWatchedFilesParams struct {
 type FileSystemWatcher struct {
 	// GlobPattern the glob pattern to watch. See GlobPattern glob pattern for more detail. 3.17.0 support for relative
 	// patterns.
-	GlobPattern GlobPattern[Pattern, RelativePattern] `json:"globPattern"`
+	GlobPattern GlobPattern `json:"globPattern"`
 
 	// Kind the kind of events of interest. If omitted it defaults to WatchKind.Create | WatchKind.Change | WatchKind.Delete which is .
 	Kind WatchKind `json:"kind,omitempty"`

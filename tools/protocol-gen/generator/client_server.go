@@ -200,7 +200,7 @@ func (gen *Generator) ServerToClient(serverNotifications, bidiNotifications []*p
 
 	g.PP(`type Server interface {`)
 
-	notifications := append(slices.Clip(bidiNotifications), slices.Clip(serverNotifications)...)
+	notifications := append(slices.Concat(bidiNotifications), slices.Clip(serverNotifications)...)
 	reqests := slices.Clip(serverNequests)
 
 	for i, notify := range notifications {

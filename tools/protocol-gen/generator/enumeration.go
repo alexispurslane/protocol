@@ -100,7 +100,7 @@ func (gen *Generator) Enumerations(enumerations []*protocol.Enumeration) error {
 		for i, val := range enum.Values {
 			// write Documentation
 			if val.Documentation != "" {
-				g.PP(`	// `, flect.Pascalize(val.Name), enumName, normalizeDocumentation(val.Documentation))
+				g.PP(`	// `, enumName, flect.Pascalize(val.Name), normalizeDocumentation(val.Documentation))
 			}
 			if val.Since != "" {
 				if val.Documentation != "" {
@@ -113,7 +113,7 @@ func (gen *Generator) Enumerations(enumerations []*protocol.Enumeration) error {
 				g.P("\n")
 			}
 
-			g.P(`	`, flect.Pascalize(val.Name), enumName)
+			g.P(`	`, enumName, flect.Pascalize(val.Name))
 			g.P(` `, enumName, ` = `, val.Value)
 			g.P("\n")
 

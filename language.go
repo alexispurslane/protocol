@@ -14,60 +14,60 @@ import (
 type SemanticTokenTypes string
 
 const (
-	NamespaceSemanticTokenTypes SemanticTokenTypes = "namespace"
+	SemanticTokenTypesNamespace SemanticTokenTypes = "namespace"
 
-	// TypeSemanticTokenTypes represents a generic type. Acts as a fallback for types which can't be mapped to a specific type like class or enum.
-	TypeSemanticTokenTypes SemanticTokenTypes = "type"
+	// SemanticTokenTypesType represents a generic type. Acts as a fallback for types which can't be mapped to a specific type like class or enum.
+	SemanticTokenTypesType SemanticTokenTypes = "type"
 
-	ClassSemanticTokenTypes SemanticTokenTypes = "class"
+	SemanticTokenTypesClass SemanticTokenTypes = "class"
 
-	EnumSemanticTokenTypes SemanticTokenTypes = "enum"
+	SemanticTokenTypesEnum SemanticTokenTypes = "enum"
 
-	InterfaceSemanticTokenTypes SemanticTokenTypes = "interface"
+	SemanticTokenTypesInterface SemanticTokenTypes = "interface"
 
-	StructSemanticTokenTypes SemanticTokenTypes = "struct"
+	SemanticTokenTypesStruct SemanticTokenTypes = "struct"
 
-	TypeParameterSemanticTokenTypes SemanticTokenTypes = "typeParameter"
+	SemanticTokenTypesTypeParameter SemanticTokenTypes = "typeParameter"
 
-	ParameterSemanticTokenTypes SemanticTokenTypes = "parameter"
+	SemanticTokenTypesParameter SemanticTokenTypes = "parameter"
 
-	VariableSemanticTokenTypes SemanticTokenTypes = "variable"
+	SemanticTokenTypesVariable SemanticTokenTypes = "variable"
 
-	PropertySemanticTokenTypes SemanticTokenTypes = "property"
+	SemanticTokenTypesProperty SemanticTokenTypes = "property"
 
-	EnumMemberSemanticTokenTypes SemanticTokenTypes = "enumMember"
+	SemanticTokenTypesEnumMember SemanticTokenTypes = "enumMember"
 
-	EventSemanticTokenTypes SemanticTokenTypes = "event"
+	SemanticTokenTypesEvent SemanticTokenTypes = "event"
 
-	FunctionSemanticTokenTypes SemanticTokenTypes = "function"
+	SemanticTokenTypesFunction SemanticTokenTypes = "function"
 
-	MethodSemanticTokenTypes SemanticTokenTypes = "method"
+	SemanticTokenTypesMethod SemanticTokenTypes = "method"
 
-	MacroSemanticTokenTypes SemanticTokenTypes = "macro"
+	SemanticTokenTypesMacro SemanticTokenTypes = "macro"
 
-	KeywordSemanticTokenTypes SemanticTokenTypes = "keyword"
+	SemanticTokenTypesKeyword SemanticTokenTypes = "keyword"
 
-	ModifierSemanticTokenTypes SemanticTokenTypes = "modifier"
+	SemanticTokenTypesModifier SemanticTokenTypes = "modifier"
 
-	CommentSemanticTokenTypes SemanticTokenTypes = "comment"
+	SemanticTokenTypesComment SemanticTokenTypes = "comment"
 
-	StringSemanticTokenTypes SemanticTokenTypes = "string"
+	SemanticTokenTypesString SemanticTokenTypes = "string"
 
-	NumberSemanticTokenTypes SemanticTokenTypes = "number"
+	SemanticTokenTypesNumber SemanticTokenTypes = "number"
 
-	RegexpSemanticTokenTypes SemanticTokenTypes = "regexp"
+	SemanticTokenTypesRegexp SemanticTokenTypes = "regexp"
 
-	OperatorSemanticTokenTypes SemanticTokenTypes = "operator"
+	SemanticTokenTypesOperator SemanticTokenTypes = "operator"
 
-	// DecoratorSemanticTokenTypes.
+	// SemanticTokenTypesDecorator.
 	//
 	// @since 3.17.0
-	DecoratorSemanticTokenTypes SemanticTokenTypes = "decorator"
+	SemanticTokenTypesDecorator SemanticTokenTypes = "decorator"
 
-	// LabelSemanticTokenTypes.
+	// SemanticTokenTypesLabel.
 	//
 	// @since 3.18.0
-	LabelSemanticTokenTypes SemanticTokenTypes = "label"
+	SemanticTokenTypesLabel SemanticTokenTypes = "label"
 )
 
 // SemanticTokenModifiers a set of predefined token modifiers. This set is not fixed an clients can specify additional token types via the corresponding client capabilities.
@@ -76,25 +76,25 @@ const (
 type SemanticTokenModifiers string
 
 const (
-	DeclarationSemanticTokenModifiers SemanticTokenModifiers = "declaration"
+	SemanticTokenModifiersDeclaration SemanticTokenModifiers = "declaration"
 
-	DefinitionSemanticTokenModifiers SemanticTokenModifiers = "definition"
+	SemanticTokenModifiersDefinition SemanticTokenModifiers = "definition"
 
-	ReadonlySemanticTokenModifiers SemanticTokenModifiers = "readonly"
+	SemanticTokenModifiersReadonly SemanticTokenModifiers = "readonly"
 
-	StaticSemanticTokenModifiers SemanticTokenModifiers = "static"
+	SemanticTokenModifiersStatic SemanticTokenModifiers = "static"
 
-	DeprecatedSemanticTokenModifiers SemanticTokenModifiers = "deprecated"
+	SemanticTokenModifiersDeprecated SemanticTokenModifiers = "deprecated"
 
-	AbstractSemanticTokenModifiers SemanticTokenModifiers = "abstract"
+	SemanticTokenModifiersAbstract SemanticTokenModifiers = "abstract"
 
-	AsyncSemanticTokenModifiers SemanticTokenModifiers = "async"
+	SemanticTokenModifiersAsync SemanticTokenModifiers = "async"
 
-	ModificationSemanticTokenModifiers SemanticTokenModifiers = "modification"
+	SemanticTokenModifiersModification SemanticTokenModifiers = "modification"
 
-	DocumentationSemanticTokenModifiers SemanticTokenModifiers = "documentation"
+	SemanticTokenModifiersDocumentation SemanticTokenModifiers = "documentation"
 
-	DefaultLibrarySemanticTokenModifiers SemanticTokenModifiers = "defaultLibrary"
+	SemanticTokenModifiersDefaultLibrary SemanticTokenModifiers = "defaultLibrary"
 )
 
 // DocumentDiagnosticReportKind the document diagnostic report kinds.
@@ -103,82 +103,82 @@ const (
 type DocumentDiagnosticReportKind string
 
 const (
-	// FullDocumentDiagnosticReportKind a diagnostic report with a full set of problems.
-	FullDocumentDiagnosticReportKind DocumentDiagnosticReportKind = "full"
+	// DocumentDiagnosticReportKindFull a diagnostic report with a full set of problems.
+	DocumentDiagnosticReportKindFull DocumentDiagnosticReportKind = "full"
 
-	// UnchangedDocumentDiagnosticReportKind a report indicating that the last returned report is still accurate.
-	UnchangedDocumentDiagnosticReportKind DocumentDiagnosticReportKind = "unchanged"
+	// DocumentDiagnosticReportKindUnchanged a report indicating that the last returned report is still accurate.
+	DocumentDiagnosticReportKindUnchanged DocumentDiagnosticReportKind = "unchanged"
 )
 
 // FoldingRangeKind a set of predefined range kinds.
 type FoldingRangeKind string
 
 const (
-	// CommentFoldingRangeKind folding range for a comment.
-	CommentFoldingRangeKind FoldingRangeKind = "comment"
+	// FoldingRangeKindComment folding range for a comment.
+	FoldingRangeKindComment FoldingRangeKind = "comment"
 
-	// ImportsFoldingRangeKind folding range for an import or include.
-	ImportsFoldingRangeKind FoldingRangeKind = "imports"
+	// FoldingRangeKindImports folding range for an import or include.
+	FoldingRangeKindImports FoldingRangeKind = "imports"
 
-	// RegionFoldingRangeKind folding range for a region (e.g. `#region`).
-	RegionFoldingRangeKind FoldingRangeKind = "region"
+	// FoldingRangeKindRegion folding range for a region (e.g. `#region`).
+	FoldingRangeKindRegion FoldingRangeKind = "region"
 )
 
 // SymbolKind a symbol kind.
 type SymbolKind uint32
 
 const (
-	FileSymbolKind SymbolKind = 1
+	SymbolKindFile SymbolKind = 1
 
-	ModuleSymbolKind SymbolKind = 2
+	SymbolKindModule SymbolKind = 2
 
-	NamespaceSymbolKind SymbolKind = 3
+	SymbolKindNamespace SymbolKind = 3
 
-	PackageSymbolKind SymbolKind = 4
+	SymbolKindPackage SymbolKind = 4
 
-	ClassSymbolKind SymbolKind = 5
+	SymbolKindClass SymbolKind = 5
 
-	MethodSymbolKind SymbolKind = 6
+	SymbolKindMethod SymbolKind = 6
 
-	PropertySymbolKind SymbolKind = 7
+	SymbolKindProperty SymbolKind = 7
 
-	FieldSymbolKind SymbolKind = 8
+	SymbolKindField SymbolKind = 8
 
-	ConstructorSymbolKind SymbolKind = 9
+	SymbolKindConstructor SymbolKind = 9
 
-	EnumSymbolKind SymbolKind = 10
+	SymbolKindEnum SymbolKind = 10
 
-	InterfaceSymbolKind SymbolKind = 11
+	SymbolKindInterface SymbolKind = 11
 
-	FunctionSymbolKind SymbolKind = 12
+	SymbolKindFunction SymbolKind = 12
 
-	VariableSymbolKind SymbolKind = 13
+	SymbolKindVariable SymbolKind = 13
 
-	ConstantSymbolKind SymbolKind = 14
+	SymbolKindConstant SymbolKind = 14
 
-	StringSymbolKind SymbolKind = 15
+	SymbolKindString SymbolKind = 15
 
-	NumberSymbolKind SymbolKind = 16
+	SymbolKindNumber SymbolKind = 16
 
-	BooleanSymbolKind SymbolKind = 17
+	SymbolKindBoolean SymbolKind = 17
 
-	ArraySymbolKind SymbolKind = 18
+	SymbolKindArray SymbolKind = 18
 
-	ObjectSymbolKind SymbolKind = 19
+	SymbolKindObject SymbolKind = 19
 
-	KeySymbolKind SymbolKind = 20
+	SymbolKindKey SymbolKind = 20
 
-	NullSymbolKind SymbolKind = 21
+	SymbolKindNull SymbolKind = 21
 
-	EnumMemberSymbolKind SymbolKind = 22
+	SymbolKindEnumMember SymbolKind = 22
 
-	StructSymbolKind SymbolKind = 23
+	SymbolKindStruct SymbolKind = 23
 
-	EventSymbolKind SymbolKind = 24
+	SymbolKindEvent SymbolKind = 24
 
-	OperatorSymbolKind SymbolKind = 25
+	SymbolKindOperator SymbolKind = 25
 
-	TypeParameterSymbolKind SymbolKind = 26
+	SymbolKindTypeParameter SymbolKind = 26
 )
 
 // SymbolTag symbol tags are extra annotations that tweak the rendering of a symbol.
@@ -187,8 +187,8 @@ const (
 type SymbolTag uint32
 
 const (
-	// DeprecatedSymbolTag render a symbol as obsolete, usually using a strike-out.
-	DeprecatedSymbolTag SymbolTag = 1
+	// SymbolTagDeprecated render a symbol as obsolete, usually using a strike-out.
+	SymbolTagDeprecated SymbolTag = 1
 )
 
 // UniquenessLevel moniker uniqueness level to define scope of the moniker.
@@ -197,20 +197,20 @@ const (
 type UniquenessLevel string
 
 const (
-	// DocumentUniquenessLevel the moniker is only unique inside a document.
-	DocumentUniquenessLevel UniquenessLevel = "document"
+	// UniquenessLevelDocument the moniker is only unique inside a document.
+	UniquenessLevelDocument UniquenessLevel = "document"
 
-	// ProjectUniquenessLevel the moniker is unique inside a project for which a dump got created.
-	ProjectUniquenessLevel UniquenessLevel = "project"
+	// UniquenessLevelProject the moniker is unique inside a project for which a dump got created.
+	UniquenessLevelProject UniquenessLevel = "project"
 
-	// GroupUniquenessLevel the moniker is unique inside the group to which a project belongs.
-	GroupUniquenessLevel UniquenessLevel = "group"
+	// UniquenessLevelGroup the moniker is unique inside the group to which a project belongs.
+	UniquenessLevelGroup UniquenessLevel = "group"
 
-	// SchemeUniquenessLevel the moniker is unique inside the moniker scheme.
-	SchemeUniquenessLevel UniquenessLevel = "scheme"
+	// UniquenessLevelScheme the moniker is unique inside the moniker scheme.
+	UniquenessLevelScheme UniquenessLevel = "scheme"
 
-	// GlobalUniquenessLevel the moniker is globally unique.
-	GlobalUniquenessLevel UniquenessLevel = "global"
+	// UniquenessLevelGlobal the moniker is globally unique.
+	UniquenessLevelGlobal UniquenessLevel = "global"
 )
 
 // MonikerKind the moniker kind.
@@ -219,14 +219,14 @@ const (
 type MonikerKind string
 
 const (
-	// ImportMonikerKind the moniker represent a symbol that is imported into a project.
-	ImportMonikerKind MonikerKind = "import"
+	// MonikerKindImport the moniker represent a symbol that is imported into a project.
+	MonikerKindImport MonikerKind = "import"
 
-	// ExportMonikerKind the moniker represents a symbol that is exported from a project.
-	ExportMonikerKind MonikerKind = "export"
+	// MonikerKindExport the moniker represents a symbol that is exported from a project.
+	MonikerKindExport MonikerKind = "export"
 
-	// LocalMonikerKind the moniker represents a symbol that is local to a project (e.g. a local variable of a function, a class not visible outside the project, ...).
-	LocalMonikerKind MonikerKind = "local"
+	// MonikerKindLocal the moniker represents a symbol that is local to a project (e.g. a local variable of a function, a class not visible outside the project, ...).
+	MonikerKindLocal MonikerKind = "local"
 )
 
 // InlayHintKind inlay hint kinds.
@@ -235,66 +235,66 @@ const (
 type InlayHintKind uint32
 
 const (
-	// TypeInlayHintKind an inlay hint that for a type annotation.
-	TypeInlayHintKind InlayHintKind = 1
+	// InlayHintKindType an inlay hint that for a type annotation.
+	InlayHintKindType InlayHintKind = 1
 
-	// ParameterInlayHintKind an inlay hint that is for a parameter.
-	ParameterInlayHintKind InlayHintKind = 2
+	// InlayHintKindParameter an inlay hint that is for a parameter.
+	InlayHintKindParameter InlayHintKind = 2
 )
 
 // CompletionItemKind the kind of a completion entry.
 type CompletionItemKind uint32
 
 const (
-	TextCompletionItemKind CompletionItemKind = 1
+	CompletionItemKindText CompletionItemKind = 1
 
-	MethodCompletionItemKind CompletionItemKind = 2
+	CompletionItemKindMethod CompletionItemKind = 2
 
-	FunctionCompletionItemKind CompletionItemKind = 3
+	CompletionItemKindFunction CompletionItemKind = 3
 
-	ConstructorCompletionItemKind CompletionItemKind = 4
+	CompletionItemKindConstructor CompletionItemKind = 4
 
-	FieldCompletionItemKind CompletionItemKind = 5
+	CompletionItemKindField CompletionItemKind = 5
 
-	VariableCompletionItemKind CompletionItemKind = 6
+	CompletionItemKindVariable CompletionItemKind = 6
 
-	ClassCompletionItemKind CompletionItemKind = 7
+	CompletionItemKindClass CompletionItemKind = 7
 
-	InterfaceCompletionItemKind CompletionItemKind = 8
+	CompletionItemKindInterface CompletionItemKind = 8
 
-	ModuleCompletionItemKind CompletionItemKind = 9
+	CompletionItemKindModule CompletionItemKind = 9
 
-	PropertyCompletionItemKind CompletionItemKind = 10
+	CompletionItemKindProperty CompletionItemKind = 10
 
-	UnitCompletionItemKind CompletionItemKind = 11
+	CompletionItemKindUnit CompletionItemKind = 11
 
-	ValueCompletionItemKind CompletionItemKind = 12
+	CompletionItemKindValue CompletionItemKind = 12
 
-	EnumCompletionItemKind CompletionItemKind = 13
+	CompletionItemKindEnum CompletionItemKind = 13
 
-	KeywordCompletionItemKind CompletionItemKind = 14
+	CompletionItemKindKeyword CompletionItemKind = 14
 
-	SnippetCompletionItemKind CompletionItemKind = 15
+	CompletionItemKindSnippet CompletionItemKind = 15
 
-	ColorCompletionItemKind CompletionItemKind = 16
+	CompletionItemKindColor CompletionItemKind = 16
 
-	FileCompletionItemKind CompletionItemKind = 17
+	CompletionItemKindFile CompletionItemKind = 17
 
-	ReferenceCompletionItemKind CompletionItemKind = 18
+	CompletionItemKindReference CompletionItemKind = 18
 
-	FolderCompletionItemKind CompletionItemKind = 19
+	CompletionItemKindFolder CompletionItemKind = 19
 
-	EnumMemberCompletionItemKind CompletionItemKind = 20
+	CompletionItemKindEnumMember CompletionItemKind = 20
 
-	ConstantCompletionItemKind CompletionItemKind = 21
+	CompletionItemKindConstant CompletionItemKind = 21
 
-	StructCompletionItemKind CompletionItemKind = 22
+	CompletionItemKindStruct CompletionItemKind = 22
 
-	EventCompletionItemKind CompletionItemKind = 23
+	CompletionItemKindEvent CompletionItemKind = 23
 
-	OperatorCompletionItemKind CompletionItemKind = 24
+	CompletionItemKindOperator CompletionItemKind = 24
 
-	TypeParameterCompletionItemKind CompletionItemKind = 25
+	CompletionItemKindTypeParameter CompletionItemKind = 25
 )
 
 // CompletionItemTag completion item tags are extra annotations that tweak the rendering of a completion item.
@@ -303,19 +303,19 @@ const (
 type CompletionItemTag uint32
 
 const (
-	// DeprecatedCompletionItemTag render a completion as obsolete, usually using a strike-out.
-	DeprecatedCompletionItemTag CompletionItemTag = 1
+	// CompletionItemTagDeprecated render a completion as obsolete, usually using a strike-out.
+	CompletionItemTagDeprecated CompletionItemTag = 1
 )
 
 // InsertTextFormat defines whether the insert text in a completion item should be interpreted as plain text or a snippet.
 type InsertTextFormat uint32
 
 const (
-	// PlainTextInsertTextFormat the primary text to be inserted is treated as a plain string.
-	PlainTextInsertTextFormat InsertTextFormat = 1
+	// InsertTextFormatPlainText the primary text to be inserted is treated as a plain string.
+	InsertTextFormatPlainText InsertTextFormat = 1
 
-	// SnippetInsertTextFormat the primary text to be inserted is treated as a snippet. A snippet can define tab stops and placeholders with `$1`, `$2` and `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of the snippet. Placeholders with equal identifiers are linked, that is typing in one will update others too. See also: https://microsoft.github.io/language-server-protocol/specifications/specification-current/#snippet_syntax.
-	SnippetInsertTextFormat InsertTextFormat = 2
+	// InsertTextFormatSnippet the primary text to be inserted is treated as a snippet. A snippet can define tab stops and placeholders with `$1`, `$2` and `${3:foo}`. `$0` defines the final tab stop, it defaults to the end of the snippet. Placeholders with equal identifiers are linked, that is typing in one will update others too. See also: https://microsoft.github.io/language-server-protocol/specifications/specification-current/#snippet_syntax.
+	InsertTextFormatSnippet InsertTextFormat = 2
 )
 
 // InsertTextMode how whitespace and indentation is handled during completion item insertion.
@@ -324,72 +324,72 @@ const (
 type InsertTextMode uint32
 
 const (
-	// AsIsInsertTextMode the insertion or replace strings is taken as it is. If the value is multi line the lines below the cursor will be inserted using the indentation defined in the string value. The client will not apply any kind of adjustments to the string.
-	AsIsInsertTextMode InsertTextMode = 1
+	// InsertTextModeAsIs the insertion or replace strings is taken as it is. If the value is multi line the lines below the cursor will be inserted using the indentation defined in the string value. The client will not apply any kind of adjustments to the string.
+	InsertTextModeAsIs InsertTextMode = 1
 
-	// AdjustIndentationInsertTextMode the editor adjusts leading whitespace of new lines so that they match the indentation up to the cursor of the line for which the item is accepted. Consider a line like this: <2tabs><cursor><3tabs>foo.
+	// InsertTextModeAdjustIndentation the editor adjusts leading whitespace of new lines so that they match the indentation up to the cursor of the line for which the item is accepted. Consider a line like this: <2tabs><cursor><3tabs>foo.
 	// Accepting a multi line completion item is indented using 2 tabs and all following lines inserted will be indented using 2 tabs as well.
-	AdjustIndentationInsertTextMode InsertTextMode = 2
+	InsertTextModeAdjustIndentation InsertTextMode = 2
 )
 
 // DocumentHighlightKind a document highlight kind.
 type DocumentHighlightKind uint32
 
 const (
-	// TextDocumentHighlightKind a textual occurrence.
-	TextDocumentHighlightKind DocumentHighlightKind = 1
+	// DocumentHighlightKindText a textual occurrence.
+	DocumentHighlightKindText DocumentHighlightKind = 1
 
-	// ReadDocumentHighlightKind read-access of a symbol, like reading a variable.
-	ReadDocumentHighlightKind DocumentHighlightKind = 2
+	// DocumentHighlightKindRead read-access of a symbol, like reading a variable.
+	DocumentHighlightKindRead DocumentHighlightKind = 2
 
-	// WriteDocumentHighlightKind write-access of a symbol, like writing to a variable.
-	WriteDocumentHighlightKind DocumentHighlightKind = 3
+	// DocumentHighlightKindWrite write-access of a symbol, like writing to a variable.
+	DocumentHighlightKindWrite DocumentHighlightKind = 3
 )
 
 // CodeActionKind a set of predefined code action kinds.
 type CodeActionKind string
 
 const (
-	// EmptyCodeActionKind empty kind.
-	EmptyCodeActionKind CodeActionKind = ""
+	// CodeActionKindEmpty empty kind.
+	CodeActionKindEmpty CodeActionKind = ""
 
-	// QuickFixCodeActionKind base kind for quickfix actions: 'quickfix'.
-	QuickFixCodeActionKind CodeActionKind = "quickfix"
+	// CodeActionKindQuickFix base kind for quickfix actions: 'quickfix'.
+	CodeActionKindQuickFix CodeActionKind = "quickfix"
 
-	// RefactorCodeActionKind base kind for refactoring actions: 'refactor'.
-	RefactorCodeActionKind CodeActionKind = "refactor"
+	// CodeActionKindRefactor base kind for refactoring actions: 'refactor'.
+	CodeActionKindRefactor CodeActionKind = "refactor"
 
-	// RefactorExtractCodeActionKind base kind for refactoring extraction actions: 'refactor.extract' Example extract actions: - Extract method - Extract function - Extract variable - Extract interface from class - .
-	RefactorExtractCodeActionKind CodeActionKind = "refactor.extract"
+	// CodeActionKindRefactorExtract base kind for refactoring extraction actions: 'refactor.extract' Example extract actions: - Extract method - Extract function - Extract variable - Extract interface from class - .
+	CodeActionKindRefactorExtract CodeActionKind = "refactor.extract"
 
-	// RefactorInlineCodeActionKind base kind for refactoring inline actions: 'refactor.inline' Example inline actions: - Inline function - Inline variable - Inline constant - .
-	RefactorInlineCodeActionKind CodeActionKind = "refactor.inline"
+	// CodeActionKindRefactorInline base kind for refactoring inline actions: 'refactor.inline' Example inline actions: - Inline function - Inline variable - Inline constant - .
+	CodeActionKindRefactorInline CodeActionKind = "refactor.inline"
 
-	// RefactorMoveCodeActionKind base kind for refactoring move actions: `refactor.move` Example move actions: - Move a function to a
+	// CodeActionKindRefactorMove base kind for refactoring move actions: `refactor.move` Example move actions: - Move a function to a
 	// new file - Move a property between classes - Move method to base class - ... 3.18.0 @proposed.
 	//
 	// @since 3.18.0 proposed
-	RefactorMoveCodeActionKind CodeActionKind = "refactor.move"
+	CodeActionKindRefactorMove CodeActionKind = "refactor.move"
 
-	// RefactorRewriteCodeActionKind base kind for refactoring rewrite actions: 'refactor.rewrite' Example rewrite actions: - Convert JavaScript function to class - Add or remove parameter - Encapsulate field - Make method static - Move method to base class - .
-	RefactorRewriteCodeActionKind CodeActionKind = "refactor.rewrite"
+	// CodeActionKindRefactorRewrite base kind for refactoring rewrite actions: 'refactor.rewrite' Example rewrite actions: - Convert JavaScript function to class - Add or remove parameter - Encapsulate field - Make method static - Move method to base class - .
+	CodeActionKindRefactorRewrite CodeActionKind = "refactor.rewrite"
 
-	// SourceCodeActionKind base kind for source actions: `source` Source code actions apply to the entire file.
-	SourceCodeActionKind CodeActionKind = "source"
+	// CodeActionKindSource base kind for source actions: `source` Source code actions apply to the entire file.
+	CodeActionKindSource CodeActionKind = "source"
 
-	// SourceOrganizeImportsCodeActionKind base kind for an organize imports source action: `source.organizeImports`.
-	SourceOrganizeImportsCodeActionKind CodeActionKind = "source.organizeImports"
+	// CodeActionKindSourceOrganizeImports base kind for an organize imports source action: `source.organizeImports`.
+	CodeActionKindSourceOrganizeImports CodeActionKind = "source.organizeImports"
 
-	// SourceFixAllCodeActionKind base kind for auto-fix source actions: `source.fixAll`. Fix all actions automatically fix errors that have a clear fix that do not require user input. They should not suppress errors or perform unsafe
+	// CodeActionKindSourceFixAll base kind for auto-fix source actions: `source.fixAll`. Fix all actions automatically fix errors that have a clear fix that do not require user input. They should not suppress errors or perform unsafe
 	// fixes such as generating new types or classes.
 	//
 	// @since 3.15.0
-	SourceFixAllCodeActionKind CodeActionKind = "source.fixAll"
+	CodeActionKindSourceFixAll CodeActionKind = "source.fixAll"
 
-	// NotebookCodeActionKind base kind for all code actions applying to the entire notebook's scope. CodeActionKinds using this should always begin with `notebook.`
+	// CodeActionKindNotebook base kind for all code actions applying to the entire notebook's scope. CodeActionKinds using this should always begin with `notebook.`
 	//
 	// @since 3.18.0
-	NotebookCodeActionKind CodeActionKind = "notebook"
+	CodeActionKindNotebook CodeActionKind = "notebook"
 )
 
 // CodeActionTag code action tags are extra annotations that tweak the behavior of a code action.  3.18.0 - proposed.
@@ -398,8 +398,8 @@ const (
 type CodeActionTag uint32
 
 const (
-	// LlmgeneratedCodeActionTag marks the code action as LLM-generated.
-	LlmgeneratedCodeActionTag CodeActionTag = 1
+	// CodeActionTagLlmgenerated marks the code action as LLM-generated.
+	CodeActionTagLlmgenerated CodeActionTag = 1
 )
 
 // InlineCompletionTriggerKind describes how an InlineCompletionItemProvider inline completion provider was triggered. 3.18.0 @proposed.
@@ -408,25 +408,25 @@ const (
 type InlineCompletionTriggerKind uint32
 
 const (
-	// InvokedInlineCompletionTriggerKind completion was triggered explicitly by a user gesture.
-	InvokedInlineCompletionTriggerKind InlineCompletionTriggerKind = 1
+	// InlineCompletionTriggerKindInvoked completion was triggered explicitly by a user gesture.
+	InlineCompletionTriggerKindInvoked InlineCompletionTriggerKind = 1
 
-	// AutomaticInlineCompletionTriggerKind completion was triggered automatically while editing.
-	AutomaticInlineCompletionTriggerKind InlineCompletionTriggerKind = 2
+	// InlineCompletionTriggerKindAutomatic completion was triggered automatically while editing.
+	InlineCompletionTriggerKindAutomatic InlineCompletionTriggerKind = 2
 )
 
 // CompletionTriggerKind how a completion was triggered.
 type CompletionTriggerKind uint32
 
 const (
-	// InvokedCompletionTriggerKind completion was triggered by typing an identifier (24x7 code complete), manual invocation (e.g Ctrl+Space) or via API.
-	InvokedCompletionTriggerKind CompletionTriggerKind = 1
+	// CompletionTriggerKindInvoked completion was triggered by typing an identifier (24x7 code complete), manual invocation (e.g Ctrl+Space) or via API.
+	CompletionTriggerKindInvoked CompletionTriggerKind = 1
 
-	// TriggerCharacterCompletionTriggerKind completion was triggered by a trigger character specified by the `triggerCharacters` properties of the `CompletionRegistrationOptions`.
-	TriggerCharacterCompletionTriggerKind CompletionTriggerKind = 2
+	// CompletionTriggerKindTriggerCharacter completion was triggered by a trigger character specified by the `triggerCharacters` properties of the `CompletionRegistrationOptions`.
+	CompletionTriggerKindTriggerCharacter CompletionTriggerKind = 2
 
-	// TriggerForIncompleteCompletionsCompletionTriggerKind completion was re-triggered as current completion list is incomplete.
-	TriggerForIncompleteCompletionsCompletionTriggerKind CompletionTriggerKind = 3
+	// CompletionTriggerKindTriggerForIncompleteCompletions completion was re-triggered as current completion list is incomplete.
+	CompletionTriggerKindTriggerForIncompleteCompletions CompletionTriggerKind = 3
 )
 
 // ApplyKind defines how values from a set of defaults and an individual item will be merged.
@@ -435,11 +435,11 @@ const (
 type ApplyKind uint32
 
 const (
-	// ReplaceApplyKind the value from the individual item (if provided and not `null`) will be used instead of the default.
-	ReplaceApplyKind ApplyKind = 1
+	// ApplyKindReplace the value from the individual item (if provided and not `null`) will be used instead of the default.
+	ApplyKindReplace ApplyKind = 1
 
-	// MergeApplyKind the value from the item will be merged with the default. The specific rules for mergeing values are defined against each field that supports merging.
-	MergeApplyKind ApplyKind = 2
+	// ApplyKindMerge the value from the item will be merged with the default. The specific rules for mergeing values are defined against each field that supports merging.
+	ApplyKindMerge ApplyKind = 2
 )
 
 // SignatureHelpTriggerKind how a signature help was triggered.
@@ -448,14 +448,14 @@ const (
 type SignatureHelpTriggerKind uint32
 
 const (
-	// InvokedSignatureHelpTriggerKind signature help was invoked manually by the user or by a command.
-	InvokedSignatureHelpTriggerKind SignatureHelpTriggerKind = 1
+	// SignatureHelpTriggerKindInvoked signature help was invoked manually by the user or by a command.
+	SignatureHelpTriggerKindInvoked SignatureHelpTriggerKind = 1
 
-	// TriggerCharacterSignatureHelpTriggerKind signature help was triggered by a trigger character.
-	TriggerCharacterSignatureHelpTriggerKind SignatureHelpTriggerKind = 2
+	// SignatureHelpTriggerKindTriggerCharacter signature help was triggered by a trigger character.
+	SignatureHelpTriggerKindTriggerCharacter SignatureHelpTriggerKind = 2
 
-	// ContentChangeSignatureHelpTriggerKind signature help was triggered by the cursor moving or by the document content changing.
-	ContentChangeSignatureHelpTriggerKind SignatureHelpTriggerKind = 3
+	// SignatureHelpTriggerKindContentChange signature help was triggered by the cursor moving or by the document content changing.
+	SignatureHelpTriggerKindContentChange SignatureHelpTriggerKind = 3
 )
 
 // CodeActionTriggerKind the reason why code actions were requested.
@@ -464,24 +464,24 @@ const (
 type CodeActionTriggerKind uint32
 
 const (
-	// InvokedCodeActionTriggerKind code actions were explicitly requested by the user or by an extension.
-	InvokedCodeActionTriggerKind CodeActionTriggerKind = 1
+	// CodeActionTriggerKindInvoked code actions were explicitly requested by the user or by an extension.
+	CodeActionTriggerKindInvoked CodeActionTriggerKind = 1
 
-	// AutomaticCodeActionTriggerKind code actions were requested automatically. This typically happens when current selection in a file changes, but can also be triggered when file content changes.
-	AutomaticCodeActionTriggerKind CodeActionTriggerKind = 2
+	// CodeActionTriggerKindAutomatic code actions were requested automatically. This typically happens when current selection in a file changes, but can also be triggered when file content changes.
+	CodeActionTriggerKindAutomatic CodeActionTriggerKind = 2
 )
 
 type PrepareSupportDefaultBehavior uint32
 
 const (
-	// IdentifierPrepareSupportDefaultBehavior the client's default behavior is to select the identifier according the to language's syntax rule.
-	IdentifierPrepareSupportDefaultBehavior PrepareSupportDefaultBehavior = 1
+	// PrepareSupportDefaultBehaviorIdentifier the client's default behavior is to select the identifier according the to language's syntax rule.
+	PrepareSupportDefaultBehaviorIdentifier PrepareSupportDefaultBehavior = 1
 )
 
 type TokenFormat string
 
 const (
-	RelativeTokenFormat TokenFormat = "relative"
+	TokenFormatRelative TokenFormat = "relative"
 )
 
 type ImplementationParams struct {
@@ -492,38 +492,12 @@ type ImplementationParams struct {
 	PartialResultParams
 }
 
-type ImplementationOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-type ImplementationRegistrationOptions struct {
-	// extends
-	TextDocumentRegistrationOptions
-	ImplementationOptions
-	// mixins
-	StaticRegistrationOptions
-}
-
 type TypeDefinitionParams struct {
 	// extends
 	TextDocumentPositionParams
 	// mixins
 	WorkDoneProgressParams
 	PartialResultParams
-}
-
-type TypeDefinitionOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-type TypeDefinitionRegistrationOptions struct {
-	// extends
-	TextDocumentRegistrationOptions
-	TypeDefinitionOptions
-	// mixins
-	StaticRegistrationOptions
 }
 
 // DocumentColorParams parameters for a DocumentColorRequest.
@@ -558,19 +532,6 @@ type ColorInformation struct {
 
 	// Color the actual color value for this color range.
 	Color Color `json:"color"`
-}
-
-type DocumentColorOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-type DocumentColorRegistrationOptions struct {
-	// extends
-	TextDocumentRegistrationOptions
-	DocumentColorOptions
-	// mixins
-	StaticRegistrationOptions
 }
 
 // ColorPresentationParams parameters for a ColorPresentationRequest.
@@ -631,19 +592,6 @@ type FoldingRange struct {
 
 	// CollapsedText the text that the client should show when the specified range is collapsed. If not defined or not supported by the client, a default will be chosen by the client.
 	CollapsedText string `json:"collapsedText,omitempty"`
-}
-
-type FoldingRangeOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-type FoldingRangeRegistrationOptions struct {
-	// extends
-	TextDocumentRegistrationOptions
-	FoldingRangeOptions
-	// mixins
-	StaticRegistrationOptions
 }
 
 type DeclarationParams struct {
@@ -756,25 +704,6 @@ type CallHierarchyItem struct {
 	//
 	// @since 3.16.0
 	Data any `json:"data,omitempty"`
-}
-
-// CallHierarchyOptions call hierarchy options used during static registration.
-//
-// @since 3.16.0
-type CallHierarchyOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-// CallHierarchyRegistrationOptions call hierarchy options used during static or dynamic registration.
-//
-// @since 3.16.0
-type CallHierarchyRegistrationOptions struct {
-	// extends
-	TextDocumentRegistrationOptions
-	CallHierarchyOptions
-	// mixins
-	StaticRegistrationOptions
 }
 
 // CallHierarchyIncomingCallsParams the parameter of a `callHierarchy/incomingCalls` request.
@@ -894,40 +823,6 @@ type SemanticTokensFullDelta struct {
 	Delta bool `json:"delta,omitempty"`
 }
 
-// SemanticTokensOptions.
-//
-// @since 3.16.0
-type SemanticTokensOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// Legend the legend used by the server.
-	//
-	// @since 3.16.0
-	Legend SemanticTokensLegend `json:"legend"`
-
-	// Range server supports providing semantic tokens for a specific range of a document.
-	//
-	// @since 3.16.0
-	Range *OneOf[bool, Range] `json:"range,omitempty"`
-
-	// Full server supports providing semantic tokens for a full document.
-	//
-	// @since 3.16.0
-	Full *OneOf[bool, SemanticTokensFullDelta] `json:"full,omitempty"`
-}
-
-// SemanticTokensRegistrationOptions.
-//
-// @since 3.16.0
-type SemanticTokensRegistrationOptions struct {
-	// extends
-	TextDocumentRegistrationOptions
-	SemanticTokensOptions
-	// mixins
-	StaticRegistrationOptions
-}
-
 // SemanticTokensDeltaParams.
 //
 // @since 3.16.0
@@ -1030,19 +925,6 @@ type LinkedEditingRanges struct {
 	WordPattern string `json:"wordPattern,omitempty"`
 }
 
-type LinkedEditingRangeOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-type LinkedEditingRangeRegistrationOptions struct {
-	// extends
-	TextDocumentRegistrationOptions
-	LinkedEditingRangeOptions
-	// mixins
-	StaticRegistrationOptions
-}
-
 type MonikerParams struct {
 	// extends
 	TextDocumentPositionParams
@@ -1074,17 +956,6 @@ type Moniker struct {
 	//
 	// @since 3.16.0
 	Kind MonikerKind `json:"kind,omitempty"`
-}
-
-type MonikerOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-type MonikerRegistrationOptions struct {
-	// extends
-	TextDocumentRegistrationOptions
-	MonikerOptions
 }
 
 // TypeHierarchyPrepareParams the parameter of a `textDocument/prepareTypeHierarchy` request.
@@ -1496,7 +1367,7 @@ type WorkspaceDiagnosticParams struct {
 // @since 3.17.0
 type WorkspaceDiagnosticReport struct {
 	// @since 3.17.0
-	Items []WorkspaceDocumentDiagnosticReport[WorkspaceFullDocumentDiagnosticReport, WorkspaceUnchangedDocumentDiagnosticReport] `json:"items"`
+	Items []WorkspaceDocumentDiagnosticReport `json:"items"`
 }
 
 // WorkspaceDiagnosticReportPartialResult a partial result for a workspace diagnostic report.
@@ -1504,7 +1375,7 @@ type WorkspaceDiagnosticReport struct {
 // @since 3.17.0
 type WorkspaceDiagnosticReportPartialResult struct {
 	// @since 3.17.0
-	Items []WorkspaceDocumentDiagnosticReport[WorkspaceFullDocumentDiagnosticReport, WorkspaceUnchangedDocumentDiagnosticReport] `json:"items"`
+	Items []WorkspaceDocumentDiagnosticReport `json:"items"`
 }
 
 // SelectedCompletionInfo describes the currently selected completion item.  3.18.0 @proposed.
@@ -1631,69 +1502,6 @@ type ServerCompletionItemOptions struct {
 	LabelDetailsSupport bool `json:"labelDetailsSupport,omitempty"`
 }
 
-// CompletionOptions completion options.
-type CompletionOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// TriggerCharacters most tools trigger completion request automatically without explicitly requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do so when the user starts to type an identifier. For example if the user types `c` in a JavaScript file code complete will automatically pop up present `console` besides others as a completion item. Characters that make up identifiers don't need to be listed here. If code complete should automatically be trigger on characters not being valid inside an identifier (for example `.` in JavaScript) list them in `triggerCharacters`.
-	TriggerCharacters []string `json:"triggerCharacters,omitempty"`
-
-	// AllCommitCharacters the list of all possible characters that commit a completion. This field can be used if clients don't support individual commit characters per completion item. See `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport` If a server provides both `allCommitCharacters` and commit characters on an individual completion item the ones on the completion item win.
-	AllCommitCharacters []string `json:"allCommitCharacters,omitempty"`
-
-	// ResolveProvider the server provides support to resolve additional information for a completion item.
-	ResolveProvider bool `json:"resolveProvider,omitempty"`
-
-	// CompletionItem the server supports the following `CompletionItem` specific capabilities.
-	CompletionItem *ServerCompletionItemOptions `json:"completionItem,omitempty"`
-}
-
-// HoverOptions hover options.
-type HoverOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-// SignatureHelpOptions server Capabilities for a SignatureHelpRequest.
-type SignatureHelpOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// TriggerCharacters list of characters that trigger signature help automatically.
-	TriggerCharacters []string `json:"triggerCharacters,omitempty"`
-
-	// RetriggerCharacters list of characters that re-trigger signature help. These trigger characters are only active when signature help is already showing. All trigger characters are also counted as re-trigger characters.
-	RetriggerCharacters []string `json:"retriggerCharacters,omitempty"`
-}
-
-// DefinitionOptions server Capabilities for a DefinitionRequest.
-type DefinitionOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-// ReferenceOptions reference options.
-type ReferenceOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-// DocumentHighlightOptions provider options for a DocumentHighlightRequest.
-type DocumentHighlightOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-// DocumentSymbolOptions provider options for a DocumentSymbolRequest.
-type DocumentSymbolOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// Label a human-readable string that is shown when multiple outlines trees are shown for the same document.
-	Label string `json:"label,omitempty"`
-}
-
 // CodeActionKindDocumentation documentation for a class of code actions.  3.18.0 @proposed.
 //
 // @since 3.18.0 proposed
@@ -1707,92 +1515,6 @@ type CodeActionKindDocumentation struct {
 	//
 	// @since 3.18.0 proposed
 	Command Command `json:"command"`
-}
-
-// CodeActionOptions provider options for a CodeActionRequest.
-type CodeActionOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// CodeActionKinds codeActionKinds that this server may return. The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the server may list out every specific kind they provide.
-	CodeActionKinds []CodeActionKind `json:"codeActionKinds,omitempty"`
-
-	// Documentation static documentation for a class of code actions. Documentation from the provider should be shown in
-	// the code actions menu if either: - Code actions of `kind` are requested by the editor. In this
-	// case, the editor will show the documentation that most closely matches the requested code action kind. For example, if a provider has documentation for both `Refactor` and `RefactorExtract`, when the user requests code actions for `RefactorExtract`, the editor will use the documentation for `RefactorExtract` instead of the documentation for `Refactor`. - Any code actions of `kind` are returned by the provider. At most one documentation entry should be shown per provider. 3.18.0 @proposed.
-	Documentation []CodeActionKindDocumentation `json:"documentation,omitempty"`
-
-	// ResolveProvider the server provides support to resolve additional information for a code action.
-	ResolveProvider bool `json:"resolveProvider,omitempty"`
-}
-
-// CodeLensOptions code Lens provider options of a CodeLensRequest.
-type CodeLensOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// ResolveProvider code lens has a resolve provider as well.
-	ResolveProvider bool `json:"resolveProvider,omitempty"`
-}
-
-// DocumentLinkOptions provider options for a DocumentLinkRequest.
-type DocumentLinkOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// ResolveProvider document links have a resolve provider as well.
-	ResolveProvider bool `json:"resolveProvider,omitempty"`
-}
-
-// WorkspaceSymbolOptions server capabilities for a WorkspaceSymbolRequest.
-type WorkspaceSymbolOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// ResolveProvider the server provides support to resolve additional information for a workspace symbol.
-	ResolveProvider bool `json:"resolveProvider,omitempty"`
-}
-
-// DocumentFormattingOptions provider options for a DocumentFormattingRequest.
-type DocumentFormattingOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-}
-
-// DocumentRangeFormattingOptions provider options for a DocumentRangeFormattingRequest.
-type DocumentRangeFormattingOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// RangesSupport whether the server supports formatting multiple ranges at once.  3.18.0 @proposed.
-	RangesSupport bool `json:"rangesSupport,omitempty"`
-}
-
-// DocumentOnTypeFormattingOptions provider options for a DocumentOnTypeFormattingRequest.
-type DocumentOnTypeFormattingOptions struct {
-	// FirstTriggerCharacter a character on which formatting should be triggered, like `{`.
-	FirstTriggerCharacter string `json:"firstTriggerCharacter"`
-
-	// MoreTriggerCharacter more trigger characters.
-	MoreTriggerCharacter []string `json:"moreTriggerCharacter,omitempty"`
-}
-
-// RenameOptions provider options for a RenameRequest.
-type RenameOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// PrepareProvider renames should be checked and tested before being executed.  version .
-	PrepareProvider bool `json:"prepareProvider,omitempty"`
-}
-
-// ExecuteCommandOptions the server capabilities of a ExecuteCommandRequest.
-type ExecuteCommandOptions struct {
-	// mixins
-	WorkDoneProgressOptions
-
-	// Commands the commands to be executed on the server.
-	Commands []string `json:"commands"`
 }
 
 // PublishDiagnosticsParams the publish diagnostic notification's parameters.
@@ -2012,7 +1734,7 @@ type HoverParams struct {
 // Hover the result of a hover request.
 type Hover struct {
 	// Contents the hover's content.
-	Contents OneOf3[MarkupContent, MarkedString[string, MarkedStringWithLanguage], []MarkedString[string, MarkedStringWithLanguage]] `json:"contents"`
+	Contents OneOf3[MarkupContent, MarkedString, []MarkedString] `json:"contents"`
 
 	// Range an optional range inside the text document that is used to visualize the hover, e.g. by changing the
 	// background color.
@@ -2731,7 +2453,7 @@ type NotebookCellTextDocumentFilter struct {
 	// Notebook a filter that matches against the notebook containing the notebook cell. If a string value is provided it matches against the notebook type. '*' matches every notebook.
 	//
 	// @since 3.17.0
-	Notebook OneOf[string, NotebookDocumentFilter[NotebookDocumentFilterNotebookType, NotebookDocumentFilterScheme, NotebookDocumentFilterPattern]] `json:"notebook"`
+	Notebook OneOf[string, NotebookDocumentFilter] `json:"notebook"`
 
 	// Language a language id like `python`. Will be matched against the language id of the notebook cell document. '*' matches every language.
 	//
@@ -2755,7 +2477,7 @@ type TextDocumentFilterLanguage struct {
 
 	// Pattern a glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples. 3.18.0 - support for relative patterns. Whether clients support relative patterns depends on the client capability `textDocuments.filters.relativePatternSupport`.
 	// @since 3.18.0
-	Pattern *GlobPattern[Pattern, RelativePattern] `json:"pattern,omitempty"`
+	Pattern *GlobPattern `json:"pattern,omitempty"`
 }
 
 // TextDocumentFilterScheme a document filter where `scheme` is required field.
@@ -2774,7 +2496,7 @@ type TextDocumentFilterScheme struct {
 
 	// Pattern a glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples. 3.18.0 - support for relative patterns. Whether clients support relative patterns depends on the client capability `textDocuments.filters.relativePatternSupport`.
 	// @since 3.18.0
-	Pattern *GlobPattern[Pattern, RelativePattern] `json:"pattern,omitempty"`
+	Pattern *GlobPattern `json:"pattern,omitempty"`
 }
 
 // TextDocumentFilterPattern a document filter where `pattern` is required field.
@@ -2793,5 +2515,5 @@ type TextDocumentFilterPattern struct {
 
 	// Pattern a glob pattern, like **​/*.{ts,js}. See TextDocumentFilter for examples. 3.18.0 - support for relative patterns. Whether clients support relative patterns depends on the client capability `textDocuments.filters.relativePatternSupport`.
 	// @since 3.18.0
-	Pattern GlobPattern[Pattern, RelativePattern] `json:"pattern"`
+	Pattern GlobPattern `json:"pattern"`
 }

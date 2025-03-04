@@ -7,40 +7,40 @@ package protocol
 type ErrorCodes int32
 
 const (
-	ParseErrorErrorCodes ErrorCodes = -32700
+	ErrorCodesParseError ErrorCodes = -32700
 
-	InvalidRequestErrorCodes ErrorCodes = -32600
+	ErrorCodesInvalidRequest ErrorCodes = -32600
 
-	MethodNotFoundErrorCodes ErrorCodes = -32601
+	ErrorCodesMethodNotFound ErrorCodes = -32601
 
-	InvalidParamsErrorCodes ErrorCodes = -32602
+	ErrorCodesInvalidParams ErrorCodes = -32602
 
-	InternalErrorErrorCodes ErrorCodes = -32603
+	ErrorCodesInternalError ErrorCodes = -32603
 
-	// ServerNotInitializedErrorCodes error code indicating that a server received a notification or request before the server has received the `initialize` request.
-	ServerNotInitializedErrorCodes ErrorCodes = -32002
+	// ErrorCodesServerNotInitialized error code indicating that a server received a notification or request before the server has received the `initialize` request.
+	ErrorCodesServerNotInitialized ErrorCodes = -32002
 
-	UnknownErrorCodeErrorCodes ErrorCodes = -32001
+	ErrorCodesUnknownErrorCode ErrorCodes = -32001
 )
 
 type LSPErrorCodes int32
 
 const (
-	// RequestFailedLSPErrorCodes a request failed but it was syntactically correct, e.g the method name was known and the parameters were valid. The error message should contain human readable information about why the request failed.
+	// LSPErrorCodesRequestFailed a request failed but it was syntactically correct, e.g the method name was known and the parameters were valid. The error message should contain human readable information about why the request failed.
 	//
 	// @since 3.17.0
-	RequestFailedLSPErrorCodes LSPErrorCodes = -32803
+	LSPErrorCodesRequestFailed LSPErrorCodes = -32803
 
-	// ServerCancelledLSPErrorCodes the server cancelled the request. This error code should only be used for requests that explicitly support being server cancellable.
+	// LSPErrorCodesServerCancelled the server cancelled the request. This error code should only be used for requests that explicitly support being server cancellable.
 	//
 	// @since 3.17.0
-	ServerCancelledLSPErrorCodes LSPErrorCodes = -32802
+	LSPErrorCodesServerCancelled LSPErrorCodes = -32802
 
-	// ContentModifiedLSPErrorCodes the server detected that the content of a document got modified outside normal conditions. A server should NOT send this error code if it detects a content change in it unprocessed messages. The result even computed on an older state might still be useful for the client. If a client decides that a result is not of any use anymore the client should cancel the request.
-	ContentModifiedLSPErrorCodes LSPErrorCodes = -32801
+	// LSPErrorCodesContentModified the server detected that the content of a document got modified outside normal conditions. A server should NOT send this error code if it detects a content change in it unprocessed messages. The result even computed on an older state might still be useful for the client. If a client decides that a result is not of any use anymore the client should cancel the request.
+	LSPErrorCodesContentModified LSPErrorCodes = -32801
 
-	// RequestCancelledLSPErrorCodes the client has canceled a request and a server has detected the cancel.
-	RequestCancelledLSPErrorCodes LSPErrorCodes = -32800
+	// LSPErrorCodesRequestCancelled the client has canceled a request and a server has detected the cancel.
+	LSPErrorCodesRequestCancelled LSPErrorCodes = -32800
 )
 
 type CancelParams struct {
@@ -50,7 +50,7 @@ type CancelParams struct {
 
 type ProgressParams struct {
 	// Token the progress token provided by the client or server.
-	Token ProgressToken[int32, string] `json:"token"`
+	Token ProgressToken `json:"token"`
 
 	// Value the progress data.
 	Value any `json:"value"`

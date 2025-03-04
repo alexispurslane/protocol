@@ -10,14 +10,14 @@ import (
 type TraceValue string
 
 const (
-	// OffTraceValue turn tracing off.
-	OffTraceValue TraceValue = "off"
+	// TraceValueOff turn tracing off.
+	TraceValueOff TraceValue = "off"
 
-	// MessagesTraceValue trace messages only.
-	MessagesTraceValue TraceValue = "messages"
+	// TraceValueMessages trace messages only.
+	TraceValueMessages TraceValue = "messages"
 
-	// VerboseTraceValue verbose message tracing.
-	VerboseTraceValue TraceValue = "verbose"
+	// TraceValueVerbose verbose message tracing.
+	TraceValueVerbose TraceValue = "verbose"
 )
 
 // MarkupKind describes the content type that a client supports in various result literals like `Hover`, `ParameterInfo` or `CompletionItem`. Please note that `MarkupKinds` must not start with a `$`. This kinds are
@@ -25,11 +25,11 @@ const (
 type MarkupKind string
 
 const (
-	// PlainTextMarkupKind plain text is supported as a content format.
-	PlainTextMarkupKind MarkupKind = "plaintext"
+	// MarkupKindPlainText plain text is supported as a content format.
+	MarkupKindPlainText MarkupKind = "plaintext"
 
-	// MarkdownMarkupKind markdown is supported as a content format.
-	MarkdownMarkupKind MarkupKind = "markdown"
+	// MarkupKindMarkdown markdown is supported as a content format.
+	MarkupKindMarkdown MarkupKind = "markdown"
 )
 
 // LanguageKind predefined Language kinds  3.18.0 @proposed.
@@ -38,136 +38,136 @@ const (
 type LanguageKind string
 
 const (
-	AbapLanguageKind LanguageKind = "abap"
+	LanguageKindAbap LanguageKind = "abap"
 
-	WindowsBatLanguageKind LanguageKind = "bat"
+	LanguageKindWindowsBat LanguageKind = "bat"
 
-	BibTeXLanguageKind LanguageKind = "bibtex"
+	LanguageKindBibTeX LanguageKind = "bibtex"
 
-	ClojureLanguageKind LanguageKind = "clojure"
+	LanguageKindClojure LanguageKind = "clojure"
 
-	CoffeescriptLanguageKind LanguageKind = "coffeescript"
+	LanguageKindCoffeescript LanguageKind = "coffeescript"
 
-	CLanguageKind LanguageKind = "c"
+	LanguageKindC LanguageKind = "c"
 
-	CppLanguageKind LanguageKind = "cpp"
+	LanguageKindCpp LanguageKind = "cpp"
 
-	CsharpLanguageKind LanguageKind = "csharp"
+	LanguageKindCsharp LanguageKind = "csharp"
 
-	CssLanguageKind LanguageKind = "css"
+	LanguageKindCss LanguageKind = "css"
 
-	// DLanguageKind.
+	// LanguageKindD.
 	//
 	// @since 3.18.0 proposed
-	DLanguageKind LanguageKind = "d"
+	LanguageKindD LanguageKind = "d"
 
-	// DelphiLanguageKind.
+	// LanguageKindDelphi.
 	//
 	// @since 3.18.0 proposed
-	DelphiLanguageKind LanguageKind = "pascal"
+	LanguageKindDelphi LanguageKind = "pascal"
 
-	DiffLanguageKind LanguageKind = "diff"
+	LanguageKindDiff LanguageKind = "diff"
 
-	DartLanguageKind LanguageKind = "dart"
+	LanguageKindDart LanguageKind = "dart"
 
-	DockerfileLanguageKind LanguageKind = "dockerfile"
+	LanguageKindDockerfile LanguageKind = "dockerfile"
 
-	ElixirLanguageKind LanguageKind = "elixir"
+	LanguageKindElixir LanguageKind = "elixir"
 
-	ErlangLanguageKind LanguageKind = "erlang"
+	LanguageKindErlang LanguageKind = "erlang"
 
-	FsharpLanguageKind LanguageKind = "fsharp"
+	LanguageKindFsharp LanguageKind = "fsharp"
 
-	GitCommitLanguageKind LanguageKind = "git-commit"
+	LanguageKindGitCommit LanguageKind = "git-commit"
 
-	GitRebaseLanguageKind LanguageKind = "rebase"
+	LanguageKindGitRebase LanguageKind = "rebase"
 
-	GoLanguageKind LanguageKind = "go"
+	LanguageKindGo LanguageKind = "go"
 
-	GroovyLanguageKind LanguageKind = "groovy"
+	LanguageKindGroovy LanguageKind = "groovy"
 
-	HandlebarsLanguageKind LanguageKind = "handlebars"
+	LanguageKindHandlebars LanguageKind = "handlebars"
 
-	HaskellLanguageKind LanguageKind = "haskell"
+	LanguageKindHaskell LanguageKind = "haskell"
 
-	HTMLLanguageKind LanguageKind = "html"
+	LanguageKindHTML LanguageKind = "html"
 
-	IniLanguageKind LanguageKind = "ini"
+	LanguageKindIni LanguageKind = "ini"
 
-	JavaLanguageKind LanguageKind = "java"
+	LanguageKindJava LanguageKind = "java"
 
-	JavaScriptLanguageKind LanguageKind = "javascript"
+	LanguageKindJavaScript LanguageKind = "javascript"
 
-	JavaScriptReactLanguageKind LanguageKind = "javascriptreact"
+	LanguageKindJavaScriptReact LanguageKind = "javascriptreact"
 
-	JSONLanguageKind LanguageKind = "json"
+	LanguageKindJSON LanguageKind = "json"
 
-	LaTeXLanguageKind LanguageKind = "latex"
+	LanguageKindLaTeX LanguageKind = "latex"
 
-	LessLanguageKind LanguageKind = "less"
+	LanguageKindLess LanguageKind = "less"
 
-	LuaLanguageKind LanguageKind = "lua"
+	LanguageKindLua LanguageKind = "lua"
 
-	MakefileLanguageKind LanguageKind = "makefile"
+	LanguageKindMakefile LanguageKind = "makefile"
 
-	MarkdownLanguageKind LanguageKind = "markdown"
+	LanguageKindMarkdown LanguageKind = "markdown"
 
-	ObjectiveCLanguageKind LanguageKind = "objective-c"
+	LanguageKindObjectiveC LanguageKind = "objective-c"
 
-	ObjectiveCPPLanguageKind LanguageKind = "objective-cpp"
+	LanguageKindObjectiveCPP LanguageKind = "objective-cpp"
 
-	// PascalLanguageKind.
+	// LanguageKindPascal.
 	//
 	// @since 3.18.0 proposed
-	PascalLanguageKind LanguageKind = "pascal"
+	LanguageKindPascal LanguageKind = "pascal"
 
-	PerlLanguageKind LanguageKind = "perl"
+	LanguageKindPerl LanguageKind = "perl"
 
-	Perl6LanguageKind LanguageKind = "perl6"
+	LanguageKindPerl6 LanguageKind = "perl6"
 
-	PhpLanguageKind LanguageKind = "php"
+	LanguageKindPhp LanguageKind = "php"
 
-	PowershellLanguageKind LanguageKind = "powershell"
+	LanguageKindPowershell LanguageKind = "powershell"
 
-	PugLanguageKind LanguageKind = "jade"
+	LanguageKindPug LanguageKind = "jade"
 
-	PythonLanguageKind LanguageKind = "python"
+	LanguageKindPython LanguageKind = "python"
 
-	RLanguageKind LanguageKind = "r"
+	LanguageKindR LanguageKind = "r"
 
-	RazorLanguageKind LanguageKind = "razor"
+	LanguageKindRazor LanguageKind = "razor"
 
-	RubyLanguageKind LanguageKind = "ruby"
+	LanguageKindRuby LanguageKind = "ruby"
 
-	RustLanguageKind LanguageKind = "rust"
+	LanguageKindRust LanguageKind = "rust"
 
-	ScssLanguageKind LanguageKind = "scss"
+	LanguageKindScss LanguageKind = "scss"
 
-	SassLanguageKind LanguageKind = "sass"
+	LanguageKindSass LanguageKind = "sass"
 
-	ScalaLanguageKind LanguageKind = "scala"
+	LanguageKindScala LanguageKind = "scala"
 
-	ShaderLabLanguageKind LanguageKind = "shaderlab"
+	LanguageKindShaderLab LanguageKind = "shaderlab"
 
-	ShellScriptLanguageKind LanguageKind = "shellscript"
+	LanguageKindShellScript LanguageKind = "shellscript"
 
-	SQLLanguageKind LanguageKind = "sql"
+	LanguageKindSQL LanguageKind = "sql"
 
-	SwiftLanguageKind LanguageKind = "swift"
+	LanguageKindSwift LanguageKind = "swift"
 
-	TypeScriptLanguageKind LanguageKind = "typescript"
+	LanguageKindTypeScript LanguageKind = "typescript"
 
-	TypeScriptReactLanguageKind LanguageKind = "typescriptreact"
+	LanguageKindTypeScriptReact LanguageKind = "typescriptreact"
 
-	TeXLanguageKind LanguageKind = "tex"
+	LanguageKindTeX LanguageKind = "tex"
 
-	VisualBasicLanguageKind LanguageKind = "vb"
+	LanguageKindVisualBasic LanguageKind = "vb"
 
-	XmlLanguageKind LanguageKind = "xml"
+	LanguageKindXml LanguageKind = "xml"
 
-	XslLanguageKind LanguageKind = "xsl"
+	LanguageKindXsl LanguageKind = "xsl"
 
-	YamlLanguageKind LanguageKind = "yaml"
+	LanguageKindYaml LanguageKind = "yaml"
 )
 
 // PositionEncodingKind a set of predefined position encoding kinds.
@@ -176,31 +176,31 @@ const (
 type PositionEncodingKind string
 
 const (
-	// UTF8PositionEncodingKind character offsets count UTF-8 code units (e.g. bytes).
-	UTF8PositionEncodingKind PositionEncodingKind = "utf-8"
+	// PositionEncodingKindUTF8 character offsets count UTF-8 code units (e.g. bytes).
+	PositionEncodingKindUTF8 PositionEncodingKind = "utf-8"
 
-	// Utf16PositionEncodingKind character offsets count UTF-16 code units. This is the default and must always be supported by servers.
-	Utf16PositionEncodingKind PositionEncodingKind = "utf-16"
+	// PositionEncodingKindUtf16 character offsets count UTF-16 code units. This is the default and must always be supported by servers.
+	PositionEncodingKindUtf16 PositionEncodingKind = "utf-16"
 
-	// Utf32PositionEncodingKind character offsets count UTF-32 code units. Implementation note: these are the same as Unicode codepoints, so this `PositionEncodingKind` may also be used for an encoding-agnostic representation of character offsets.
-	Utf32PositionEncodingKind PositionEncodingKind = "utf-32"
+	// PositionEncodingKindUtf32 character offsets count UTF-32 code units. Implementation note: these are the same as Unicode codepoints, so this `PositionEncodingKind` may also be used for an encoding-agnostic representation of character offsets.
+	PositionEncodingKindUtf32 PositionEncodingKind = "utf-32"
 )
 
 // DiagnosticSeverity the diagnostic's severity.
 type DiagnosticSeverity uint32
 
 const (
-	// ErrorDiagnosticSeverity reports an error.
-	ErrorDiagnosticSeverity DiagnosticSeverity = 1
+	// DiagnosticSeverityError reports an error.
+	DiagnosticSeverityError DiagnosticSeverity = 1
 
-	// WarningDiagnosticSeverity reports a warning.
-	WarningDiagnosticSeverity DiagnosticSeverity = 2
+	// DiagnosticSeverityWarning reports a warning.
+	DiagnosticSeverityWarning DiagnosticSeverity = 2
 
-	// InformationDiagnosticSeverity reports an information.
-	InformationDiagnosticSeverity DiagnosticSeverity = 3
+	// DiagnosticSeverityInformation reports an information.
+	DiagnosticSeverityInformation DiagnosticSeverity = 3
 
-	// HintDiagnosticSeverity reports a hint.
-	HintDiagnosticSeverity DiagnosticSeverity = 4
+	// DiagnosticSeverityHint reports a hint.
+	DiagnosticSeverityHint DiagnosticSeverity = 4
 )
 
 // DiagnosticTag the diagnostic tags.
@@ -209,41 +209,41 @@ const (
 type DiagnosticTag uint32
 
 const (
-	// UnnecessaryDiagnosticTag unused or unnecessary code. Clients are allowed to render diagnostics with this tag faded out instead of having an error squiggle.
-	UnnecessaryDiagnosticTag DiagnosticTag = 1
+	// DiagnosticTagUnnecessary unused or unnecessary code. Clients are allowed to render diagnostics with this tag faded out instead of having an error squiggle.
+	DiagnosticTagUnnecessary DiagnosticTag = 1
 
-	// DeprecatedDiagnosticTag deprecated or obsolete code. Clients are allowed to rendered diagnostics with this tag strike through.
-	DeprecatedDiagnosticTag DiagnosticTag = 2
+	// DiagnosticTagDeprecated deprecated or obsolete code. Clients are allowed to rendered diagnostics with this tag strike through.
+	DiagnosticTagDeprecated DiagnosticTag = 2
 )
 
 type ResourceOperationKind string
 
 const (
-	// CreateResourceOperationKind supports creating new files and folders.
-	CreateResourceOperationKind ResourceOperationKind = "create"
+	// ResourceOperationKindCreate supports creating new files and folders.
+	ResourceOperationKindCreate ResourceOperationKind = "create"
 
-	// RenameResourceOperationKind supports renaming existing files and folders.
-	RenameResourceOperationKind ResourceOperationKind = "rename"
+	// ResourceOperationKindRename supports renaming existing files and folders.
+	ResourceOperationKindRename ResourceOperationKind = "rename"
 
-	// DeleteResourceOperationKind supports deleting existing files and folders.
-	DeleteResourceOperationKind ResourceOperationKind = "delete"
+	// ResourceOperationKindDelete supports deleting existing files and folders.
+	ResourceOperationKindDelete ResourceOperationKind = "delete"
 )
 
 type FailureHandlingKind string
 
 const (
-	// AbortFailureHandlingKind applying the workspace change is simply aborted if one of the changes provided fails. All operations
+	// FailureHandlingKindAbort applying the workspace change is simply aborted if one of the changes provided fails. All operations
 	// executed before the failing operation stay executed.
-	AbortFailureHandlingKind FailureHandlingKind = "abort"
+	FailureHandlingKindAbort FailureHandlingKind = "abort"
 
-	// TransactionalFailureHandlingKind all operations are executed transactional. That means they either all succeed or no changes at all are applied to the workspace.
-	TransactionalFailureHandlingKind FailureHandlingKind = "transactional"
+	// FailureHandlingKindTransactional all operations are executed transactional. That means they either all succeed or no changes at all are applied to the workspace.
+	FailureHandlingKindTransactional FailureHandlingKind = "transactional"
 
-	// TextOnlyTransactionalFailureHandlingKind if the workspace edit contains only textual file changes they are executed transactional. If resource changes (create, rename or delete file) are part of the change the failure handling strategy is abort.
-	TextOnlyTransactionalFailureHandlingKind FailureHandlingKind = "textOnlyTransactional"
+	// FailureHandlingKindTextOnlyTransactional if the workspace edit contains only textual file changes they are executed transactional. If resource changes (create, rename or delete file) are part of the change the failure handling strategy is abort.
+	FailureHandlingKindTextOnlyTransactional FailureHandlingKind = "textOnlyTransactional"
 
-	// UndoFailureHandlingKind the client tries to undo the operations already executed. But there is no guarantee that this is succeeding.
-	UndoFailureHandlingKind FailureHandlingKind = "undo"
+	// FailureHandlingKindUndo the client tries to undo the operations already executed. But there is no guarantee that this is succeeding.
+	FailureHandlingKindUndo FailureHandlingKind = "undo"
 )
 
 // TextDocumentIdentifier a literal to identify a text document in the client.
@@ -625,12 +625,12 @@ type WorkDoneProgressEnd struct {
 
 type WorkDoneProgressParams struct {
 	// WorkDoneToken an optional token that a server can use to report work done progress.
-	WorkDoneToken *ProgressToken[int32, string] `json:"workDoneToken,omitempty"`
+	WorkDoneToken *ProgressToken `json:"workDoneToken,omitempty"`
 }
 
 type PartialResultParams struct {
 	// PartialResultToken an optional token that a server can use to report partial results (e.g. streaming) to the client.
-	PartialResultToken *ProgressToken[int32, string] `json:"partialResultToken,omitempty"`
+	PartialResultToken *ProgressToken `json:"partialResultToken,omitempty"`
 }
 
 // LocationLink represents the connection of two locations. Provides additional metadata over normal Location locations, including an origin range.

@@ -7,147 +7,140 @@ import (
 	"strconv"
 )
 
-// ServerCapabilities efines the capabilities provided by a language server.
+// ServerCapabilities defines the capabilities provided by a language server.
 type ServerCapabilities struct {
-	// TextDocumentSync defines how text documents are synced. Is either a detailed structure defining each notification
-	// or for backwards compatibility the TextDocumentSyncKind number.
-	//
-	// If omitted it defaults to TextDocumentSyncKind.None`
-	TextDocumentSync any `json:"textDocumentSync,omitempty"` // *TextDocumentSyncOptions | TextDocumentSyncKind
+	// PositionEncoding the position encoding the server picked from the encodings offered by the client via the client capability `general.positionEncodings`. If the client didn't provide any position encodings the only valid value that a server can return is 'utf-16'. If omitted it defaults to 'utf-16'.
+	PositionEncoding PositionEncodingKind `json:"positionEncoding,omitempty"`
 
-	// CompletionProvider is The server provides completion support.
+	// TextDocumentSync defines how text documents are synced. Is either a detailed structure defining each notification or for backwards compatibility the TextDocumentSyncKind number.
+	TextDocumentSync *OneOf[TextDocumentSyncOptions, TextDocumentSyncKind] `json:"textDocumentSync,omitempty"`
+
+	// NotebookDocumentSync defines how notebook documents are synced.
+	NotebookDocumentSync *OneOf[NotebookDocumentSyncOptions, NotebookDocumentSyncRegistrationOptions] `json:"notebookDocumentSync,omitempty"`
+
+	// CompletionProvider the server provides completion support.
 	CompletionProvider *CompletionOptions `json:"completionProvider,omitempty"`
 
-	// HoverProvider is the server provides hover support.
-	HoverProvider any `json:"hoverProvider,omitempty"` // TODO(zchee): bool | *HoverOptions
+	// HoverProvider the server provides hover support.
+	HoverProvider *OneOf[bool, HoverOptions] `json:"hoverProvider,omitempty"`
 
-	// SignatureHelpProvider is the server provides signature help support.
+	// SignatureHelpProvider the server provides signature help support.
 	SignatureHelpProvider *SignatureHelpOptions `json:"signatureHelpProvider,omitempty"`
 
-	// DeclarationProvider is the server provides Goto Declaration support.
-	//
-	// @since 3.14.0.
-	DeclarationProvider any `json:"declarationProvider,omitempty"` // TODO(zchee): bool | *DeclarationOptions | *DeclarationRegistrationOptions
+	// DeclarationProvider the server provides Goto Declaration support.
+	DeclarationProvider *OneOf3[bool, DeclarationOptions, DeclarationRegistrationOptions] `json:"declarationProvider,omitempty"`
 
-	// DefinitionProvider is the server provides Goto definition support.
-	DefinitionProvider any `json:"definitionProvider,omitempty"` // TODO(zchee): bool | *DefinitionOptions
+	// DefinitionProvider the server provides goto definition support.
+	DefinitionProvider *OneOf[bool, DefinitionOptions] `json:"definitionProvider,omitempty"`
 
-	// TypeDefinitionProvider is the provides Goto Type Definition support.
-	//
-	// @since 3.6.0.
-	TypeDefinitionProvider any `json:"typeDefinitionProvider,omitempty"` // TODO(zchee): bool | *TypeDefinitionOptions | *TypeDefinitionRegistrationOptions
+	// TypeDefinitionProvider the server provides Goto Type Definition support.
+	TypeDefinitionProvider *OneOf3[bool, TypeDefinitionOptions, TypeDefinitionRegistrationOptions] `json:"typeDefinitionProvider,omitempty"`
 
-	// ImplementationProvider is the provides Goto Implementation support.
-	//
-	// @since 3.6.0.
-	ImplementationProvider any `json:"implementationProvider,omitempty"` // TODO(zchee): bool | *ImplementationOptions | *ImplementationRegistrationOptions
+	// ImplementationProvider the server provides Goto Implementation support.
+	ImplementationProvider *OneOf3[bool, ImplementationOptions, ImplementationRegistrationOptions] `json:"implementationProvider,omitempty"`
 
-	// ReferencesProvider is the server provides find references support.
-	ReferencesProvider any `json:"referencesProvider,omitempty"` // TODO(zchee): bool | *ReferenceOptions
+	// ReferencesProvider the server provides find references support.
+	ReferencesProvider *OneOf[bool, ReferenceOptions] `json:"referencesProvider,omitempty"`
 
-	// DocumentHighlightProvider is the server provides document highlight support.
-	DocumentHighlightProvider any `json:"documentHighlightProvider,omitempty"` // TODO(zchee): bool | *DocumentHighlightOptions
+	// DocumentHighlightProvider the server provides document highlight support.
+	DocumentHighlightProvider *OneOf[bool, DocumentHighlightOptions] `json:"documentHighlightProvider,omitempty"`
 
-	// DocumentSymbolProvider is the server provides document symbol support.
-	DocumentSymbolProvider any `json:"documentSymbolProvider,omitempty"` // TODO(zchee): bool | *DocumentSymbolOptions
+	// DocumentSymbolProvider the server provides document symbol support.
+	DocumentSymbolProvider *OneOf[bool, DocumentSymbolOptions] `json:"documentSymbolProvider,omitempty"`
 
-	// CodeActionProvider is the server provides code actions.
-	//
-	// CodeActionOptions may only be specified if the client states that it supports CodeActionLiteralSupport in its
-	// initial Initialize request.
-	CodeActionProvider any `json:"codeActionProvider,omitempty"` // TODO(zchee): bool | *CodeActionOptions
+	// CodeActionProvider the server provides code actions. CodeActionOptions may only be specified if the client states that it supports `codeActionLiteralSupport` in its initial `initialize` request.
+	CodeActionProvider *OneOf[bool, CodeActionOptions] `json:"codeActionProvider,omitempty"`
 
-	// CodeLensProvider is the server provides code lens.
+	// CodeLensProvider the server provides code lens.
 	CodeLensProvider *CodeLensOptions `json:"codeLensProvider,omitempty"`
 
-	// The server provides document link support.
+	// DocumentLinkProvider the server provides document link support.
 	DocumentLinkProvider *DocumentLinkOptions `json:"documentLinkProvider,omitempty"`
 
-	// ColorProvider is the server provides color provider support.
-	//
-	// @since 3.6.0.
-	ColorProvider any `json:"colorProvider,omitempty"` // TODO(zchee): bool | *DocumentColorOptions | *DocumentColorRegistrationOptions
+	// ColorProvider the server provides color provider support.
+	ColorProvider *OneOf3[bool, DocumentColorOptions, DocumentColorRegistrationOptions] `json:"colorProvider,omitempty"`
 
-	// WorkspaceSymbolProvider is the server provides workspace symbol support.
-	WorkspaceSymbolProvider any `json:"workspaceSymbolProvider,omitempty"` // TODO(zchee): bool | *WorkspaceSymbolOptions
+	// WorkspaceSymbolProvider the server provides workspace symbol support.
+	WorkspaceSymbolProvider *OneOf[bool, WorkspaceSymbolOptions] `json:"workspaceSymbolProvider,omitempty"`
 
-	// DocumentFormattingProvider is the server provides document formatting.
-	DocumentFormattingProvider any `json:"documentFormattingProvider,omitempty"` // TODO(zchee): bool | *DocumentFormattingOptions
+	// DocumentFormattingProvider the server provides document formatting.
+	DocumentFormattingProvider *OneOf[bool, DocumentFormattingOptions] `json:"documentFormattingProvider,omitempty"`
 
-	// DocumentRangeFormattingProvider is the server provides document range formatting.
-	DocumentRangeFormattingProvider any `json:"documentRangeFormattingProvider,omitempty"` // TODO(zchee): bool | *DocumentRangeFormattingOptions
+	// DocumentRangeFormattingProvider the server provides document range formatting.
+	DocumentRangeFormattingProvider *OneOf[bool, DocumentRangeFormattingOptions] `json:"documentRangeFormattingProvider,omitempty"`
 
-	// DocumentOnTypeFormattingProvider is the server provides document formatting on typing.
+	// DocumentOnTypeFormattingProvider the server provides document formatting on typing.
 	DocumentOnTypeFormattingProvider *DocumentOnTypeFormattingOptions `json:"documentOnTypeFormattingProvider,omitempty"`
 
-	// RenameProvider is the server provides rename support.
-	//
-	// RenameOptions may only be specified if the client states that it supports PrepareSupport in its
-	// initial Initialize request.
-	RenameProvider any `json:"renameProvider,omitempty"` // TODO(zchee): bool | *RenameOptions
+	// RenameProvider the server provides rename support. RenameOptions may only be specified if the client states that it
+	// supports `prepareSupport` in its initial `initialize` request.
+	RenameProvider *OneOf[bool, RenameOptions] `json:"renameProvider,omitempty"`
 
-	// FoldingRangeProvider is the server provides folding provider support.
-	//
-	// @since 3.10.0.
-	FoldingRangeProvider any `json:"foldingRangeProvider,omitempty"` // TODO(zchee): bool | *FoldingRangeOptions | *FoldingRangeRegistrationOptions
+	// FoldingRangeProvider the server provides folding provider support.
+	FoldingRangeProvider *OneOf3[bool, FoldingRangeOptions, FoldingRangeRegistrationOptions] `json:"foldingRangeProvider,omitempty"`
 
-	// SelectionRangeProvider is the server provides selection range support.
-	//
-	// @since 3.15.0.
-	SelectionRangeProvider any `json:"selectionRangeProvider,omitempty"` // TODO(zchee): bool | *SelectionRangeOptions | *SelectionRangeRegistrationOptions
+	// SelectionRangeProvider the server provides selection range support.
+	SelectionRangeProvider *OneOf3[bool, SelectionRangeOptions, SelectionRangeRegistrationOptions] `json:"selectionRangeProvider,omitempty"`
 
-	// ExecuteCommandProvider is the server provides execute command support.
+	// ExecuteCommandProvider the server provides execute command support.
 	ExecuteCommandProvider *ExecuteCommandOptions `json:"executeCommandProvider,omitempty"`
 
-	// CallHierarchyProvider is the server provides call hierarchy support.
-	//
-	// @since 3.16.0.
-	CallHierarchyProvider any `json:"callHierarchyProvider,omitempty"` // TODO(zchee): bool | *CallHierarchyOptions | *CallHierarchyRegistrationOptions
+	// CallHierarchyProvider the server provides call hierarchy support.
+	CallHierarchyProvider *OneOf3[bool, CallHierarchyOptions, CallHierarchyRegistrationOptions] `json:"callHierarchyProvider,omitempty"`
 
-	// LinkedEditingRangeProvider is the server provides linked editing range support.
-	//
-	// @since 3.16.0.
-	LinkedEditingRangeProvider any `json:"linkedEditingRangeProvider,omitempty"` // TODO(zchee): bool | *LinkedEditingRangeOptions | *LinkedEditingRangeRegistrationOptions
+	// LinkedEditingRangeProvider the server provides linked editing range support.
+	LinkedEditingRangeProvider *OneOf3[bool, LinkedEditingRangeOptions, LinkedEditingRangeRegistrationOptions] `json:"linkedEditingRangeProvider,omitempty"`
 
-	// SemanticTokensProvider is the server provides semantic tokens support.
-	//
-	// @since 3.16.0.
-	SemanticTokensProvider any `json:"semanticTokensProvider,omitempty"` // TODO(zchee): *SemanticTokensOptions | *SemanticTokensRegistrationOptions
+	// SemanticTokensProvider the server provides semantic tokens support.
+	SemanticTokensProvider *OneOf[SemanticTokensOptions, SemanticTokensRegistrationOptions] `json:"semanticTokensProvider,omitempty"`
 
-	// Workspace is the window specific server capabilities.
-	Workspace *ServerCapabilitiesWorkspace `json:"workspace,omitempty"`
+	// MonikerProvider the server provides moniker support.
+	MonikerProvider *OneOf3[bool, MonikerOptions, MonikerRegistrationOptions] `json:"monikerProvider,omitempty"`
 
-	// MonikerProvider is the server provides moniker support.
-	//
-	// @since 3.16.0.
-	MonikerProvider any `json:"monikerProvider,omitempty"` // TODO(zchee): bool | *MonikerOptions | *MonikerRegistrationOptions
+	// TypeHierarchyProvider the server provides type hierarchy support.
+	TypeHierarchyProvider *OneOf3[bool, TypeHierarchyOptions, TypeHierarchyRegistrationOptions] `json:"typeHierarchyProvider,omitempty"`
 
-	// Experimental server capabilities.
+	// InlineValueProvider the server provides inline values.
+	InlineValueProvider *OneOf3[bool, InlineValueOptions, InlineValueRegistrationOptions] `json:"inlineValueProvider,omitempty"`
+
+	// InlayHintProvider the server provides inlay hints.
+	InlayHintProvider *OneOf3[bool, InlayHintOptions, InlayHintRegistrationOptions] `json:"inlayHintProvider,omitempty"`
+
+	// DiagnosticProvider the server has support for pull model diagnostics.
+	DiagnosticProvider *OneOf[DiagnosticOptions, DiagnosticRegistrationOptions] `json:"diagnosticProvider,omitempty"`
+
+	// InlineCompletionProvider inline completion options used during static registration.  3.18.0 @proposed.
+	InlineCompletionProvider *OneOf[bool, InlineCompletionOptions] `json:"inlineCompletionProvider,omitempty"`
+
+	// Workspace workspace specific server capabilities.
+	Workspace *WorkspaceOptions `json:"workspace,omitempty"`
+
+	// Experimental experimental server capabilities.
 	Experimental any `json:"experimental,omitempty"`
 }
 
 // TextDocumentSyncOptions TextDocumentSync options.
 type TextDocumentSyncOptions struct {
-	// OpenClose open and close notifications are sent to the server.
+	// OpenClose open and close notifications are sent to the server. If omitted open close notification should not be sent.
 	OpenClose bool `json:"openClose,omitempty"`
 
-	// Change notifications are sent to the server. See TextDocumentSyncKind.None, TextDocumentSyncKind.Full
-	// and TextDocumentSyncKind.Incremental. If omitted it defaults to TextDocumentSyncKind.None.
+	// Change change notifications are sent to the server. See TextDocumentSyncKind.None, TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental. If omitted it defaults to TextDocumentSyncKind.None.
 	Change TextDocumentSyncKind `json:"change,omitempty"`
 
-	// WillSave notifications are sent to the server.
+	// WillSave if present will save notifications are sent to the server. If omitted the notification should not be
+	// sent.
 	WillSave bool `json:"willSave,omitempty"`
 
-	// WillSaveWaitUntil will save wait until requests are sent to the server.
+	// WillSaveWaitUntil if present will save wait until requests are sent to the server. If omitted the request should not be sent.
 	WillSaveWaitUntil bool `json:"willSaveWaitUntil,omitempty"`
 
-	// Save notifications are sent to the server.
-	Save *SaveOptions `json:"save,omitempty"`
+	// Save if present save notifications are sent to the server. If omitted the notification should not be sent.
+	Save *OneOf[bool, SaveOptions] `json:"save,omitempty"`
 }
 
 // SaveOptions save options.
 type SaveOptions struct {
-	// IncludeText is the client is supposed to include the content on save.
+	// IncludeText the client is supposed to include the content on save.
 	IncludeText bool `json:"includeText,omitempty"`
 }
 
@@ -182,73 +175,79 @@ func (k TextDocumentSyncKind) String() string {
 	}
 }
 
-// CompletionOptions Completion options.
+// CompletionOptions completion options.
 type CompletionOptions struct {
-	// The server provides support to resolve additional
-	// information for a completion item.
+	// mixins
+	WorkDoneProgressOptions
+
+	// TriggerCharacters most tools trigger completion request automatically without explicitly requesting it using a keyboard shortcut (e.g. Ctrl+Space). Typically they do so when the user starts to type an identifier. For example if the user types `c` in a JavaScript file code complete will automatically pop up present `console` besides others as a completion item. Characters that make up identifiers don't need to be listed here. If code complete should automatically be trigger on characters not being valid inside an identifier (for example `.` in JavaScript) list them in `triggerCharacters`.
+	TriggerCharacters []string `json:"triggerCharacters,omitempty"`
+
+	// AllCommitCharacters the list of all possible characters that commit a completion. This field can be used if clients don't support individual commit characters per completion item. See `ClientCapabilities.textDocument.completion.completionItem.commitCharactersSupport` If a server provides both `allCommitCharacters` and commit characters on an individual completion item the ones on the completion item win.
+	AllCommitCharacters []string `json:"allCommitCharacters,omitempty"`
+
+	// ResolveProvider the server provides support to resolve additional information for a completion item.
 	ResolveProvider bool `json:"resolveProvider,omitempty"`
 
-	// The characters that trigger completion automatically.
-	TriggerCharacters []string `json:"triggerCharacters,omitempty"`
+	// CompletionItem the server supports the following `CompletionItem` specific capabilities.
+	CompletionItem *ServerCompletionItemOptions `json:"completionItem,omitempty"`
 }
 
-// HoverOptions option of hover provider server capabilities.
+// HoverOptions hover options.
 type HoverOptions struct {
+	// mixins
 	WorkDoneProgressOptions
 }
 
-// SignatureHelpOptions SignatureHelp options.
+// SignatureHelpOptions server Capabilities for a SignatureHelpRequest.
 type SignatureHelpOptions struct {
-	// The characters that trigger signature help
-	// automatically.
+	// mixins
+	WorkDoneProgressOptions
+
+	// TriggerCharacters list of characters that trigger signature help automatically.
 	TriggerCharacters []string `json:"triggerCharacters,omitempty"`
 
-	// RetriggerCharacters is the slist of characters that re-trigger signature help.
-	//
-	// These trigger characters are only active when signature help is already
-	// showing.
-	// All trigger characters are also counted as re-trigger characters.
-	//
-	// @since 3.15.0.
+	// RetriggerCharacters list of characters that re-trigger signature help. These trigger characters are only active when signature help is already showing. All trigger characters are also counted as re-trigger characters.
 	RetriggerCharacters []string `json:"retriggerCharacters,omitempty"`
 }
 
-// DeclarationOptions registration option of Declaration server capability.
-//
-// @since 3.15.0.
-type DeclarationOptions struct {
-	WorkDoneProgressOptions
-}
-
-// DeclarationRegistrationOptions registration option of Declaration server capability.
-//
-// @since 3.15.0.
-type DeclarationRegistrationOptions struct {
-	DeclarationOptions
-	TextDocumentRegistrationOptions
-	StaticRegistrationOptions
-}
-
-// DefinitionOptions registration option of Definition server capability.
-//
-// @since 3.15.0.
+// DefinitionOptions server Capabilities for a DefinitionRequest.
 type DefinitionOptions struct {
+	// mixins
 	WorkDoneProgressOptions
 }
 
-// TypeDefinitionOptions registration option of TypeDefinition server capability.
-//
-// @since 3.15.0.
+// ReferenceOptions reference options.
+type ReferenceOptions struct {
+	// mixins
+	WorkDoneProgressOptions
+}
+
+// DocumentHighlightOptions provider options for a DocumentHighlightRequest.
+type DocumentHighlightOptions struct {
+	// mixins
+	WorkDoneProgressOptions
+}
+
+// DocumentSymbolOptions provider options for a DocumentSymbolRequest.
+type DocumentSymbolOptions struct {
+	// mixins
+	WorkDoneProgressOptions
+
+	// Label a human-readable string that is shown when multiple outlines trees are shown for the same document.
+	Label string `json:"label,omitempty"`
+}
+
 type TypeDefinitionOptions struct {
+	// mixins
 	WorkDoneProgressOptions
 }
 
-// TypeDefinitionRegistrationOptions registration option of TypeDefinition server capability.
-//
-// @since 3.15.0.
 type TypeDefinitionRegistrationOptions struct {
+	// extends
 	TextDocumentRegistrationOptions
 	TypeDefinitionOptions
+	// mixins
 	StaticRegistrationOptions
 }
 
@@ -268,177 +267,181 @@ type ImplementationRegistrationOptions struct {
 	StaticRegistrationOptions
 }
 
-// ReferenceOptions registration option of Reference server capability.
-type ReferenceOptions struct {
-	WorkDoneProgressOptions
-}
-
-// DocumentHighlightOptions registration option of DocumentHighlight server capability.
-//
-// @since 3.15.0.
-type DocumentHighlightOptions struct {
-	WorkDoneProgressOptions
-}
-
-// DocumentSymbolOptions registration option of DocumentSymbol server capability.
-//
-// @since 3.15.0.
-type DocumentSymbolOptions struct {
-	WorkDoneProgressOptions
-
-	// Label a human-readable string that is shown when multiple outlines trees
-	// are shown for the same document.
-	//
-	// @since 3.16.0.
-	Label string `json:"label,omitempty"`
-}
-
-// CodeActionOptions CodeAction options.
+// CodeActionOptions provider options for a CodeActionRequest.
 type CodeActionOptions struct {
-	// CodeActionKinds that this server may return.
-	//
-	// The list of kinds may be generic, such as "CodeActionKind.Refactor", or the server
-	// may list out every specific kind they provide.
+	// mixins
+	WorkDoneProgressOptions
+
+	// CodeActionKinds codeActionKinds that this server may return. The list of kinds may be generic, such as `CodeActionKind.Refactor`, or the server may list out every specific kind they provide.
 	CodeActionKinds []CodeActionKind `json:"codeActionKinds,omitempty"`
 
-	// ResolveProvider is the server provides support to resolve additional
-	// information for a code action.
-	//
-	// @since 3.16.0.
+	// Documentation static documentation for a class of code actions. Documentation from the provider should be shown in
+	// the code actions menu if either: - Code actions of `kind` are requested by the editor. In this
+	// case, the editor will show the documentation that most closely matches the requested code action kind. For example, if a provider has documentation for both `Refactor` and `RefactorExtract`, when the user requests code actions for `RefactorExtract`, the editor will use the documentation for `RefactorExtract` instead of the documentation for `Refactor`. - Any code actions of `kind` are returned by the provider. At most one documentation entry should be shown per provider. 3.18.0 @proposed.
+	Documentation []CodeActionKindDocumentation `json:"documentation,omitempty"`
+
+	// ResolveProvider the server provides support to resolve additional information for a code action.
 	ResolveProvider bool `json:"resolveProvider,omitempty"`
 }
 
-// CodeLensOptions CodeLens options.
+// CodeLensOptions code Lens provider options of a CodeLensRequest.
 type CodeLensOptions struct {
-	// Code lens has a resolve provider as well.
+	// mixins
+	WorkDoneProgressOptions
+
+	// ResolveProvider code lens has a resolve provider as well.
 	ResolveProvider bool `json:"resolveProvider,omitempty"`
 }
 
-// DocumentLinkOptions document link options.
+// DocumentLinkOptions provider options for a DocumentLinkRequest.
 type DocumentLinkOptions struct {
+	// mixins
+	WorkDoneProgressOptions
+
 	// ResolveProvider document links have a resolve provider as well.
 	ResolveProvider bool `json:"resolveProvider,omitempty"`
 }
 
-// DocumentColorOptions registration option of DocumentColor server capability.
-//
-// @since 3.15.0.
 type DocumentColorOptions struct {
+	// mixins
 	WorkDoneProgressOptions
 }
 
-// DocumentColorRegistrationOptions registration option of DocumentColor server capability.
-//
-// @since 3.15.0.
 type DocumentColorRegistrationOptions struct {
+	// extends
 	TextDocumentRegistrationOptions
-	StaticRegistrationOptions
 	DocumentColorOptions
+	// mixins
+	StaticRegistrationOptions
 }
 
-// WorkspaceSymbolOptions registration option of WorkspaceSymbol server capability.
-//
-// @since 3.15.0.
+// WorkspaceSymbolOptions server capabilities for a WorkspaceSymbolRequest.
 type WorkspaceSymbolOptions struct {
+	// mixins
 	WorkDoneProgressOptions
+
+	// ResolveProvider the server provides support to resolve additional information for a workspace symbol.
+	ResolveProvider bool `json:"resolveProvider,omitempty"`
 }
 
-// DocumentFormattingOptions registration option of DocumentFormatting server capability.
-//
-// @since 3.15.0.
+// DocumentFormattingOptions provider options for a DocumentFormattingRequest.
 type DocumentFormattingOptions struct {
+	// mixins
 	WorkDoneProgressOptions
 }
 
-// DocumentRangeFormattingOptions registration option of DocumentRangeFormatting server capability.
-//
-// @since 3.15.0.
+// DocumentRangeFormattingOptions provider options for a DocumentRangeFormattingRequest.
 type DocumentRangeFormattingOptions struct {
+	// mixins
 	WorkDoneProgressOptions
+
+	// RangesSupport whether the server supports formatting multiple ranges at once.  3.18.0 @proposed.
+	RangesSupport bool `json:"rangesSupport,omitempty"`
 }
 
-// DocumentOnTypeFormattingOptions format document on type options.
+// DocumentOnTypeFormattingOptions provider options for a DocumentOnTypeFormattingRequest.
 type DocumentOnTypeFormattingOptions struct {
-	// FirstTriggerCharacter a character on which formatting should be triggered, like "}".
+	// FirstTriggerCharacter a character on which formatting should be triggered, like `{`.
 	FirstTriggerCharacter string `json:"firstTriggerCharacter"`
 
 	// MoreTriggerCharacter more trigger characters.
 	MoreTriggerCharacter []string `json:"moreTriggerCharacter,omitempty"`
 }
 
-// RenameOptions rename options.
+// RenameOptions provider options for a RenameRequest.
 type RenameOptions struct {
-	// PrepareProvider renames should be checked and tested before being executed.
+	// mixins
+	WorkDoneProgressOptions
+
+	// PrepareProvider renames should be checked and tested before being executed.  version .
 	PrepareProvider bool `json:"prepareProvider,omitempty"`
 }
 
-// FoldingRangeOptions registration option of FoldingRange server capability.
-//
-// @since 3.15.0.
 type FoldingRangeOptions struct {
+	// mixins
 	WorkDoneProgressOptions
 }
 
-// FoldingRangeRegistrationOptions registration option of FoldingRange server capability.
-//
-// @since 3.15.0.
 type FoldingRangeRegistrationOptions struct {
+	// extends
 	TextDocumentRegistrationOptions
 	FoldingRangeOptions
+	// mixins
 	StaticRegistrationOptions
 }
 
-// ExecuteCommandOptions execute command options.
+// ExecuteCommandOptions the server capabilities of a ExecuteCommandRequest.
 type ExecuteCommandOptions struct {
-	// Commands is the commands to be executed on the server
+	// mixins
+	WorkDoneProgressOptions
+
+	// Commands the commands to be executed on the server.
 	Commands []string `json:"commands"`
 }
 
-// CallHierarchyOptions option of CallHierarchy.
+// CallHierarchyOptions call hierarchy options used during static registration.
 //
-// @since 3.16.0.
+// @since 3.16.0
 type CallHierarchyOptions struct {
+	// mixins
 	WorkDoneProgressOptions
 }
 
-// CallHierarchyRegistrationOptions registration options of CallHierarchy.
+// CallHierarchyRegistrationOptions call hierarchy options used during static or dynamic registration.
 //
-// @since 3.16.0.
+// @since 3.16.0
 type CallHierarchyRegistrationOptions struct {
+	// extends
 	TextDocumentRegistrationOptions
 	CallHierarchyOptions
+	// mixins
 	StaticRegistrationOptions
 }
 
-// LinkedEditingRangeOptions option of linked editing range provider server capabilities.
-//
-// @since 3.16.0.
 type LinkedEditingRangeOptions struct {
+	// mixins
 	WorkDoneProgressOptions
 }
 
-// LinkedEditingRangeRegistrationOptions registration option of linked editing range provider server capabilities.
-//
-// @since 3.16.0.
 type LinkedEditingRangeRegistrationOptions struct {
+	// extends
 	TextDocumentRegistrationOptions
 	LinkedEditingRangeOptions
+	// mixins
 	StaticRegistrationOptions
 }
 
-// SemanticTokensOptions option of semantic tokens provider server capabilities.
+// SemanticTokensOptions.
 //
-// @since 3.16.0.
+// @since 3.16.0
 type SemanticTokensOptions struct {
+	// mixins
 	WorkDoneProgressOptions
+
+	// Legend the legend used by the server.
+	//
+	// @since 3.16.0
+	Legend SemanticTokensLegend `json:"legend"`
+
+	// Range server supports providing semantic tokens for a specific range of a document.
+	//
+	// @since 3.16.0
+	Range *OneOf[bool, Range] `json:"range,omitempty"`
+
+	// Full server supports providing semantic tokens for a full document.
+	//
+	// @since 3.16.0
+	Full *OneOf[bool, SemanticTokensFullDelta] `json:"full,omitempty"`
 }
 
-// SemanticTokensRegistrationOptions registration option of semantic tokens provider server capabilities.
+// SemanticTokensRegistrationOptions.
 //
-// @since 3.16.0.
+// @since 3.16.0
 type SemanticTokensRegistrationOptions struct {
+	// extends
 	TextDocumentRegistrationOptions
 	SemanticTokensOptions
+	// mixins
 	StaticRegistrationOptions
 }
 
@@ -499,25 +502,23 @@ type ServerCapabilitiesWorkspaceFileOperations struct {
 	WillDelete *FileOperationRegistrationOptions `json:"willDelete,omitempty"`
 }
 
-// FileOperationRegistrationOptions is the options to register for file operations.
+// FileOperationRegistrationOptions the options to register for file operations.
 //
-// @since 3.16.0.
+// @since 3.16.0
 type FileOperationRegistrationOptions struct {
-	// filters is the actual filters.
+	// Filters the actual filters.
+	//
+	// @since 3.16.0
 	Filters []FileOperationFilter `json:"filters"`
 }
 
-// MonikerOptions option of moniker provider server capabilities.
-//
-// @since 3.16.0.
 type MonikerOptions struct {
+	// mixins
 	WorkDoneProgressOptions
 }
 
-// MonikerRegistrationOptions registration option of moniker provider server capabilities.
-//
-// @since 3.16.0.
 type MonikerRegistrationOptions struct {
+	// extends
 	TextDocumentRegistrationOptions
 	MonikerOptions
 }

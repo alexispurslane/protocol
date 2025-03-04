@@ -11,32 +11,32 @@ import (
 type MessageType uint32
 
 const (
-	// ErrorMessageType an error message.
-	ErrorMessageType MessageType = 1
+	// MessageTypeError an error message.
+	MessageTypeError MessageType = 1
 
-	// WarningMessageType a warning message.
-	WarningMessageType MessageType = 2
+	// MessageTypeWarning a warning message.
+	MessageTypeWarning MessageType = 2
 
-	// InfoMessageType an information message.
-	InfoMessageType MessageType = 3
+	// MessageTypeInfo an information message.
+	MessageTypeInfo MessageType = 3
 
-	// LogMessageType a log message.
-	LogMessageType MessageType = 4
+	// MessageTypeLog a log message.
+	MessageTypeLog MessageType = 4
 
-	// DebugMessageType a debug message.  3.18.0 @proposed.
+	// MessageTypeDebug a debug message.  3.18.0 @proposed.
 	//
 	// @since 3.18.0 proposed
-	DebugMessageType MessageType = 5
+	MessageTypeDebug MessageType = 5
 )
 
 type WorkDoneProgressCreateParams struct {
 	// Token the token to be used to report progress.
-	Token ProgressToken[int32, string] `json:"token"`
+	Token ProgressToken `json:"token"`
 }
 
 type WorkDoneProgressCancelParams struct {
 	// Token the token to be used to report progress.
-	Token ProgressToken[int32, string] `json:"token"`
+	Token ProgressToken `json:"token"`
 }
 
 // ShowDocumentParams params to show a resource in the UI.
