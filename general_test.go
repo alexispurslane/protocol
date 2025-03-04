@@ -9,7 +9,6 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/segmentio/encoding/json"
 
 	"go.lsp.dev/uri"
 )
@@ -53,7 +52,7 @@ func TestWorkspaceFolders(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -90,7 +89,7 @@ func TestWorkspaceFolders(t *testing.T) {
 				t.Parallel()
 
 				var got WorkspaceFolders
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -148,7 +147,7 @@ func TestClientInfo(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -192,7 +191,7 @@ func TestClientInfo(t *testing.T) {
 				t.Parallel()
 
 				var got ClientInfo
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -275,7 +274,7 @@ func TestInitializeParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -319,7 +318,7 @@ func TestInitializeParams(t *testing.T) {
 				t.Parallel()
 
 				var got InitializeParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -383,7 +382,7 @@ func TestLogTraceParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -427,7 +426,7 @@ func TestLogTraceParams(t *testing.T) {
 				t.Parallel()
 
 				var got LogTraceParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -481,7 +480,7 @@ func TestSetTraceParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -525,7 +524,7 @@ func TestSetTraceParams(t *testing.T) {
 				t.Parallel()
 
 				var got SetTraceParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -583,7 +582,7 @@ func TestCreateFilesParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -627,7 +626,7 @@ func TestCreateFilesParams(t *testing.T) {
 				t.Parallel()
 
 				var got CreateFilesParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -686,7 +685,7 @@ func TestRenameFilesParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -730,7 +729,7 @@ func TestRenameFilesParams(t *testing.T) {
 				t.Parallel()
 
 				var got RenameFilesParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -788,7 +787,7 @@ func TestDeleteFilesParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -832,7 +831,7 @@ func TestDeleteFilesParams(t *testing.T) {
 				t.Parallel()
 
 				var got DeleteFilesParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -929,7 +928,7 @@ func TestReferencesParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -980,7 +979,7 @@ func TestReferencesParams(t *testing.T) {
 				t.Parallel()
 
 				var got ReferenceParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -1056,7 +1055,7 @@ func TestDocumentHighlightOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -1107,7 +1106,7 @@ func TestDocumentHighlightOptions(t *testing.T) {
 				t.Parallel()
 
 				var got DocumentHighlightOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -1198,7 +1197,7 @@ func TestDocumentHighlightParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -1249,7 +1248,7 @@ func TestDocumentHighlightParams(t *testing.T) {
 				t.Parallel()
 
 				var got DocumentHighlightParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -1326,7 +1325,7 @@ func TestDocumentSymbolOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -1377,7 +1376,7 @@ func TestDocumentSymbolOptions(t *testing.T) {
 				t.Parallel()
 
 				var got DocumentSymbolOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -1441,7 +1440,7 @@ func TestWorkspaceSymbolOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -1492,7 +1491,7 @@ func TestWorkspaceSymbolOptions(t *testing.T) {
 				t.Parallel()
 
 				var got WorkspaceSymbolOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -1556,7 +1555,7 @@ func TestDocumentFormattingOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -1607,7 +1606,7 @@ func TestDocumentFormattingOptions(t *testing.T) {
 				t.Parallel()
 
 				var got DocumentFormattingOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -1671,7 +1670,7 @@ func TestDocumentRangeFormattingOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -1722,7 +1721,7 @@ func TestDocumentRangeFormattingOptions(t *testing.T) {
 				t.Parallel()
 
 				var got DocumentRangeFormattingOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -1786,7 +1785,7 @@ func TestDeclarationOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -1837,7 +1836,7 @@ func TestDeclarationOptions(t *testing.T) {
 				t.Parallel()
 
 				var got DeclarationOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -1926,7 +1925,7 @@ func TestDeclarationRegistrationOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -1977,7 +1976,7 @@ func TestDeclarationRegistrationOptions(t *testing.T) {
 				t.Parallel()
 
 				var got DeclarationRegistrationOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -2068,7 +2067,7 @@ func TestDeclarationParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -2119,7 +2118,7 @@ func TestDeclarationParams(t *testing.T) {
 				t.Parallel()
 
 				var got DeclarationParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -2195,7 +2194,7 @@ func TestDefinitionOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -2246,7 +2245,7 @@ func TestDefinitionOptions(t *testing.T) {
 				t.Parallel()
 
 				var got DefinitionOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -2337,7 +2336,7 @@ func TestDefinitionParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -2388,7 +2387,7 @@ func TestDefinitionParams(t *testing.T) {
 				t.Parallel()
 
 				var got DefinitionParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -2464,7 +2463,7 @@ func TestTypeDefinitionOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -2515,7 +2514,7 @@ func TestTypeDefinitionOptions(t *testing.T) {
 				t.Parallel()
 
 				var got TypeDefinitionOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -2604,7 +2603,7 @@ func TestTypeDefinitionRegistrationOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -2655,7 +2654,7 @@ func TestTypeDefinitionRegistrationOptions(t *testing.T) {
 				t.Parallel()
 
 				var got TypeDefinitionRegistrationOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -2746,7 +2745,7 @@ func TestTypeDefinitionParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -2797,7 +2796,7 @@ func TestTypeDefinitionParams(t *testing.T) {
 				t.Parallel()
 
 				var got TypeDefinitionParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -2866,7 +2865,7 @@ func TestImplementationOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -2910,7 +2909,7 @@ func TestImplementationOptions(t *testing.T) {
 				t.Parallel()
 
 				var got ImplementationOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -2999,7 +2998,7 @@ func TestImplementationRegistrationOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -3050,7 +3049,7 @@ func TestImplementationRegistrationOptions(t *testing.T) {
 				t.Parallel()
 
 				var got ImplementationRegistrationOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -3141,7 +3140,7 @@ func TestImplementationParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -3192,7 +3191,7 @@ func TestImplementationParams(t *testing.T) {
 				t.Parallel()
 
 				var got ImplementationParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -3268,7 +3267,7 @@ func TestDocumentColorOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -3319,7 +3318,7 @@ func TestDocumentColorOptions(t *testing.T) {
 				t.Parallel()
 
 				var got DocumentColorOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -3408,7 +3407,7 @@ func TestDocumentColorRegistrationOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -3459,7 +3458,7 @@ func TestDocumentColorRegistrationOptions(t *testing.T) {
 				t.Parallel()
 
 				var got DocumentColorRegistrationOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -3554,7 +3553,7 @@ func TestFoldingRangeOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -3605,7 +3604,7 @@ func TestFoldingRangeOptions(t *testing.T) {
 				t.Parallel()
 
 				var got FoldingRangeOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -3694,7 +3693,7 @@ func TestFoldingRangeRegistrationOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -3745,7 +3744,7 @@ func TestFoldingRangeRegistrationOptions(t *testing.T) {
 				t.Parallel()
 
 				var got FoldingRangeRegistrationOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -3940,7 +3939,7 @@ func TestInitializeResult(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -3985,7 +3984,7 @@ func TestInitializeResult(t *testing.T) {
 				t.Parallel()
 
 				var got InitializeResult
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -4041,7 +4040,7 @@ func TestInitializeError(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -4078,7 +4077,7 @@ func TestInitializeError(t *testing.T) {
 				t.Parallel()
 
 				var got InitializeError
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -4147,7 +4146,7 @@ func TestShowDocumentParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -4191,7 +4190,7 @@ func TestShowDocumentParams(t *testing.T) {
 				t.Parallel()
 
 				var got ShowDocumentParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -4235,7 +4234,7 @@ func TestShowDocumentResult(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -4272,7 +4271,7 @@ func TestShowDocumentResult(t *testing.T) {
 				t.Parallel()
 
 				var got ShowDocumentResult
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -4359,7 +4358,7 @@ func TestReferencesOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -4396,7 +4395,7 @@ func TestReferencesOptions(t *testing.T) {
 				t.Parallel()
 
 				var got ReferencesOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -4455,7 +4454,7 @@ func TestCodeActionOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -4499,7 +4498,7 @@ func TestCodeActionOptions(t *testing.T) {
 				t.Parallel()
 
 				var got CodeActionOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -4554,7 +4553,7 @@ func TestRenameOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -4598,7 +4597,7 @@ func TestRenameOptions(t *testing.T) {
 				t.Parallel()
 
 				var got RenameOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -4653,7 +4652,7 @@ func TestSaveOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -4697,7 +4696,7 @@ func TestSaveOptions(t *testing.T) {
 				t.Parallel()
 
 				var got SaveOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -4758,7 +4757,7 @@ func TestTextDocumentSyncOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -4802,7 +4801,7 @@ func TestTextDocumentSyncOptions(t *testing.T) {
 				t.Parallel()
 
 				var got TextDocumentSyncOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -4859,7 +4858,7 @@ func TestHoverOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -4903,7 +4902,7 @@ func TestHoverOptions(t *testing.T) {
 				t.Parallel()
 
 				var got HoverOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -4958,7 +4957,7 @@ func TestStaticRegistrationOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -5002,7 +5001,7 @@ func TestStaticRegistrationOptions(t *testing.T) {
 				t.Parallel()
 
 				var got StaticRegistrationOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -5070,7 +5069,7 @@ func TestDocumentLinkRegistrationOptions(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -5114,7 +5113,7 @@ func TestDocumentLinkRegistrationOptions(t *testing.T) {
 				t.Parallel()
 
 				var got DocumentLinkRegistrationOptions
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -5155,7 +5154,7 @@ func TestInitializedParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -5192,7 +5191,7 @@ func TestInitializedParams(t *testing.T) {
 				t.Parallel()
 
 				var got InitializedParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 

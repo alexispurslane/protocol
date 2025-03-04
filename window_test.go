@@ -8,7 +8,6 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/segmentio/encoding/json"
 )
 
 func TestShowMessageParams(t *testing.T) {
@@ -58,7 +57,7 @@ func TestShowMessageParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -102,7 +101,7 @@ func TestShowMessageParams(t *testing.T) {
 				t.Parallel()
 
 				var got ShowMessageParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -171,7 +170,7 @@ func TestShowMessageRequestParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -215,7 +214,7 @@ func TestShowMessageRequestParams(t *testing.T) {
 				t.Parallel()
 
 				var got ShowMessageRequestParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -272,7 +271,7 @@ func TestMessageActionItem(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -316,7 +315,7 @@ func TestMessageActionItem(t *testing.T) {
 				t.Parallel()
 
 				var got MessageActionItem
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -375,7 +374,7 @@ func TestLogMessageParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -419,7 +418,7 @@ func TestLogMessageParams(t *testing.T) {
 				t.Parallel()
 
 				var got LogMessageParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -495,7 +494,7 @@ func TestWorkDoneProgressCreateParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -550,7 +549,7 @@ func TestWorkDoneProgressCreateParams(t *testing.T) {
 				t.Parallel()
 
 				var got WorkDoneProgressCreateParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -606,7 +605,7 @@ func TestWorkDoneProgressCancelParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -647,7 +646,7 @@ func TestWorkDoneProgressCancelParams(t *testing.T) {
 				t.Parallel()
 
 				var got WorkDoneProgressCancelParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 

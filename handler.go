@@ -7,8 +7,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/segmentio/encoding/json"
-
 	"go.lsp.dev/jsonrpc2"
 	"go.lsp.dev/pkg/xcontext"
 )
@@ -39,7 +37,7 @@ func CancelHandler(handler jsonrpc2.Handler) jsonrpc2.Handler {
 		}
 
 		var params CancelParams
-		if err := json.Unmarshal(req.Params(), &params); err != nil {
+		if err := unmarshal(req.Params(), &params); err != nil {
 			return replyParseError(ctx, reply, err)
 		}
 

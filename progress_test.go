@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021 The Go Language Server Authors
+// Copyright 2021 The Go Language Server Authors
 // SPDX-License-Identifier: BSD-3-Clause
 
 package protocol
@@ -7,7 +7,6 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/segmentio/encoding/json"
 )
 
 func TestWorkDoneProgressBegin(t *testing.T) {
@@ -65,7 +64,7 @@ func TestWorkDoneProgressBegin(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -113,7 +112,7 @@ func TestWorkDoneProgressBegin(t *testing.T) {
 				t.Parallel()
 
 				var got WorkDoneProgressBegin
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -178,7 +177,7 @@ func TestWorkDoneProgressReport(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -226,7 +225,7 @@ func TestWorkDoneProgressReport(t *testing.T) {
 				t.Parallel()
 
 				var got WorkDoneProgressReport
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -289,7 +288,7 @@ func TestWorkDoneProgressEnd(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -337,7 +336,7 @@ func TestWorkDoneProgressEnd(t *testing.T) {
 				t.Parallel()
 
 				var got WorkDoneProgressEnd
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -380,7 +379,7 @@ func TestWorkDoneProgressParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -414,7 +413,7 @@ func TestWorkDoneProgressParams(t *testing.T) {
 				t.Parallel()
 
 				var got WorkDoneProgressParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 
@@ -459,7 +458,7 @@ func TestPartialResultParams(t *testing.T) {
 			t.Run(tt.name, func(t *testing.T) {
 				t.Parallel()
 
-				got, err := json.Marshal(&tt.field)
+				got, err := marshal(&tt.field)
 				if (err != nil) != tt.wantMarshalErr {
 					t.Fatal(err)
 				}
@@ -493,7 +492,7 @@ func TestPartialResultParams(t *testing.T) {
 				t.Parallel()
 
 				var got PartialResultParams
-				if err := json.Unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
+				if err := unmarshal([]byte(tt.field), &got); (err != nil) != tt.wantUnmarshalErr {
 					t.Fatal(err)
 				}
 

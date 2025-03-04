@@ -8,7 +8,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/segmentio/encoding/json"
 	"go.uber.org/zap"
 
 	"go.lsp.dev/jsonrpc2"
@@ -52,7 +51,7 @@ func clientDispatch(ctx context.Context, client Client, reply jsonrpc2.Replier, 
 		return true, reply(ctx, nil, ErrRequestCancelled)
 	}
 
-	dec := json.NewDecoder(bytes.NewReader(req.Params()))
+	dec := newDecoder(bytes.NewReader(req.Params()))
 	logger := LoggerFromContext(ctx)
 
 	switch req.Method() {

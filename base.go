@@ -5,8 +5,6 @@ package protocol
 
 import (
 	"fmt"
-
-	"github.com/segmentio/encoding/json"
 )
 
 // CancelParams params of cancelRequest.
@@ -34,12 +32,11 @@ type ProgressToken struct {
 	number int32
 }
 
-// compile time check whether the ProgressToken implements a fmt.Formatter, fmt.Stringer, json.Marshaler and json.Unmarshaler interfaces.
 var (
-	_ fmt.Formatter    = (*ProgressToken)(nil)
-	_ fmt.Stringer     = (*ProgressToken)(nil)
-	_ json.Marshaler   = (*ProgressToken)(nil)
-	_ json.Unmarshaler = (*ProgressToken)(nil)
+	_ fmt.Formatter = (*ProgressToken)(nil)
+	_ fmt.Stringer  = (*ProgressToken)(nil)
+	_ Marshaler     = (*ProgressToken)(nil)
+	_ Unmarshaler   = (*ProgressToken)(nil)
 )
 
 // NewProgressToken returns a new ProgressToken.
@@ -71,26 +68,26 @@ func (v ProgressToken) Format(f fmt.State, r rune) {
 	}
 }
 
-// String returns a string representation of the ProgressToken.
+// String returns a string representation of the [ProgressToken].
 func (v ProgressToken) String() string {
 	return fmt.Sprint(v) //nolint:gocritic
 }
 
-// MarshalJSON implements json.Marshaler.
+// MarshalJSON implements [Marshaler].
 func (v *ProgressToken) MarshalJSON() ([]byte, error) {
 	if v.name != "" {
-		return json.Marshal(v.name)
+		return marshal(v.name)
 	}
 
-	return json.Marshal(v.number)
+	return marshal(v.number)
 }
 
-// UnmarshalJSON implements json.Unmarshaler.
+// UnmarshalJSON implements [Unmarshaler].
 func (v *ProgressToken) UnmarshalJSON(data []byte) error {
 	*v = ProgressToken{}
-	if err := json.Unmarshal(data, &v.number); err == nil {
+	if err := unmarshal(data, &v.number); err == nil {
 		return nil
 	}
 
-	return json.Unmarshal(data, &v.name)
+	return unmarshal(data, &v.name)
 }

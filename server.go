@@ -8,7 +8,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/segmentio/encoding/json"
 	"go.uber.org/zap"
 
 	"go.lsp.dev/jsonrpc2"
@@ -43,7 +42,7 @@ func ServerHandler(server Server, handler jsonrpc2.Handler) jsonrpc2.Handler {
 		// request handles everything
 		// non standard request should just be a layered handler.
 		var params interface{}
-		if err := json.Unmarshal(req.Params(), &params); err != nil {
+		if err := unmarshal(req.Params(), &params); err != nil {
 			return replyParseError(ctx, reply, err)
 		}
 
@@ -63,7 +62,7 @@ func serverDispatch(ctx context.Context, server Server, reply jsonrpc2.Replier, 
 		return true, reply(ctx, nil, ErrRequestCancelled)
 	}
 
-	dec := json.NewDecoder(bytes.NewReader(req.Params()))
+	dec := newDecoder(bytes.NewReader(req.Params()))
 	logger := LoggerFromContext(ctx)
 
 	switch req.Method() {
