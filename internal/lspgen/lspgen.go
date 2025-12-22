@@ -26,6 +26,7 @@ import (
 	"fmt"
 	"go/ast"
 	"go/parser"
+	"go/printer"
 	"go/token"
 	"maps"
 	"os"
@@ -2387,11 +2388,14 @@ const (
 	outputModeStructList outputMode = "struct-list"
 )
 
-func structNamesFromSource(src []byte) ([]string, error) {
-	fset := token.NewFileSet()
-	file, err := parser.ParseFile(fset, "generated.go", src, parser.SkipObjectResolution)
-	if err != nil {
-		return nil, err
+type structOutput struct {
+	Name string `json:"name"`
+	File string `json:"file,omitempty"`
+}
+
+func structNamesFromAST(file *ast.File) []string {
+	if file == nil {
+		return nil
 	}
 
 	var names []string
@@ -2412,38 +2416,354 @@ func structNamesFromSource(src []byte) ([]string, error) {
 		}
 	}
 
-	return names, nil
+	return names
 }
 
-func main() {
-	modeFlag := flag.String("mode", string(outputModeWrite), "Output mode: write (default) or struct-list.")
-	flag.Parse()
+func structNamesFromSource(src []byte) ([]string, error) {
+	fset := token.NewFileSet()
+	file, err := parser.ParseFile(fset, "generated.go", src, parser.SkipObjectResolution)
+	if err != nil {
+		return nil, err
+	}
 
-	mode := outputMode(*modeFlag)
+	return structNamesFromAST(file), nil
+}
+
+func structFilesByName(dir string) (map[string]string, error) {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return nil, err
+	}
+
+	filesByStruct := make(map[string]string)
+	for _, entry := range entries {
+		if entry.IsDir() {
+			continue
+		}
+		name := entry.Name()
+		if !strings.HasSuffix(name, ".go") || strings.HasSuffix(name, "_test.go") || name == "lsp.go" {
+			continue
+		}
+		path := filepath.Join(dir, name)
+		fset := token.NewFileSet()
+		file, err := parser.ParseFile(fset, path, nil, parser.SkipObjectResolution)
+		if err != nil {
+			return nil, err
+		}
+		if file.Name == nil || file.Name.Name != "protocol" {
+			continue
+		}
+		for _, structName := range structNamesFromAST(file) {
+			if existing, ok := filesByStruct[structName]; ok && existing != name {
+				return nil, fmt.Errorf("struct %s found in multiple files: %s, %s", structName, existing, name)
+			}
+			filesByStruct[structName] = name
+		}
+	}
+
+	return filesByStruct, nil
+}
+
+func structFilesFromMap(path string) (map[string]string, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+
+	var outputs []structOutput
+	if err := jsonv1.Unmarshal(data, &outputs); err != nil {
+		return nil, err
+	}
+
+	filesByStruct := make(map[string]string, len(outputs))
+	for _, output := range outputs {
+		name := strings.TrimSpace(output.Name)
+		if name == "" {
+			return nil, errors.New("struct output map entry missing name")
+		}
+		file := strings.TrimSpace(output.File)
+		if file == "" {
+			return nil, fmt.Errorf("struct %s missing output file mapping", name)
+		}
+		if existing, ok := filesByStruct[name]; ok && existing != file {
+			return nil, fmt.Errorf("struct %s mapped to multiple files: %s, %s", name, existing, file)
+		}
+		filesByStruct[name] = file
+	}
+
+	return filesByStruct, nil
+}
+
+func generateFileSources(src []byte, structFiles map[string]string, defaultFile string) (map[string][]byte, error) {
+	fset := token.NewFileSet()
+	file, err := parser.ParseFile(fset, "generated.go", src, parser.ParseComments)
+	if err != nil {
+		return nil, err
+	}
+
+	structNames := make(map[string]struct{})
+	for _, decl := range file.Decls {
+		genDecl, ok := decl.(*ast.GenDecl)
+		if !ok || genDecl.Tok != token.TYPE {
+			continue
+		}
+		for _, spec := range genDecl.Specs {
+			typeSpec, ok := spec.(*ast.TypeSpec)
+			if !ok {
+				continue
+			}
+			if _, ok := typeSpec.Type.(*ast.StructType); ok {
+				structNames[typeSpec.Name.Name] = struct{}{}
+			}
+		}
+	}
+
+	for name := range structNames {
+		if _, ok := structFiles[name]; !ok {
+			return nil, fmt.Errorf("struct %s missing output mapping", name)
+		}
+	}
+
+	outputDecls := make(map[string][]ast.Decl)
+	addDecl := func(name string, decl ast.Decl) {
+		outputDecls[name] = append(outputDecls[name], decl)
+	}
+
+	receiverName := func(expr ast.Expr) string {
+		switch value := expr.(type) {
+		case *ast.Ident:
+			return value.Name
+		case *ast.StarExpr:
+			if ident, ok := value.X.(*ast.Ident); ok {
+				return ident.Name
+			}
+		}
+		return ""
+	}
+
+	for _, decl := range file.Decls {
+		switch value := decl.(type) {
+		case *ast.GenDecl:
+			if value.Tok == token.IMPORT {
+				continue
+			}
+			if value.Tok == token.TYPE && len(value.Specs) > 0 {
+				for _, spec := range value.Specs {
+					typeSpec, ok := spec.(*ast.TypeSpec)
+					if !ok {
+						continue
+					}
+					target := defaultFile
+					if _, ok := typeSpec.Type.(*ast.StructType); ok {
+						target = structFiles[typeSpec.Name.Name]
+					}
+					doc := value.Doc
+					if typeSpec.Doc != nil {
+						doc = nil
+					}
+					decl := &ast.GenDecl{
+						Tok:   token.TYPE,
+						Specs: []ast.Spec{spec},
+						Doc:   doc,
+					}
+					addDecl(target, decl)
+				}
+				continue
+			}
+			addDecl(defaultFile, decl)
+		case *ast.FuncDecl:
+			target := defaultFile
+			if value.Recv != nil && len(value.Recv.List) > 0 {
+				if recv := receiverName(value.Recv.List[0].Type); recv != "" {
+					if _, ok := structNames[recv]; ok {
+						target = structFiles[recv]
+					}
+				}
+			}
+			addDecl(target, decl)
+		default:
+			addDecl(defaultFile, decl)
+		}
+	}
+
+	outputs := make(map[string][]byte, len(outputDecls))
+	importByName := map[string]string{
+		"fmt":      "fmt",
+		"strings":  "strings",
+		"json":     "github.com/go-json-experiment/json",
+		"jsontext": "github.com/go-json-experiment/json/jsontext",
+	}
+	orderedStd := []string{"fmt", "strings"}
+	orderedExt := []string{"json", "jsontext"}
+
+	for name, decls := range outputDecls {
+		used := make(map[string]struct{})
+		for _, decl := range decls {
+			ast.Inspect(decl, func(node ast.Node) bool {
+				selector, ok := node.(*ast.SelectorExpr)
+				if !ok {
+					return true
+				}
+				ident, ok := selector.X.(*ast.Ident)
+				if !ok {
+					return true
+				}
+				if _, ok := importByName[ident.Name]; ok {
+					used[ident.Name] = struct{}{}
+				}
+				return true
+			})
+		}
+
+		var stdImports []string
+		for _, pkg := range orderedStd {
+			if _, ok := used[pkg]; ok {
+				stdImports = append(stdImports, importByName[pkg])
+			}
+		}
+		var extImports []string
+		for _, pkg := range orderedExt {
+			if _, ok := used[pkg]; ok {
+				extImports = append(extImports, importByName[pkg])
+			}
+		}
+
+		var buf strings.Builder
+		buf.WriteString(generatedHeader)
+		buf.WriteString("package protocol\n\n")
+		if len(stdImports) > 0 || len(extImports) > 0 {
+			buf.WriteString("import (\n")
+			for _, pkg := range stdImports {
+				buf.WriteString("\t\"" + pkg + "\"\n")
+			}
+			if len(stdImports) > 0 && len(extImports) > 0 {
+				buf.WriteString("\n")
+			}
+			for _, pkg := range extImports {
+				buf.WriteString("\t\"" + pkg + "\"\n")
+			}
+			buf.WriteString(")\n\n")
+		}
+		for _, decl := range decls {
+			if err := printer.Fprint(&buf, fset, decl); err != nil {
+				return nil, err
+			}
+			buf.WriteString("\n\n")
+		}
+
+		formatted, err := gofumpt.Source([]byte(buf.String()), gofumpt.Options{
+			LangVersion: "go1.25",
+			ExtraRules:  true,
+		})
+		if err != nil {
+			return nil, err
+		}
+		outputs[name] = formatted
+	}
+
+	return outputs, nil
+}
+
+func structOutputsFromSource(src []byte, filesByStruct map[string]string, defaultFile string, includeFile bool) ([]structOutput, error) {
+	names, err := structNamesFromSource(src)
+	if err != nil {
+		return nil, err
+	}
+
+	outputs := make([]structOutput, 0, len(names))
+	for _, name := range names {
+		output := structOutput{Name: name}
+		if includeFile {
+			file := defaultFile
+			if filesByStruct != nil {
+				if mapped, ok := filesByStruct[name]; ok {
+					file = mapped
+				}
+			}
+			output.File = file
+		}
+		outputs = append(outputs, output)
+	}
+
+	return outputs, nil
+}
+
+func resolveOutputPath(repoRoot string, outputPath string) string {
+	if outputPath == "" {
+		return ""
+	}
+	if filepath.IsAbs(outputPath) {
+		return filepath.Clean(outputPath)
+	}
+
+	return filepath.Clean(filepath.Join(repoRoot, outputPath))
+}
+
+func writeStructOutputs(path string, outputs []structOutput) error {
+	payload, err := jsonv1.Marshal(outputs)
+	if err != nil {
+		return err
+	}
+	payload = append(payload, '\n')
+
+	return os.WriteFile(path, payload, 0o644)
+}
+
+var (
+	flagMode              string
+	flagStructMapJSONFile string
+	flagStructOutputMap   bool
+	flagStructOutputFile  string
+)
+
+func main() {
+	flag.StringVar(&flagMode, "mode", string(outputModeWrite), "Output mode: write (default) or struct-list.")
+	flag.StringVar(&flagStructMapJSONFile, "struct-json-file", "struct-map.json", "struct map JSON file.")
+	flag.BoolVar(&flagStructOutputMap, "struct-output-map", false, "Include output file mapping in struct-list mode.")
+	flag.StringVar(&flagStructOutputFile, "struct-output-file", "", "Write struct output (name + file mapping) to this path when -mode=write.")
+
+	flag.Parse()
+	if err := run(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+}
+
+func run() error {
+	mode := outputMode(flagMode)
 	switch mode {
 	case outputModeWrite, outputModeStructList:
 	default:
-		fmt.Fprintf(os.Stderr, "Invalid -mode %q (want %q or %q).\n", *modeFlag, outputModeWrite, outputModeStructList)
-		os.Exit(2)
+		return fmt.Errorf("Invalid -mode %q (want %q or %q)", flagMode, outputModeWrite, outputModeStructList)
 	}
 
 	_, filename, _, ok := runtime.Caller(0)
 	if !ok {
-		panic("failed to get current filename")
+		return errors.New("get current filename")
 	}
 	baseDir := filepath.Dir(filename)
-	out := filepath.Clean(filepath.Join(filepath.Dir(filepath.Dir(baseDir)), "lsp.go"))
+	repoRoot := filepath.Dir(filepath.Dir(baseDir))
+	out := filepath.Clean(filepath.Join(repoRoot, "lsp.go"))
+
+	structOutputPath := resolveOutputPath(repoRoot, strings.TrimSpace(flagStructOutputFile))
+	if structOutputPath != "" && mode != outputModeWrite {
+		return errors.New("-struct-output-file is only supported with -mode=write.")
+	}
+
+	if structOutputPath != "" && structOutputPath == out {
+		return errors.New("-struct-output-file must not overwrite the generated Go output file.")
+	}
+
 	metaModelPath := filepath.Join(baseDir, "metaModel.json")
 
 	metaModelData, err := os.ReadFile(metaModelPath)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Meta model file not found; did you forget to run fetchModel.mts?\n")
-		os.Exit(1)
+		return errors.New("Meta model file not found; did you forget to run fetchModel.mts?")
 	}
 
 	var model MetaModel
 	if err := json.Unmarshal(metaModelData, &model); err != nil {
-		panic(err)
+		return fmt.Errorf("unmarshal metaModelData: %w", err)
 	}
 
 	customStructures = customStructures[:]
@@ -2451,8 +2771,9 @@ func main() {
 	typeInfo = newTypeInfo()
 
 	if err := patchAndPreprocessModel(&model); err != nil {
-		panic(err)
+		return fmt.Errorf("patchAndPreprocessModel: %w", err)
 	}
+
 	collectTypeDefinitions(&model)
 	generatedCode := generateCode(&model)
 
@@ -2461,25 +2782,67 @@ func main() {
 		ExtraRules:  true,
 	})
 	if err != nil {
-		panic(err)
+		return fmt.Errorf("format by gofumpt: %w", err)
 	}
 
 	if mode == outputModeStructList {
-		structs, err := structNamesFromSource(data)
-		if err != nil {
-			panic(err)
+		var structFiles map[string]string
+		if flagStructOutputMap {
+			var err error
+			structFiles, err = structFilesByName(repoRoot)
+			if err != nil {
+				return fmt.Errorf("parse structFilesByName: %w", err)
+			}
 		}
-		payload, err := jsonv1.Marshal(structs)
+
+		structs, err := structOutputsFromSource(data, structFiles, filepath.Base(out), flagStructOutputMap)
 		if err != nil {
-			panic(err)
+			return fmt.Errorf("parse structOutputsFromSource: %w", err)
 		}
+
+		payload, err := json.Marshal(structs)
+		if err != nil {
+			return fmt.Errorf("marshal structs: %w", err)
+		}
+
 		fmt.Fprintln(os.Stdout, string(payload))
-		return
+		return nil
 	}
 
-	if err := os.WriteFile(out, data, 0o644); err != nil {
-		panic(err)
+	structMapPath := filepath.Join(baseDir, flagStructMapJSONFile)
+	structFiles, err := structFilesFromMap(structMapPath)
+	if err != nil {
+		return fmt.Errorf("parse structFilesFromMap: %w", err)
+	}
+
+	outputs, err := generateFileSources(data, structFiles, filepath.Base(out))
+	if err != nil {
+		return fmt.Errorf("generateFileSources: %w", err)
+	}
+
+	for name, payload := range outputs {
+		path := filepath.Join(repoRoot, name)
+		if err := os.WriteFile(path, payload, 0o644); err != nil {
+			return fmt.Errorf("write %q file: %w", path, err)
+		}
+	}
+
+	if structOutputPath != "" {
+		structFiles, err := structFilesByName(repoRoot)
+		if err != nil {
+			return fmt.Errorf("parse structFilesByName: %w", err)
+		}
+
+		structs, err := structOutputsFromSource(data, structFiles, filepath.Base(out), true)
+		if err != nil {
+			return fmt.Errorf("parse structOutputsFromSource: %w", err)
+		}
+
+		if err := writeStructOutputs(structOutputPath, structs); err != nil {
+			return fmt.Errorf("writeStructOutputs: %w", err)
+		}
 	}
 
 	fmt.Printf("Successfully generated %s\n", out)
+	return nil
 }
