@@ -90,3 +90,48 @@ func TestGoPublicIdentifier(t *testing.T) {
 		})
 	}
 }
+
+func TestStructNamesFromSource(t *testing.T) {
+	t.Parallel()
+
+	tests := map[string]struct {
+		input   string
+		want    []string
+		wantErr bool
+	}{
+		"success: single struct": {
+			input: "package p\n\ntype Foo struct {\n\tA int\n}\n",
+			want:  []string{"Foo"},
+		},
+		"success: grouped and mixed types": {
+			input: "package p\n\ntype (\n\tAlpha struct{}\n\tBeta int\n\tGamma struct{ X string }\n)\n\ntype Delta interface{}\n\ntype Epsilon struct{}\n",
+			want:  []string{"Alpha", "Gamma", "Epsilon"},
+		},
+		"success: multiple declarations": {
+			input: "package p\n\ntype First struct{}\n\ntype Second = string\n\ntype Third struct{}\n",
+			want:  []string{"First", "Third"},
+		},
+		"error: invalid source": {
+			input:   "package p\n\ntype",
+			wantErr: true,
+		},
+	}
+
+	for name, tc := range tests {
+		tc := tc
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+
+			got, err := structNamesFromSource([]byte(tc.input))
+			if (err != nil) != tc.wantErr {
+				t.Fatalf("structNamesFromSource error mismatch: wantErr=%t gotErr=%t err=%v", tc.wantErr, err != nil, err)
+			}
+			if tc.wantErr {
+				return
+			}
+			if diff := cmp.Diff(tc.want, got); diff != "" {
+				t.Fatalf("structNamesFromSource result mismatch (-want +got):\n%s", diff)
+			}
+		})
+	}
+}

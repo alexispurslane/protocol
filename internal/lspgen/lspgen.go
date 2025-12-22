@@ -22,7 +22,11 @@ import (
 	"encoding/json/jsontext"
 	json "encoding/json/v2"
 	"errors"
+	"flag"
 	"fmt"
+	"go/ast"
+	"go/parser"
+	"go/token"
 	"maps"
 	"os"
 	"path/filepath"
@@ -2373,7 +2377,53 @@ func splitNumeric(values []NumericValue) []enumRun {
 	return runs
 }
 
+type outputMode string
+
+const (
+	outputModeWrite      outputMode = "write"
+	outputModeStructList outputMode = "struct-list"
+)
+
+func structNamesFromSource(src []byte) ([]string, error) {
+	fset := token.NewFileSet()
+	file, err := parser.ParseFile(fset, "generated.go", src, parser.SkipObjectResolution)
+	if err != nil {
+		return nil, err
+	}
+
+	var names []string
+	for _, decl := range file.Decls {
+		genDecl, ok := decl.(*ast.GenDecl)
+		if !ok || genDecl.Tok != token.TYPE {
+			continue
+		}
+		for _, spec := range genDecl.Specs {
+			typeSpec, ok := spec.(*ast.TypeSpec)
+			if !ok {
+				continue
+			}
+			if _, ok := typeSpec.Type.(*ast.StructType); !ok {
+				continue
+			}
+			names = append(names, typeSpec.Name.Name)
+		}
+	}
+
+	return names, nil
+}
+
 func main() {
+	modeFlag := flag.String("mode", string(outputModeWrite), "Output mode: write (default) or struct-list.")
+	flag.Parse()
+
+	mode := outputMode(*modeFlag)
+	switch mode {
+	case outputModeWrite, outputModeStructList:
+	default:
+		fmt.Fprintf(os.Stderr, "Invalid -mode %q (want %q or %q).\n", *modeFlag, outputModeWrite, outputModeStructList)
+		os.Exit(2)
+	}
+
 	_, filename, _, ok := runtime.Caller(0)
 	if !ok {
 		panic("failed to get current filename")
@@ -2409,6 +2459,19 @@ func main() {
 	})
 	if err != nil {
 		panic(err)
+	}
+
+	if mode == outputModeStructList {
+		structs, err := structNamesFromSource(data)
+		if err != nil {
+			panic(err)
+		}
+		payload, err := jsonv1.Marshal(structs)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Fprintln(os.Stdout, string(payload))
+		return
 	}
 
 	if err := os.WriteFile(out, data, 0o644); err != nil {
