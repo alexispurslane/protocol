@@ -37,7 +37,6 @@ import (
 
 	"github.com/go-json-experiment/json"
 	"github.com/go-json-experiment/json/jsontext"
-	jsonv1 "github.com/go-json-experiment/json/v1"
 	gofumpt "mvdan.cc/gofumpt/format"
 )
 
@@ -2306,13 +2305,19 @@ func hasTextDocumentPosition(structure *Structure) bool {
 	return hasSomeProp(structure, "position", "Position")
 }
 
+// jsonNumber is an interface representation of the json v1 Number type.
+type jsonNumber interface {
+	Float64() (float64, error)
+	Int64() (int64, error)
+}
+
 func toNumber(v any) (float64, bool) {
 	switch n := v.(type) {
 	case float64:
 		return n, true
 	case int:
 		return float64(n), true
-	case jsonv1.Number:
+	case jsonNumber:
 		f, err := n.Float64()
 		if err == nil {
 			return f, true
