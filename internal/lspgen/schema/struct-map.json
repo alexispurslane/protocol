@@ -1,0 +1,2314 @@
+[
+  {
+    "name": "ImplementationParams",
+    "file": "general.go"
+  },
+  {
+    "name": "Location",
+    "file": "basic.go"
+  },
+  {
+    "name": "ImplementationRegistrationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "TypeDefinitionParams",
+    "file": "general.go"
+  },
+  {
+    "name": "TypeDefinitionRegistrationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "WorkspaceFolder",
+    "file": "workspace.go"
+  },
+  {
+    "name": "DidChangeWorkspaceFoldersParams",
+    "file": "workspace.go"
+  },
+  {
+    "name": "ConfigurationParams",
+    "file": "workspace.go"
+  },
+  {
+    "name": "DocumentColorParams",
+    "file": "language.go"
+  },
+  {
+    "name": "ColorInformation",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentColorRegistrationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "ColorPresentationParams",
+    "file": "language.go"
+  },
+  {
+    "name": "ColorPresentation",
+    "file": "language.go"
+  },
+  {
+    "name": "WorkDoneProgressOptions",
+    "file": "general.go"
+  },
+  {
+    "name": "TextDocumentRegistrationOptions",
+    "file": "registration.go"
+  },
+  {
+    "name": "FoldingRangeParams",
+    "file": "language.go"
+  },
+  {
+    "name": "FoldingRange",
+    "file": "language.go"
+  },
+  {
+    "name": "FoldingRangeRegistrationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "DeclarationParams",
+    "file": "general.go"
+  },
+  {
+    "name": "DeclarationRegistrationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "SelectionRangeParams",
+    "file": "selectionrange.go"
+  },
+  {
+    "name": "SelectionRange",
+    "file": "selectionrange.go"
+  },
+  {
+    "name": "SelectionRangeRegistrationOptions",
+    "file": "selectionrange.go"
+  },
+  {
+    "name": "WorkDoneProgressCreateParams",
+    "file": "window.go"
+  },
+  {
+    "name": "WorkDoneProgressCancelParams",
+    "file": "window.go"
+  },
+  {
+    "name": "CallHierarchyPrepareParams",
+    "file": "callhierarchy.go"
+  },
+  {
+    "name": "CallHierarchyItem",
+    "file": "callhierarchy.go"
+  },
+  {
+    "name": "CallHierarchyRegistrationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "CallHierarchyIncomingCallsParams",
+    "file": "callhierarchy.go"
+  },
+  {
+    "name": "CallHierarchyIncomingCall",
+    "file": "callhierarchy.go"
+  },
+  {
+    "name": "CallHierarchyOutgoingCallsParams",
+    "file": "callhierarchy.go"
+  },
+  {
+    "name": "CallHierarchyOutgoingCall",
+    "file": "callhierarchy.go"
+  },
+  {
+    "name": "SemanticTokensParams",
+    "file": "semantic_token.go"
+  },
+  {
+    "name": "SemanticTokens",
+    "file": "semantic_token.go"
+  },
+  {
+    "name": "SemanticTokensPartialResult",
+    "file": "semantic_token.go"
+  },
+  {
+    "name": "SemanticTokensRegistrationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "SemanticTokensDeltaParams",
+    "file": "semantic_token.go"
+  },
+  {
+    "name": "SemanticTokensDelta",
+    "file": "semantic_token.go"
+  },
+  {
+    "name": "SemanticTokensDeltaPartialResult",
+    "file": "semantic_token.go"
+  },
+  {
+    "name": "SemanticTokensRangeParams",
+    "file": "semantic_token.go"
+  },
+  {
+    "name": "ShowDocumentParams",
+    "file": "general.go"
+  },
+  {
+    "name": "ShowDocumentResult",
+    "file": "general.go"
+  },
+  {
+    "name": "LinkedEditingRangeParams",
+    "file": "general.go"
+  },
+  {
+    "name": "LinkedEditingRanges",
+    "file": "general.go"
+  },
+  {
+    "name": "LinkedEditingRangeRegistrationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "CreateFilesParams",
+    "file": "general.go"
+  },
+  {
+    "name": "WorkspaceEdit",
+    "file": "basic.go"
+  },
+  {
+    "name": "FileOperationRegistrationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "RenameFilesParams",
+    "file": "general.go"
+  },
+  {
+    "name": "DeleteFilesParams",
+    "file": "general.go"
+  },
+  {
+    "name": "MonikerParams",
+    "file": "general.go"
+  },
+  {
+    "name": "Moniker",
+    "file": "general.go"
+  },
+  {
+    "name": "MonikerRegistrationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "TypeHierarchyPrepareParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TypeHierarchyItem",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TypeHierarchyRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TypeHierarchySupertypesParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TypeHierarchySubtypesParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValueParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValueRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlayHintParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlayHint",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlayHintRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentDiagnosticParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentDiagnosticReportPartialResult",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DiagnosticServerCancellationData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DiagnosticRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceDiagnosticParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceDiagnosticReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceDiagnosticReportPartialResult",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DidOpenNotebookDocumentParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentSyncRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DidChangeNotebookDocumentParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DidSaveNotebookDocumentParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DidCloseNotebookDocumentParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineCompletionParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineCompletionList",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineCompletionItem",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineCompletionRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentContentParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentContentResult",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentContentRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentContentRefreshParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "RegistrationParams",
+    "file": "registration.go"
+  },
+  {
+    "name": "UnregistrationParams",
+    "file": "registration.go"
+  },
+  {
+    "name": "InitializeParams",
+    "file": "general.go"
+  },
+  {
+    "name": "InitializeResult",
+    "file": "general.go"
+  },
+  {
+    "name": "InitializeError",
+    "file": "general.go"
+  },
+  {
+    "name": "InitializedParams",
+    "file": "general.go"
+  },
+  {
+    "name": "DidChangeConfigurationParams",
+    "file": "workspace.go"
+  },
+  {
+    "name": "DidChangeConfigurationRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ShowMessageParams",
+    "file": "window.go"
+  },
+  {
+    "name": "ShowMessageRequestParams",
+    "file": "window.go"
+  },
+  {
+    "name": "MessageActionItem",
+    "file": "window.go"
+  },
+  {
+    "name": "LogMessageParams",
+    "file": "window.go"
+  },
+  {
+    "name": "DidOpenTextDocumentParams",
+    "file": "text.go"
+  },
+  {
+    "name": "DidChangeTextDocumentParams",
+    "file": "text.go"
+  },
+  {
+    "name": "TextDocumentChangeRegistrationOptions",
+    "file": "text.go"
+  },
+  {
+    "name": "DidCloseTextDocumentParams",
+    "file": "text.go"
+  },
+  {
+    "name": "DidSaveTextDocumentParams",
+    "file": "text.go"
+  },
+  {
+    "name": "TextDocumentSaveRegistrationOptions",
+    "file": "text.go"
+  },
+  {
+    "name": "WillSaveTextDocumentParams",
+    "file": "text.go"
+  },
+  {
+    "name": "TextEdit",
+    "file": "basic.go"
+  },
+  {
+    "name": "DidChangeWatchedFilesParams",
+    "file": "workspace.go"
+  },
+  {
+    "name": "DidChangeWatchedFilesRegistrationOptions",
+    "file": "workspace.go"
+  },
+  {
+    "name": "PublishDiagnosticsParams",
+    "file": "diagnostics.go"
+  },
+  {
+    "name": "CompletionParams",
+    "file": "language.go"
+  },
+  {
+    "name": "CompletionItem",
+    "file": "language.go"
+  },
+  {
+    "name": "CompletionList",
+    "file": "language.go"
+  },
+  {
+    "name": "CompletionRegistrationOptions",
+    "file": "language.go"
+  },
+  {
+    "name": "HoverParams",
+    "file": "language.go"
+  },
+  {
+    "name": "Hover",
+    "file": "language.go"
+  },
+  {
+    "name": "HoverRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "SignatureHelpParams",
+    "file": "language.go"
+  },
+  {
+    "name": "SignatureHelp",
+    "file": "language.go"
+  },
+  {
+    "name": "SignatureHelpRegistrationOptions",
+    "file": "language.go"
+  },
+  {
+    "name": "DefinitionParams",
+    "file": "general.go"
+  },
+  {
+    "name": "DefinitionRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ReferenceParams",
+    "file": "language.go"
+  },
+  {
+    "name": "ReferenceRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentHighlightParams",
+    "file": "general.go"
+  },
+  {
+    "name": "DocumentHighlight",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentHighlightRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentSymbolParams",
+    "file": "language.go"
+  },
+  {
+    "name": "SymbolInformation",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentSymbol",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentSymbolRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CodeActionParams",
+    "file": "language.go"
+  },
+  {
+    "name": "Command",
+    "file": "basic.go"
+  },
+  {
+    "name": "CodeAction",
+    "file": "language.go"
+  },
+  {
+    "name": "CodeActionRegistrationOptions",
+    "file": "language.go"
+  },
+  {
+    "name": "WorkspaceSymbolParams",
+    "file": "workspace.go"
+  },
+  {
+    "name": "WorkspaceSymbol",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceSymbolRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CodeLensParams",
+    "file": "language.go"
+  },
+  {
+    "name": "CodeLens",
+    "file": "language.go"
+  },
+  {
+    "name": "CodeLensRegistrationOptions",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentLinkParams",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentLink",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentLinkRegistrationOptions",
+    "file": "general.go"
+  },
+  {
+    "name": "DocumentFormattingParams",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentFormattingRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentRangeFormattingParams",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentRangeFormattingRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentRangesFormattingParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentOnTypeFormattingParams",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentOnTypeFormattingRegistrationOptions",
+    "file": "language.go"
+  },
+  {
+    "name": "RenameParams",
+    "file": "language.go"
+  },
+  {
+    "name": "RenameRegistrationOptions",
+    "file": "language.go"
+  },
+  {
+    "name": "PrepareRenameParams",
+    "file": "language.go"
+  },
+  {
+    "name": "ExecuteCommandParams",
+    "file": "workspace.go"
+  },
+  {
+    "name": "ExecuteCommandRegistrationOptions",
+    "file": "workspace.go"
+  },
+  {
+    "name": "ApplyWorkspaceEditParams",
+    "file": "workspace.go"
+  },
+  {
+    "name": "ApplyWorkspaceEditResult",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkDoneProgressBegin",
+    "file": "progress.go"
+  },
+  {
+    "name": "WorkDoneProgressReport",
+    "file": "progress.go"
+  },
+  {
+    "name": "WorkDoneProgressEnd",
+    "file": "progress.go"
+  },
+  {
+    "name": "SetTraceParams",
+    "file": "general.go"
+  },
+  {
+    "name": "LogTraceParams",
+    "file": "general.go"
+  },
+  {
+    "name": "CancelParams",
+    "file": "base.go"
+  },
+  {
+    "name": "ProgressParams",
+    "file": "base.go"
+  },
+  {
+    "name": "TextDocumentPositionParams",
+    "file": "basic.go"
+  },
+  {
+    "name": "WorkDoneProgressParams",
+    "file": "progress.go"
+  },
+  {
+    "name": "PartialResultParams",
+    "file": "progress.go"
+  },
+  {
+    "name": "LocationLink",
+    "file": "basic.go"
+  },
+  {
+    "name": "Range",
+    "file": "basic.go"
+  },
+  {
+    "name": "ImplementationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "StaticRegistrationOptions",
+    "file": "general.go"
+  },
+  {
+    "name": "TypeDefinitionOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "WorkspaceFoldersChangeEvent",
+    "file": "workspace.go"
+  },
+  {
+    "name": "ConfigurationItem",
+    "file": "workspace.go"
+  },
+  {
+    "name": "TextDocumentIdentifier",
+    "file": "basic.go"
+  },
+  {
+    "name": "Color",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentColorOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "FoldingRangeOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "DeclarationOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "Position",
+    "file": "basic.go"
+  },
+  {
+    "name": "SelectionRangeOptions",
+    "file": "selectionrange.go"
+  },
+  {
+    "name": "CallHierarchyOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "SemanticTokensOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "SemanticTokensEdit",
+    "file": "semantic_token.go"
+  },
+  {
+    "name": "LinkedEditingRangeOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "FileCreate",
+    "file": "general.go"
+  },
+  {
+    "name": "TextDocumentEdit",
+    "file": "basic.go"
+  },
+  {
+    "name": "CreateFile",
+    "file": "basic.go"
+  },
+  {
+    "name": "RenameFile",
+    "file": "basic.go"
+  },
+  {
+    "name": "DeleteFile",
+    "file": "basic.go"
+  },
+  {
+    "name": "ChangeAnnotation",
+    "file": "basic.go"
+  },
+  {
+    "name": "FileOperationFilter",
+    "file": "general.go"
+  },
+  {
+    "name": "FileRename",
+    "file": "general.go"
+  },
+  {
+    "name": "FileDelete",
+    "file": "general.go"
+  },
+  {
+    "name": "MonikerOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "TypeHierarchyOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValueContext",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValueText",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValueVariableLookup",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValueEvaluatableExpression",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValueOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlayHintLabelPart",
+    "file": "lsp.go"
+  },
+  {
+    "name": "MarkupContent",
+    "file": "basic.go"
+  },
+  {
+    "name": "InlayHintOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "RelatedFullDocumentDiagnosticReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "RelatedUnchangedDocumentDiagnosticReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "FullDocumentDiagnosticReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "UnchangedDocumentDiagnosticReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DiagnosticOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "PreviousResultID",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocument",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentItem",
+    "file": "basic.go"
+  },
+  {
+    "name": "NotebookDocumentSyncOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "VersionedNotebookDocumentIdentifier",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentChangeEvent",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentIdentifier",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineCompletionContext",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringValue",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineCompletionOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentContentOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "Registration",
+    "file": "registration.go"
+  },
+  {
+    "name": "Unregistration",
+    "file": "registration.go"
+  },
+  {
+    "name": "WorkspaceFoldersInitializeParams",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ServerCapabilities",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "ServerInfo",
+    "file": "general.go"
+  },
+  {
+    "name": "VersionedTextDocumentIdentifier",
+    "file": "basic.go"
+  },
+  {
+    "name": "SaveOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "FileEvent",
+    "file": "workspace.go"
+  },
+  {
+    "name": "FileSystemWatcher",
+    "file": "workspace.go"
+  },
+  {
+    "name": "Diagnostic",
+    "file": "diagnostics.go"
+  },
+  {
+    "name": "CompletionContext",
+    "file": "language.go"
+  },
+  {
+    "name": "CompletionItemLabelDetails",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InsertReplaceEdit",
+    "file": "language.go"
+  },
+  {
+    "name": "CompletionItemDefaults",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CompletionItemApplyKinds",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CompletionOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "HoverOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "SignatureHelpContext",
+    "file": "language.go"
+  },
+  {
+    "name": "SignatureInformation",
+    "file": "language.go"
+  },
+  {
+    "name": "SignatureHelpOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "DefinitionOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "ReferenceContext",
+    "file": "language.go"
+  },
+  {
+    "name": "ReferenceOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "DocumentHighlightOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "BaseSymbolInformation",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentSymbolOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "CodeActionContext",
+    "file": "language.go"
+  },
+  {
+    "name": "CodeActionDisabled",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CodeActionOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "LocationURIOnly",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceSymbolOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "CodeLensOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "DocumentLinkOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "FormattingOptions",
+    "file": "language.go"
+  },
+  {
+    "name": "DocumentFormattingOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "DocumentRangeFormattingOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "DocumentOnTypeFormattingOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "RenameOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "PrepareRenamePlaceholder",
+    "file": "lsp.go"
+  },
+  {
+    "name": "PrepareRenameDefaultBehavior",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ExecuteCommandOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "WorkspaceEditMetadata",
+    "file": "lsp.go"
+  },
+  {
+    "name": "SemanticTokensLegend",
+    "file": "semantic_token.go"
+  },
+  {
+    "name": "SemanticTokensFullDelta",
+    "file": "lsp.go"
+  },
+  {
+    "name": "OptionalVersionedTextDocumentIdentifier",
+    "file": "basic.go"
+  },
+  {
+    "name": "AnnotatedTextEdit",
+    "file": "basic.go"
+  },
+  {
+    "name": "SnippetTextEdit",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResourceOperation",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CreateFileOptions",
+    "file": "basic.go"
+  },
+  {
+    "name": "RenameFileOptions",
+    "file": "basic.go"
+  },
+  {
+    "name": "DeleteFileOptions",
+    "file": "basic.go"
+  },
+  {
+    "name": "FileOperationPattern",
+    "file": "general.go"
+  },
+  {
+    "name": "WorkspaceFullDocumentDiagnosticReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceUnchangedDocumentDiagnosticReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookCell",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentFilterWithNotebook",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentFilterWithCells",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentCellChanges",
+    "file": "lsp.go"
+  },
+  {
+    "name": "SelectedCompletionInfo",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientInfo",
+    "file": "general.go"
+  },
+  {
+    "name": "ClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "TextDocumentSyncOptions",
+    "file": "capabilities_server.go"
+  },
+  {
+    "name": "WorkspaceOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentContentChangePartial",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentContentChangeWholeDocument",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CodeDescription",
+    "file": "diagnostics.go"
+  },
+  {
+    "name": "DiagnosticRelatedInformation",
+    "file": "diagnostics.go"
+  },
+  {
+    "name": "EditRangeWithInsertReplace",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ServerCompletionItemOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "MarkedStringWithLanguage",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ParameterInformation",
+    "file": "language.go"
+  },
+  {
+    "name": "CodeActionKindDocumentation",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookCellTextDocumentFilter",
+    "file": "lsp.go"
+  },
+  {
+    "name": "FileOperationPatternOptions",
+    "file": "general.go"
+  },
+  {
+    "name": "ExecutionSummary",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookCellLanguage",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentCellChangeStructure",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentCellContentChanges",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "TextDocumentClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "NotebookDocumentClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WindowClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "GeneralClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "WorkspaceFoldersServerCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "FileOperationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "RelativePattern",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentFilterLanguage",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentFilterScheme",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentFilterPattern",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentFilterNotebookType",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentFilterScheme",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentFilterPattern",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookCellArrayChange",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceEditClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DidChangeConfigurationClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DidChangeWatchedFilesClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceSymbolClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "ExecuteCommandClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "SemanticTokensWorkspaceClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "CodeLensWorkspaceClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "FileOperationClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValueWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlayHintWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DiagnosticWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "FoldingRangeWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentContentClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentSyncClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "TextDocumentFilterClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CompletionClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "HoverClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "SignatureHelpClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DeclarationClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DefinitionClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TypeDefinitionClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ImplementationClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ReferenceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentHighlightClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "DocumentSymbolClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "CodeActionClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "CodeLensClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "DocumentLinkClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "DocumentColorClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "DocumentFormattingClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "DocumentRangeFormattingClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "DocumentOnTypeFormattingClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "RenameClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "FoldingRangeClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "SelectionRangeClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "PublishDiagnosticsClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "CallHierarchyClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "SemanticTokensClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "LinkedEditingRangeClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "MonikerClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "TypeHierarchyClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValueClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlayHintClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DiagnosticClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineCompletionClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentSyncClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ShowMessageRequestClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "ShowDocumentClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "StaleRequestSupportOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "RegularExpressionsClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "MarkdownClientCapabilities",
+    "file": "capabilities_client.go"
+  },
+  {
+    "name": "ChangeAnnotationsSupportOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientSymbolKindOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientSymbolTagOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientSymbolResolveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientCompletionItemOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientCompletionItemOptionsKind",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CompletionListCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientSignatureInformationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientCodeActionLiteralOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientCodeActionResolveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CodeActionTagOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientCodeLensResolveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientFoldingRangeKindOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientFoldingRangeOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DiagnosticsCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientSemanticTokensRequestOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientInlayHintResolveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientShowMessageActionItemOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CompletionItemTagOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientCompletionItemResolveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientCompletionItemInsertTextModeOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientSignatureParameterInformationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientCodeActionKindOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientDiagnosticsTagOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ClientSemanticTokensRequestFullDelta",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InitializationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CompletionItemData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CallHierarchyItemData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TypeHierarchyItemData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlayHintData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CodeActionData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceSymbolData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CodeLensData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentLinkData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DiagnosticData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CompletionItemDefaultsData",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ColorPresentationRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "IntegerOrString",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentSelectorOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrEmptyObject",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrSemanticTokensFullDelta",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentEditOrCreateFileOrRenameFileOrDeleteFile",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringOrInlayHintLabelParts",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringOrMarkupContent",
+    "file": "lsp.go"
+  },
+  {
+    "name": "FullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceFullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentFilterWithNotebookOrCells",
+    "file": "lsp.go"
+  },
+  {
+    "name": "IntegerOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentURIOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceFoldersOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringOrStrings",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentContentChangePartialOrWholeDocument",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextEditOrInsertReplaceEdit",
+    "file": "lsp.go"
+  },
+  {
+    "name": "MarkupContentOrStringOrMarkedStringWithLanguageOrMarkedStrings",
+    "file": "lsp.go"
+  },
+  {
+    "name": "UintegerOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextEditOrAnnotatedTextEditOrSnippetTextEdit",
+    "file": "lsp.go"
+  },
+  {
+    "name": "RegisterOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentSyncOptionsOrKind",
+    "file": "lsp.go"
+  },
+  {
+    "name": "NotebookDocumentSyncOptionsOrRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrHoverOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrDeclarationOptionsOrDeclarationRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrDefinitionOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrTypeDefinitionOptionsOrTypeDefinitionRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrImplementationOptionsOrImplementationRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrReferenceOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrDocumentHighlightOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrDocumentSymbolOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrCodeActionOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrDocumentColorOptionsOrDocumentColorRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrWorkspaceSymbolOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrDocumentFormattingOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrDocumentRangeFormattingOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrRenameOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrFoldingRangeOptionsOrFoldingRangeRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrSelectionRangeOptionsOrSelectionRangeRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrCallHierarchyOptionsOrCallHierarchyRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrLinkedEditingRangeOptionsOrLinkedEditingRangeRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "SemanticTokensOptionsOrRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrMonikerOptionsOrMonikerRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrTypeHierarchyOptionsOrTypeHierarchyRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrInlineValueOptionsOrInlineValueRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrInlayHintOptionsOrInlayHintRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DiagnosticOptionsOrRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrInlineCompletionOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "PatternOrRelativePattern",
+    "file": "lsp.go"
+  },
+  {
+    "name": "RangeOrEditRangeWithInsertReplace",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringOrNotebookDocumentFilterNotebookTypeOrNotebookDocumentFilterSchemeOrNotebookDocumentFilterPattern",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrSaveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentContentOptionsOrRegistrationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringOrTuple",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringOrBoolean",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceFolderOrURI",
+    "file": "lsp.go"
+  },
+  {
+    "name": "BooleanOrClientSemanticTokensRequestFullDelta",
+    "file": "lsp.go"
+  },
+  {
+    "name": "LocationOrLocationsOrDefinitionLinksOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "FoldingRangesOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "LocationOrLocationsOrDeclarationLinksOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "SelectionRangesOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CallHierarchyItemsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CallHierarchyIncomingCallsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CallHierarchyOutgoingCallsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "SemanticTokensOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "LinkedEditingRangesOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "WorkspaceEditOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "MonikersOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TypeHierarchyItemsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValuesOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlayHintsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "RelatedFullDocumentDiagnosticReportOrUnchangedDocumentDiagnosticReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineCompletionListOrItemsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "MessageActionItemOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextEditsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CompletionItemsOrListOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "HoverOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "SignatureHelpOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "LocationsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentHighlightsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "SymbolInformationsOrDocumentSymbolsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CommandOrCodeAction",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CommandOrCodeActionArrayOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "SymbolInformationsOrWorkspaceSymbolsOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "CodeLensesOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "DocumentLinksOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "RangeOrPrepareRenamePlaceholderOrPrepareRenameDefaultBehaviorOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "LSPAnyOrNull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "TextDocumentFilterLanguageOrTextDocumentFilterSchemeOrTextDocumentFilterPatternOrNotebookCellTextDocumentFilter",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringOrMarkedStringWithLanguage",
+    "file": "lsp.go"
+  },
+  {
+    "name": "InlineValueTextOrVariableLookupOrEvaluatableExpression",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringLiteralBegin",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringLiteralReport",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringLiteralEnd",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringLiteralCreate",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringLiteralRename",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringLiteralDelete",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringLiteralFull",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringLiteralUnchanged",
+    "file": "lsp.go"
+  },
+  {
+    "name": "StringLiteralSnippet",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedChangeAnnotationsSupportOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedWorkspaceEditClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDidChangeConfigurationClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDidChangeWatchedFilesClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientSymbolKindOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientSymbolTagOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientSymbolResolveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedWorkspaceSymbolClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedExecuteCommandClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedSemanticTokensWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedCodeLensWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedFileOperationClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedInlineValueWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedInlayHintWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDiagnosticWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedFoldingRangeWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedTextDocumentContentClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedWorkspaceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedTextDocumentSyncClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedTextDocumentFilterClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedCompletionItemTagOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientCompletionItemResolveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientCompletionItemInsertTextModeOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientCompletionItemOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientCompletionItemOptionsKind",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedCompletionListCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedCompletionClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedHoverClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientSignatureParameterInformationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientSignatureInformationOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedSignatureHelpClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDeclarationClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDefinitionClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedTypeDefinitionClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedImplementationClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedReferenceClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDocumentHighlightClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDocumentSymbolClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientCodeActionKindOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientCodeActionLiteralOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientCodeActionResolveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedCodeActionTagOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedCodeActionClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientCodeLensResolveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedCodeLensClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDocumentLinkClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDocumentColorClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDocumentFormattingClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDocumentRangeFormattingClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDocumentOnTypeFormattingClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedRenameClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientFoldingRangeKindOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientFoldingRangeOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedFoldingRangeClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedSelectionRangeClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientDiagnosticsTagOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedPublishDiagnosticsClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedCallHierarchyClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientSemanticTokensRequestOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedSemanticTokensClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedLinkedEditingRangeClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedMonikerClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedTypeHierarchyClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedInlineValueClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientInlayHintResolveOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedInlayHintClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedDiagnosticClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedInlineCompletionClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedTextDocumentClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedNotebookDocumentSyncClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedNotebookDocumentClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientShowMessageActionItemOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedShowMessageRequestClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedShowDocumentClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedWindowClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedStaleRequestSupportOptions",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedRegularExpressionsClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedMarkdownClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedGeneralClientCapabilities",
+    "file": "lsp.go"
+  },
+  {
+    "name": "ResolvedClientCapabilities",
+    "file": "lsp.go"
+  }
+]
