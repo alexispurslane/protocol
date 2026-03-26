@@ -128,6 +128,31 @@ type TextEdit struct {
 	NewText string `json:"newText"`
 }
 
+// StringValue represents a string value with a specific kind.
+//
+// @since 3.18.0
+type StringValue struct {
+	// Kind is the kind of string value. Always "snippet" for snippet text edits.
+	Kind string `json:"kind"`
+
+	// Value is the actual string value (snippet content).
+	Value string `json:"value"`
+}
+
+// SnippetTextEdit is a text edit that inserts a snippet instead of plain text.
+//
+// @since 3.18.0
+type SnippetTextEdit struct {
+	// Range is the range of the text document to be manipulated.
+	Range Range `json:"range"`
+
+	// Snippet is the snippet to be inserted (has kind "snippet" and value).
+	Snippet StringValue `json:"snippet"`
+
+	// AnnotationID is optional annotation identifier.
+	AnnotationID *ChangeAnnotationIdentifier `json:"annotationId,omitempty"`
+}
+
 // ChangeAnnotation is the additional information that describes document changes.
 //
 // @since 3.16.0.
@@ -177,8 +202,9 @@ type TextDocumentEdit struct {
 	// Edits is the edits to be applied.
 	//
 	// @since 3.16.0 - support for AnnotatedTextEdit.
+	// @since 3.18.0 - support for SnippetTextEdit.
 	// This is guarded by the client capability Workspace.WorkspaceEdit.ChangeAnnotationSupport.
-	Edits []TextEdit `json:"edits"` // []TextEdit | []AnnotatedTextEdit
+	Edits []any `json:"edits"` // TextEdit | AnnotatedTextEdit | SnippetTextEdit
 }
 
 // ResourceOperationKind is the file event type.

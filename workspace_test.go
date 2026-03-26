@@ -1440,7 +1440,7 @@ func TestApplyWorkspaceEditParams(t *testing.T) {
 						},
 						Version: NewVersion(int32(10)),
 					},
-					Edits: []TextEdit{
+					Edits: []any{
 						{
 							Range: Range{
 								Start: Position{
@@ -1486,7 +1486,7 @@ func TestApplyWorkspaceEditParams(t *testing.T) {
 						},
 						Version: NewVersion(int32(10)),
 					},
-					Edits: []TextEdit{
+					Edits: []any{
 						{
 							Range: Range{
 								Start: Position{

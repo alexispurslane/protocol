@@ -1055,7 +1055,7 @@ func TestTextDocumentEdit(t *testing.T) {
 			},
 			Version: NewVersion(int32(10)),
 		},
-		Edits: []TextEdit{
+		Edits: []any{
 			{
 				Range: Range{
 					Start: Position{
@@ -1078,7 +1078,7 @@ func TestTextDocumentEdit(t *testing.T) {
 			},
 			Version: NewVersion(int32(10)),
 		},
-		Edits: []TextEdit{
+		Edits: []any{
 			{
 				Range: Range{
 					Start: Position{
@@ -2058,7 +2058,7 @@ func TestWorkspaceEdit(t *testing.T) {
 					},
 					Version: NewVersion(int32(10)),
 				},
-				Edits: []TextEdit{
+				Edits: []any{
 					{
 						Range: Range{
 							Start: Position{
@@ -2092,7 +2092,7 @@ func TestWorkspaceEdit(t *testing.T) {
 					},
 					Version: NewVersion(int32(10)),
 				},
-				Edits: []TextEdit{
+				Edits: []any{
 					{
 						Range: Range{
 							Start: Position{

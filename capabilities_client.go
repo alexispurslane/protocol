@@ -112,6 +112,11 @@ type WorkspaceClientCapabilitiesWorkspaceEdit struct {
 	//
 	// @since 3.16.0.
 	ChangeAnnotationSupport *WorkspaceClientCapabilitiesWorkspaceEditChangeAnnotationSupport `json:"changeAnnotationSupport,omitempty"`
+
+	// SnippetEditSupport indicates whether the client supports snippets as text edits.
+	//
+	// @since 3.18.0
+	SnippetEditSupport bool `json:"snippetEditSupport,omitempty"`
 }
 
 // FailureHandlingKind is the kind of failure handling .

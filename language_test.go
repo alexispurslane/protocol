@@ -577,7 +577,7 @@ func TestCompletionItem(t *testing.T) {
 		wantInvalid = `{"items":[]}`
 	)
 	wantType := CompletionItem{
-		AdditionalTextEdits: []TextEdit{
+		AdditionalTextEdits: []any{
 			{
 				Range: Range{
 					Start: Position{
@@ -3249,7 +3249,7 @@ func TestCodeAction(t *testing.T) {
 						},
 						Version: NewVersion(int32(10)),
 					},
-					Edits: []TextEdit{
+					Edits: []any{
 						{
 							Range: Range{
 								Start: Position{
@@ -4575,7 +4575,7 @@ func TestColorPresentation(t *testing.T) {
 			},
 			NewText: "foo bar",
 		},
-		AdditionalTextEdits: []TextEdit{
+		AdditionalTextEdits: []any{
 			{
 				Range: Range{
 					Start: Position{
